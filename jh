@@ -1,0 +1,32 @@
+           column_name           |          data_type          
+---------------------------------+-----------------------------
+ id                              | bigint
+ data_aprovacao_constituicoes    | date
+ data_aprovacao_regras           | date
+ data_aprovacao_dir_diocesano    | date
+ data_aprovacao_dir_pontificio   | date
+ data_aprovacao_decretum_laudis  | date
+ data_fundacao                   | date
+ membros_brasil                  | integer
+ irmaos_as                       | integer
+ postulantes                     | integer
+ novicos                         | integer
+ created_at                      | timestamp without time zone
+ updated_at                      | timestamp without time zone
+ situacao_canonica               | character varying
+ motivos_vinda                   | character varying
+ pais_fundacao                   | character varying
+ nome_principal                  | character varying
+ nomes_alternativos              | character varying
+ siglas                          | character varying
+ familia_final                   | character varying
+ genero                          | character varying
+ fontes                          | character varying
+ cidade_fundacao                 | character varying
+ chegada_brasil_estado           | character varying
+ chegada_brasil_municipio        | character varying
+ ano_reformulacao_constituicoes  | character varying
+ carisma                         | character varying
+ anos_reformulacao_constituicoes | character varying
+(28 rows)
+

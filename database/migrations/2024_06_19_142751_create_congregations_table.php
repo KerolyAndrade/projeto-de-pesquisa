@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('congregations', function (Blueprint $table) {
@@ -19,7 +16,7 @@ return new class extends Migration
             $table->string('familia_final')->nullable();
             $table->string('genero')->nullable();
             $table->string('fontes')->nullable();
-            $table->date('data_aprovacao_constituicao')->nullable();
+            $table->date('data_aprovacao_constituicoes')->nullable();
             $table->date('data_aprovacao_regras')->nullable();
             $table->date('data_aprovacao_dir_diocesano')->nullable();
             $table->date('data_aprovacao_dir_pontificio')->nullable();
@@ -39,12 +36,8 @@ return new class extends Migration
             $table->string('motivos_vinda')->nullable();
             $table->timestamps();
         });
-        
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('congregations');

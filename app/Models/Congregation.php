@@ -9,31 +9,40 @@ class Congregation extends Model
 {
     use HasFactory;
 
+    protected $table = 'congregations';
+
     protected $fillable = [
+        'fontes',
+        'familia_final',
         'nome_principal',
         'nomes_alternativos',
         'siglas',
-        'familia_final',
-        'genero',
-        'fontes',
-        'data_aprovacao_constituicoes',
-        'data_aprovacao_regras',
-        'data_aprovacao_dir_diocesano',
-        'data_aprovacao_dir_pontificio',
-        'data_aprovacao_decretum_laudis',
-        'anos_reformulacao_constituicoes',
-        'situacao_canonica',
-        'data_fundacao',
-        'pais_fundacao',
-        'cidade_fundacao',
-        'chegada_brasil_estado',
-        'chegada_brasil_municipio',
-        'membros_brasil',
-        'irmaos_as',
-        'postulantes',
-        'novicos',
-        'carisma',
-        'motivos_vinda',
+        // Adicione outras colunas conforme necessário
     ];
-}
 
+    // Relacionamentos
+
+    // Relacionamento com membros da congregação
+    public function membros()
+    {
+        return $this->hasMany(Membro::class);
+    }
+
+    // Relacionamento com o país de fundação
+    public function paisFundacao()
+    {
+        return $this->belongsTo(Pais::class, 'pais_fundacao_id');
+    }
+
+    // Relacionamento com o país presente
+    public function paisPresente()
+    {
+        return $this->belongsTo(Pais::class, 'pais_presente_id');
+    }
+
+    // Relacionamento com o estado presente
+    public function estadoPresente()
+    {
+        return $this->belongsTo(Estado::class, 'estado_presente_id');
+    }
+}
