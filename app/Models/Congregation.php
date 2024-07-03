@@ -17,32 +17,12 @@ class Congregation extends Model
         'nome_principal',
         'nomes_alternativos',
         'siglas',
+        'pais_fundacao',
+        'pais_presente', // Adicione esta linha
+        'estados_presente', // Adicione esta linha
+        'ano_fundacao',
+        'ano_chegada',
         // Adicione outras colunas conforme necessário
     ];
-
-    // Relacionamentos
-
-    // Relacionamento com membros da congregação
-    public function membros()
-    {
-        return $this->hasMany(Membro::class);
-    }
-
-    // Relacionamento com o país de fundação
-    public function paisFundacao()
-    {
-        return $this->belongsTo(Pais::class, 'pais_fundacao_id');
-    }
-
-    // Relacionamento com o país presente
-    public function paisPresente()
-    {
-        return $this->belongsTo(Pais::class, 'pais_presente_id');
-    }
-
-    // Relacionamento com o estado presente
-    public function estadoPresente()
-    {
-        return $this->belongsTo(Estado::class, 'estado_presente_id');
-    }
+    
 }

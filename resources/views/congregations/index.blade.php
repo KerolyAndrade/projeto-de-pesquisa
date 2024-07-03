@@ -36,33 +36,27 @@
                             <label for="pais_fundacao">País - Fundação:</label>
                             <select name="pais_fundacao" id="pais_fundacao">
                                 <option value="">Todos</option>
-                                @if(isset($paises_fundacao))
-                                    @foreach($paises_fundacao as $pais)
-                                        <option value="{{ $pais }}">{{ $pais }}</option>
-                                    @endforeach
-                                @endif
+                                @foreach($filters['paises_fundacao'] as $pais)
+                                    <option value="{{ $pais }}">{{ $pais }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div>
                             <label for="pais_presente">Países - Presente:</label>
                             <select name="pais_presente" id="pais_presente">
                                 <option value="">Todos</option>
-                                @if(isset($pais_presente))
-                                    @foreach($pais_presente as $pais)
-                                        <option value="{{ $pais }}">{{ $pais }}</option>
-                                    @endforeach
-                                @endif
+                                @foreach($filters['pais_presente'] as $pais)
+                                    <option value="{{ $pais }}">{{ $pais }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div>
                             <label for="estados_presente">Estados brasileiros onde está presente:</label>
                             <select name="estados_presente" id="estados_presente">
                                 <option value="">Todos</option>
-                                @if(isset($estados_presente))
-                                    @foreach($estados_presente as $estado)
-                                        <option value="{{ $estado }}">{{ $estado }}</option>
-                                    @endforeach
-                                @endif
+                                @foreach($filters['estados_presente'] as $estado)
+                                    <option value="{{ $estado }}">{{ $estado }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div>
@@ -80,10 +74,10 @@
                 <div class="response-card card">
                     <h2>Resposta</h2>
                     <div class="response-content">
-                        @if(isset($congregacoes) && $congregacoes->count() > 0)
+                        @if(isset($congregations) && $congregations->count() > 0)
                             <ul>
-                                @foreach($congregacoes as $congregacao)
-                                    <li>{{ $congregacao->nome }} - {{ $congregacao->pais->nome }}</li>
+                                @foreach($congregations as $congregation)
+                                    <li>{{ $congregation->nome_principal }} - {{ $congregation->pais_fundacao }}</li>
                                 @endforeach
                             </ul>
                         @else
@@ -95,4 +89,6 @@
         </div>
     </main>
 @endsection
+
+
 

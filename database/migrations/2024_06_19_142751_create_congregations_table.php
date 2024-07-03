@@ -34,6 +34,8 @@ return new class extends Migration
             $table->integer('novicos')->nullable();
             $table->string('carisma')->nullable();
             $table->string('motivos_vinda')->nullable();
+            $table->string('pais_presente')->nullable();
+            $table->string('estados_presente')->nullable();
             $table->timestamps();
         });
     }
@@ -43,3 +45,5 @@ return new class extends Migration
         Schema::dropIfExists('congregations');
     }
 };
+
+

@@ -40,7 +40,7 @@ class CongregationsTableSeeder extends Seeder
             // Coleta os dados de cada linha do CSV conforme necessário
             $data = array_map('trim', $data); // Remove espaços em branco
 
-            if (count($data) < 8) { // Verifica se a linha tem pelo menos 8 colunas
+            if (count($data) < 46) { // Verifica se a linha tem pelo menos 46 colunas (ajuste conforme seu CSV)
                 $this->command->error("Incomplete row found in CSV file: " . implode(',', $data));
                 continue;
             }
@@ -53,16 +53,10 @@ class CongregationsTableSeeder extends Seeder
             $pais_fundacao = $this->truncateString($data[5]);
             $genero = $this->truncateString($data[6]);
             $situacao_canonica = $this->truncateString($data[7]);
+            $pais_presente = isset($data[43]) ? $this->truncateString($data[43]) : null;
+            $estados_presente = isset($data[45]) ? $this->truncateString($data[45]) : null;
             $updated_at = now();
             $created_at = now();
-
-            // Adiciona os países de fundação, presentes e estados presentes aos arrays
-            if (!in_array($pais_fundacao, $paises_fundacao)) {
-                $paises_fundacao[] = $pais_fundacao;
-            }
-
-            $paises_presente[] = $this->truncateString($data[43]); // Exemplo: Coluna com países presentes
-            $estados_presente[] = $this->truncateString($data[45]); // Exemplo: Coluna com estados presentes
 
             // Verifica se a congregação já existe no banco de dados antes de criá-la
             $existingCongregation = Congregation::where('nome_principal', $nome_principal)->first();
@@ -77,6 +71,8 @@ class CongregationsTableSeeder extends Seeder
                     'pais_fundacao' => $pais_fundacao,
                     'genero' => $genero,
                     'situacao_canonica' => $situacao_canonica,
+                    'pais_presente' => $pais_presente,
+                    'estados_presente' => $estados_presente,
                     'updated_at' => $updated_at,
                 ]);
             } else {
@@ -90,6 +86,8 @@ class CongregationsTableSeeder extends Seeder
                     'pais_fundacao' => $pais_fundacao,
                     'genero' => $genero,
                     'situacao_canonica' => $situacao_canonica,
+                    'pais_presente' => $pais_presente,
+                    'estados_presente' => $estados_presente,
                     'updated_at' => $updated_at,
                     'created_at' => $created_at,
                 ]);
@@ -98,9 +96,8 @@ class CongregationsTableSeeder extends Seeder
 
         fclose($file);
 
-        // Agora vamos passar esses dados para a view
-        $congregations = Congregation::paginate(10); // Altere conforme sua necessidade
-        return view('congregations.index', compact('congregations', 'paises_fundacao', 'paises_presente', 'estados_presente'));
+        // Exibe mensagem de sucesso ou informações necessárias
+        $this->command->info('Congregations table seeded successfully.');
     }
 
     private function truncateString($value, $limit = 255)
