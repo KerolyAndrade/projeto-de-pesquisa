@@ -12,24 +12,12 @@
                             <input type="text" name="nome_congregacao" id="nome_congregacao">
                         </div>
                         <div>
-                            <label for="palavra_chave">Palavra chave:</label>
-                            <input type="text" name="palavra_chave" id="palavra_chave">
-                        </div>
-                        <div>
                             <label for="familia_final">Família:</label>
                             <select name="familia_final" id="familia_final">
                                 <option value="">Todos</option>
                                 @foreach($filters['familias'] as $familia)
                                     <option value="{{ $familia }}">{{ $familia }}</option>
                                 @endforeach
-                            </select>
-                        </div>
-                        <div>
-                            <label for="genero">Gênero:</label>
-                            <select name="genero" id="genero">
-                                <option value="">Todos</option>
-                                <option value="Masculino">Masculino</option>
-                                <option value="Feminino">Feminino</option>
                             </select>
                         </div>
                         <div>
@@ -42,16 +30,16 @@
                             </select>
                         </div>
                         <div>
-                            <label for="pais_presente">Países - Presente:</label>
-                            <select name="pais_presente" id="pais_presente">
+                            <label for="pais_presente">Países - Presente:</label> <!-- Corrigido para 'paises_presente' -->
+                            <select name="pais_presente" id="pais_presente"> <!-- Corrigido para 'pais_presente' -->
                                 <option value="">Todos</option>
-                                @foreach($filters['pais_presente'] as $pais)
+                                @foreach($filters['paises_presente'] as $pais) <!-- Corrigido para 'paises_presente' -->
                                     <option value="{{ $pais }}">{{ $pais }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div>
-                            <label for="estados_presente">Estados brasileiros onde está presente:</label>
+                            <label for="estados_presente">Estados - Presente:</label>
                             <select name="estados_presente" id="estados_presente">
                                 <option value="">Todos</option>
                                 @foreach($filters['estados_presente'] as $estado)
@@ -60,35 +48,63 @@
                             </select>
                         </div>
                         <div>
-                            <label for="ano_fundacao">Ano - Fundação:</label>
-                            <input type="number" name="ano_fundacao" id="ano_fundacao" min="0" max="2023">
+                            <label for="ano_fundacao">Ano de Fundação:</label>
+                            <input type="number" name="ano_fundacao" id="ano_fundacao">
                         </div>
                         <div>
-                            <label for="ano_chegada">Ano - Chegada:</label>
-                            <input type="number" name="ano_chegada" id="ano_chegada" min="0" max="2023">
+                            <label for="ano_chegada">Ano de Chegada:</label>
+                            <input type="number" name="ano_chegada" id="ano_chegada">
                         </div>
-                        <button type="submit">Buscar</button>
+                        <button type="submit">Pesquisar</button>
                     </form>
                 </div>
-
-                <div class="response-card card">
-                    <h2>Resposta</h2>
-                    <div class="response-content">
-                        @if(isset($congregations) && $congregations->count() > 0)
-                            <ul>
+                <div class="results-card card">
+                    <h2>Resultados</h2>
+                    @if($congregations->isEmpty())
+                        <p>Nenhuma congregação encontrada.</p>
+                    @else
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Família</th>
+                                    <th>País de Fundação</th>
+                                    <th>Países Presente</th> <!-- Corrigido para 'paises_presente' -->
+                                    <th>Estados Presente</th>
+                                    <th>Data de Fundação</th>
+                                    <th>Data de Chegada</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 @foreach($congregations as $congregation)
-                                    <li>{{ $congregation->nome_principal }} - {{ $congregation->pais_fundacao }}</li>
+                                    <tr>
+                                        <td>{{ $congregation->nome_principal }}</td>
+                                        <td>{{ $congregation->familia_final }}</td>
+                                        <td>{{ $congregation->pais_fundacao }}</td>
+                                        <td>{{ $congregation->paises_presente }}</td> <!-- Corrigido para 'paises_presente' -->
+                                        <td>{{ $congregation->estados_presente }}</td>
+                                        <td>
+                                            @if(is_string($congregation->data_fundacao) || is_int($congregation->data_fundacao))
+                                                {{ $congregation->data_fundacao }}
+                                            @elseif($congregation->data_fundacao)
+                                                {{ $congregation->data_fundacao->format('d/m/Y') }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if(is_string($congregation->chegada_brasil_estado) || is_int($congregation->chegada_brasil_estado))
+                                                {{ $congregation->chegada_brasil_estado }}
+                                            @elseif($congregation->chegada_brasil_estado)
+                                                {{ $congregation->chegada_brasil_estado->format('d/m/Y') }}
+                                            @endif
+                                        </td>
+                                    </tr>
                                 @endforeach
-                            </ul>
-                        @else
-                            <p>Nenhuma congregação encontrada.</p>
-                        @endif
-                    </div>
+                            </tbody>
+                        </table>
+                        {{ $congregations->links() }}
+                    @endif
                 </div>
             </div>
         </div>
     </main>
 @endsection
-
-
-
