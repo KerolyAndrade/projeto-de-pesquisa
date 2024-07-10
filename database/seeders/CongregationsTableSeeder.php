@@ -13,32 +13,41 @@ class CongregationsTableSeeder extends Seeder
     public function run()
     {
         $file = fopen(database_path('seeders/banco.csv'), 'r');
-        $header = fgetcsv($file);
+        $header = fgetcsv($file); // Read the header row
 
         while ($row = fgetcsv($file)) {
-            $data = array_combine($header, $row);
+            $data = array_combine($header, $row); // Combine header and current row into associative array
 
-            if (empty($data['nome_principal'])) {
-                Log::warning('Failed to create congregation record. "nome_principal" is null or empty.');
-                continue;
-            }
-
-            try {
-                Congregation::create([
-                    'nome_principal' => $data['nome_principal'],
-                    // Mapeie outras colunas conforme necessário, por exemplo:
-                    'familia_final' => $data['familia_final'],
-                    'pais_fundacao' => $data['pais_fundacao'],
-                    'paises_presente' => $data['paises_presente'], // Nome correto da coluna
-                    'estados_presente' => $data['estados_presente'],
-                    // Adicione outras colunas aqui
-                ]);
-            } catch (\Exception $e) {
-                Log::error('Failed to create congregation record.', ['exception' => $e]);
+            if (!empty($data['Nome_principal'])) { // Check if 'Nome_principal' is not empty
+                try {
+                    $attributes = $this->mapAttributes($data); // Map CSV data to database attributes
+                    Congregation::create($attributes); // Create Congregation using mapped attributes
+                } catch (\Exception $e) {
+                    Log::error('Erro ao inserir a congregação: ' . $e->getMessage());
+                }
+            } else {
+                Log::warning('Tentativa de inserir registro com "nome_principal" vazio. Dados recebidos:', $data);
             }
         }
 
         fclose($file);
+    }
+
+    // Map CSV columns to database attributes
+    private function mapAttributes($data)
+    {
+        $attributes = [];
+        foreach ($data as $csvColumn => $value) {
+            $columnName = $this->getColumnMapping($csvColumn);
+            if ($columnName) {
+                if ($columnName === 'data_fundacao' && !empty($value)) {
+                    $attributes[$columnName] = Carbon::createFromFormat('Y-m-d', $value)->format('Y');
+                } else {
+                    $attributes[$columnName] = $value;
+                }
+            }
+        }
+        return $attributes;
     }
 
     // Função para mapear o nome da coluna CSV para o nome da coluna do banco de dados
