@@ -9,40 +9,33 @@ class Congregation extends Model
 {
     use HasFactory;
 
-    protected $table = 'congregations';
-
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'fontes',
-        'familia_final',
         'nome_principal',
         'nomes_alternativos',
         'siglas',
-        // Adicione outras colunas conforme necessário
+        'familia_final',
+        'genero',
+        'fontes',
+        'datas_aprovacao',
+        'anos_reformulacao',
+        'situacao_canonica',
+        'data_fundacao',
+        'pais_fundacao',
+        'cidade_fundacao',
+        'chegada_brasil_estado',
+        'chegada_brasil_municipio',
+        'membros_brasil',
+        'irmaos',
+        'postulantes',
+        'novicos',
+        'carisma',
+        'motivos_vinda',
     ];
 
-    // Relacionamentos
-
-    // Relacionamento com membros da congregação
-    public function membros()
-    {
-        return $this->hasMany(Membro::class);
-    }
-
-    // Relacionamento com o país de fundação
-    public function paisFundacao()
-    {
-        return $this->belongsTo(Pais::class, 'pais_fundacao_id');
-    }
-
-    // Relacionamento com o país presente
-    public function paisPresente()
-    {
-        return $this->belongsTo(Pais::class, 'pais_presente_id');
-    }
-
-    // Relacionamento com o estado presente
-    public function estadoPresente()
-    {
-        return $this->belongsTo(Estado::class, 'estado_presente_id');
-    }
+    // Métodos, relações e outros atributos conforme necessário
 }

@@ -1,0 +1,162 @@
+,FONTES,"Família final","NOME PRINCIPAL","NOMES ALTERNATIVOS",SIGLAS,"Tem formulário preenchido? (S/N)","Existe?
+ (1/0/NE)","Existe no Brasil?
+ (1/0/NE)",M/F?,"Possui Mantenedora?
+ (S/N/ N/I / N/E)",Fontes_11,"Fundadores M","Fundadores F","COM Hierarquia M","COM hierarquia F","SEM Hierarquia M","SEM Hierarquia F",Santo/M,Santo/F,"Nomes dos/das Fundador(es/as)",Fontes_21,"Datas de Aprovação (Constituições, Regras, Dir. Diocesano, Dir. Pontifício, Decretum Laudis)",Fontes_23,"Anos de reformulação das Constituições",Fontes_25,"Situação canônica*","Tipo de Vida*","Data de fundação",Fontes_29,"País de Fundação","Estado de Fundação","Cidade de Fundação",Fontes_33,"Chegada ao Brasil - Ano",Fontes_35,"Chegada ao Brasil - Estado","Chegada ao Brasil - Município",Fontes_38,"Nº de membros do grupo fundador - Religiosos","Nº de membros do grupo fundador - Leigos","Nº de membros do grupo fundador - Não Especificado",Fontes_42,"Período de funcionamento - Casas no Brasil [fontes]",Fontes_44,"Período de funcionamento - Casas Fechadas",Fontes_46,"Estados onde está presente","Nº de estados onde está presente",Fontes_49,"Nº de casas no mundo",Fontes_51,"Países onde está presente","Nº de países onde está presente",Fontes_54,"Membros no Brasil
+ (Preferência para informações do AC2015)","Sacerdotes *","Irmãos/ãs *","Postulantes *","Noviços *",Fontes_60,"Dados Alternativos
+(com fontes) *","Membros no mundo (total)",Fontes_63,"Organização Hierárquica/ Administrativa - Nomeação?","Organização Hierárquica/ Administrativa - Eleição?","Organização Hierárquica/ Administrativa - Ambos?","Organização Hierárquica [NOMeação, ELeição, AMBos] *","Publicações de uso Interno","Fontes *_69","Publicações livres","Fontes *_71","Total de Publicações *","Obras sobre a Congregação",Total,"Número de fontes Manuscritas",Carisma,Fontes_77,Missão/Fundação,Fontes_79,Missão/Hoje,Fontes_81,"Motivos da vinda",Fontes_83,"Trabalhos efetivamente assumidos",Fontes_85,Notas,"SEDE NO BRASIL - CIDADE","SEDE NO BRASIL - ESTADO","SEDE NO BRASIL - É CAPITAL? (0=NÃO, 1=SIM)","Taxa de Reprodução [POSTULANTES+NOVIÇOS/AS] / [SACERDOTES+IRMÃOS]","Proporção de membros em formação em relação ao total de membros"
+126,"http://www.cricbrasil.org/files/cronistoria.pdf [1]",N/E,"Cônegas Regulares das Cinco Chagas",N/A,N/A,N,N/E,N/E,F,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,VM,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/I,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,0,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/A,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,,N/E,N/E,0,N/E,N/E
+283,N/E,N/E,"Instituto das Missionárias Leigas de Nossa Senhora",N/A,N/A,N,N/E,N/E,F,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,VM,N/E,N/E,Canadá,N/E,Montreal,?,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/I,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,0,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/A,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,,N/E,N/E,0,N/E,N/E
+441,"https://www.facebook.com/pg/Congrega%C3%A7%C3%A3o-das-Irm%C3%A3s-de-Jesus-Crucificado-Mission%C3%A1rias-Franciscanas-324196667760368/about/ [1]
+
+https://metropolia.org.br/noticias/dom-volodemer-visita-a-comunidade-de-rio-azul/ [2]",N/E,"Irmãs de Jesus Crucificado Missionárias FRANCISCANAS",N/A,[IJCMF],N,N/E,N/E,F,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/I,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,0,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/A,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,,Curitiba,PR,1,N/E,N/E
+321,"http://www.agostinianos.org.br/ [1]
+
+http://www.osabrasil.org/index.html [2]
+
+http://www.osa.org.br/osa/ [3]
+
+http://www.vicariatusurbis.org/?page_id=188&ID=412 [4]
+
+http://augustinians.net/ [5]
+
+http://www.agostinianos.org.br/jornal-inquietude [6]
+
+http://www.osabrasil.org/onde_estamos.htm [7]
+
+http://augustinians.net/index.php?page=europe_en [8]",Agostiniana,"Ordem de SANTO AGOSTINHO","Ordem dos Eremitas de Santo Agostinho, Agostinianos",[ANTIGO],N,1,S,M,S,3,1.00,0.00,1.00,0.00,0.00,0.00,1.00,0.00,"S. Agostinho de Hipona",1,"1244 {Ato de Fusão}",1,N/E,N/E,DP,CLE,391,1,Argélia,Annaba,"Hipona (atual Annaba)",1,1899,1,RJ,"Rio de Janeiro",1,5,0,0,1,28,"AC 2015",N/E,N/I,"GO, PR, SP",3,7,459,4,"África do Sul, Alemanha, Argélia, Argentina, Austrália, Áustria, Bélgica, Bolívia, Brasil, Canadá, Chile, Colômbia, Coréia do Sul, Equador, Eslováquia, Espanha, EUA, Filipinas, Holanda, Índia, Indonésia, Irlanda, Itália, Japão, Malta, México, Nigéria, Panamá, Peru, Polônia, Quênia, Reino Unido, Rep. Dem. do Congo, Rep. Tcheca, Tanzânia, Uruguai, Venezuela",37,8,133,74,11,38,10,AC2015,N/E,2786,1,0,0,1,AMB,N/E,N/E,1,6,1,N/E,N/E,N/A,""" - Pilares  do Carisma Agostiniano
+Três são os pilares sob os quais se eleva a fraternidade agostiniana: a via da interioridade (do exterior para o interior e daí para o alto, no encontro profundo com Cristo Mestre Interior); a vida em comunidade, com um destaque especial ao valor da amizade, tão caro para Agostinho e, por fim, o serviço à Igreja onde ela mais necessitar.
+Poderíamos atualizar nosso carisma nesse lema: ""Uma comunidade de irmãos e de amigos, a serviço da Igreja e da sociedade, solidários com os pobres e excluídos, tendo uma só alma e um só coração, numa contínua busca inquieta de Deus"". Procuramos viver, assim um ""ideal comunitário de santidade"" para sermos ""Agostinianos novos para tempos novos!""."" [1]",1,"""Ordenado sacerdote em 391, Agostinho conseguiu uma chácara em Hipona, onde construiu um mosteiro para sua comunidade de irmãos. Mais tarde escreveu a Regra, inspirada na primitiva comunidade cristã de Jerusalém: ""Antes de tudo, vivei unânimes em casa e tende uma só alma e um só coração orientados para Deus"" (I, 2).
+Quando foi consagrado bispo de Hipona, preferiu residir na casa episcopal, mas vivendo em comunidade com os seus clérigos. Mais tarde, erigiram, dentro da cidade, um mosteiro para mulheres, constituindo, assim, três formas de vida religiosa agostiniana: masculina, tanto para religiosos leigos, como religiosos clérigos e a feminina, para religiosas."" [1]",1,"""FINALIDADE
+
+O fim da Ordem consiste em que, unidos concordemente em fraternidade e amizade espiritual, busquemos e honremos a Deus e trabalhemos para o serviço de seu povo.Deste modo, participamos na obra da evangelização da Igreja, levando a Boa Nova ""a todos os grupos humanos, para que, ao transformá-los interiormente por sua própria eficácia, torne nova a própria humanidade"". Este é nosso principal testemunho (Const. 13)."" [1]",1,"""1898 - Com motivo da Celebração do Concílio Plenário Latino-Americano, em Roma, vários prelados brasileiros sabendo do acontecido nas Ilhas Filipinas, onde por causa da revolução, muitos Padres Agostinianos foram presos e tiveram que voltar para a Espanha, ficando lá apenas os religiosos nativos, solicitam ao Rvmo. Pe. Tomás Rodrigues, Superior Geral da Ordem de Santo Agostinho, o envio de diversos religiosos às terras brasileiras.
+1899 - No dia 17 de junho de 1899 chegam ao Rio de Janeiro, provenientes da Espanha, os primeiros religiosos Agostinianos da Província de Filipinas: Padres Joaquín Fernández, Alfredo Carrocera Valdés, Cándido de San Miguel, Baltasar Gamarra e o Frei Maximiano Andrés, iniciando-se desta forma o Apostolado Docente, Social e Paroquial que perdura até os dias de hoje."" [3]",3,"""O Vicariato do Santíssimo Nome de Jesus do Brasil é chamado de SOCIEDADE INSTRUÇÃO E SOCORROS (SIS) (...) fundada e mantida pelos Padres Agostinianos, desde 1921, vem atuando ininterruptamente em suas Obras Sociais, ampliando a cada ano seu âmbito de ação e seus núcleos de atendimento. Sempre trabalhou e continua trabalhando dentro de seus objetivos institucionais: a educação, a formação e a promoção humana, a assistência social, a orientação e atendimento familiar e religioso, atingindo o jovem, o adolescente, a criança e a família."" [3]
+
+A Província do Brasil, segundo a fonte {2}, administra uma rede de colégios, atendem paróquias, mantém obras sociais na forma de creches, centros profissionalizantes, de acolhida para jovens e adolescentes, de reabilitação de dependentes químicos, restaurantes populares e casas de formação de religiosos. [2]","3, 2",,"São Paulo",SP,1,56.47%,36.09%
+532,"http://www.crbnacional.com.br/index.php/instituicao-membros/2524-cccxxxvii-religiosas-do-sagrado-coracao-de-jesus-rscj-brasil [1]
+
+http://www.crbnacional.com.br/index.php/instituicao-membros/2555-ccclxiii-sociedade-do-sagrado-coracao-de-jesus-scj-roma-italia [2]
+
+http://www.vicariatusurbis.org/?page_id=188&ID=3627 [3]
+
+https://fr.wikipedia.org/wiki/Soci%C3%A9t%C3%A9_du_Sacr%C3%A9-C%C5%93ur_de_J%C3%A9sus [4]
+
+http://data.bnf.fr/12004586/societe_du_sacre-coeur_de_jesus/ [5]
+
+http://rscjbrasil.blogspot.com.br/p/nossa-historia.html [6]",N/E,"Congregação das Religiosas do SAGRADO CORAÇÃO DE JESUS ; 
+(VER: Sociedade do SAGRADO CORAÇÃO DE JESUS) ",N/A,[RSCJ],N,1,1,F,N/E,N/E,0.00,1.00,0.00,0.00,0.00,1.00,0.00,1.00,"S. Madalena Sofia Barat",1,"N/A {AC}",N/E,N/E,N/E,DP,VM,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,20,"AC 2015",N/E,N/I,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,85,N/E,N/E,N/E,N/E,AC2015,N/E,N/E,N/E,N/E,N/E,0,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/A,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,,Olinda,PE,0,N/E,N/E
+104,"http://www.osb.org.br/cimbra/ordemHistorico.asp [1]
+
+http://www.mosteirosaojoao.org.br/o-mosteiro/historico/a-ordem-de-sao-bento [2]
+
+http://www.osb.org.br/cimbra/cimbraComunidades.asp?id=24 [3]
+
+http://www.cimbramonastica.org.br/cimbra/index.php/comunidades-integrantes/osb-ordem-de-sao-bento/beneditinas?start=10 [4]
+
+http://oblatos-beneditinossantamaria.blogspot.com.br/2011/08/historia-do-1-mosteiro-beneditino-das.html [5]
+
+http://noticias.cancaonova.com/brasil/abadia-beneditina-comemora-centenario-em-sao-paulo/ [6]
+
+http://www.mosteirosaojoao.org.br/10-comunidade-monastica/a-ordem-de-sao-bento [7]
+
+http://mosteirosaojoao.org.br/ora-et-labora [8]
+
+http://www.osbatlas.com/default.asp?id=369&id_n=21 [9]
+
+http://www.osb.org.br/saobento.html [10]",Beneditina,"Ordem de SÃO BENTO","Monjas da Ordem de São Bento",[OSB],N,1,S,F,N/E,N/E,0.00,1.00,0.00,1.00,0.00,0.00,0.00,1.00,"S. Bento",1,"século VI{AC}",10,N/E,N/E,DP,VC/VM,500,10,Itália,Lácio,"Monte Cassino",10,1911,5,SP,"São Paulo",5,7,0,0,5,19,"AC 2015",N/E,N/I,"AC, BA, CE, ES, MG, PB, PE, RJ, RO, SP",10,"AC 2015",N/E,N/E,Brasil,1,9,271,N/E,N/E,N/E,N/E,AC2015,"298 [9]",N/E,N/E,N/E,N/E,0,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/A,"""Obediência - como maneira de retornar ao convívio com Deus do qual nos afastamos pela pecado
+
+Humildade – vivida como ""mistério"", isto é, uma atitude que se toma, uma situação que se vive e que, por graça de Deus, nos coloca na esfera da ação do Cristo em nós, ou melhor, nos identifica com Ele
+
+Hospitalidade – cimo, forma mais autêntica de apostolado beneditino.
+
+Silêncio – como meio de reverência ao outro e também como atitude de receptividade diante de Deus. “Fala, Senhor, que teu servo escuta.” (1Sm 3,9)
+
+Lectio Divina - é uma atividade sagrada que tem por finalidade adquirir a sabedoria. Consiste em concentrar toda a atenção da alma no texto, para lhe saborear a essência e despertar o desejo de Deus.
+
+Vivência da palavra de Deus – Munido com a Palavra de Deus, o monge combate e trabalha a fim de a inserir na vida, confiante na sua eficiência e apoiado na força de Deus.
+
+Nada antepor a Cristo – Cristo é Senhor e o monge é o seu servo. E devido à extensão do senhorio de Cristo, o serviço do monge é total e universal. A vida do monge é seguir e imitar Cristo.
+
+Ofício Divino – É uma oração em linguagem sobre humana, isto é, numa linguagem que Deus deu ao homem para que pudesse ser adequadamente louvado.
+
+Oração – A vida inteira do monge é um esforço de oração; esse esforço apóia-se em momentos privilegiados, tempos fortes que voltam a dar impulso à oração incessante. A consciência do olhar de Deus sobre si em todo o tempo e momento, é uma forma de oração contínua."" [7]",7,"""Ora et Labora""
+""Uma sensata alternância e uma equilibrada medida de oração e trabalho são consideradas pelos monges como um bom caminho para Deus. Este caminho nos protege dos exageros e excessos. Os dois pólos fazem parte do homem: a extroversão no trabalho e a introversão na oração. Só quando ambos estão em correta relação um com o outro é que o homem permanece são."" [8]",8,"""Ora et Labora"" [8]",8,"""Dom Miguel Kruse OSB - (1864 - 1926) - Abade do Mosteiro de São Paulo no Brasil, foi quem solicitou um Mosteiro de monjas na capital do Estado de São Paulo a ser incorporado na Congregação Beneditina do Brasil."" [3]",3,"Cada Mosteiro parece ter seu próprio conjunto de atividades, mas algumas das mais comuns são a administração de hospedarias, a confecção de materiais religiosos (p.ex. Velas) e de não religiosos (p.ex. doces diversos). A congregação é de vida contemplativa, basicamente. [4]",4,,"São Paulo",SP,1,N/E,N/E
+499,"http://santuariomedianeira.com.br/content/news/news_item.asp?content_ID=126 [1]
+
+https://br.groups.yahoo.com/neo/groups/PONSM/info [2]
+
+http://cascavel.ufsm.br/tede/tde_arquivos/36/TDE-2012-05-28T095617Z-3557/Publico/SILVA,%20LARISSA%20MOLINOS%20DA.pdf [3]",N/E,"Pequenas Operárias de NOSSA SENHORA MEDIANEIRA",N/A,[PONSM],N,1,1,F,N/E,N/E,1.00,0.00,0.00,0.00,1.00,0.00,0.00,0.00,"Pe. Leopoldo Brentano",2,N/E,N/E,N/E,N/E,N/E,VM,N/E,N/E,Brasil,N/E,N/E,N/E,BR,N/A,BR,BR,BR,N/E,N/E,N/E,N/E,6,"AC 2015",N/E,N/I,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,0,N/E,N/E,N/E,N/E,N/E,N/E,[3],1,N/A,N/E,N/E,"""Nessa época {1943} esse mesmo Padre Leopoldo Brentano viu a necessidade de haver Irmãs que soubessem das mazelas que viviam as classes operárias e que, de alguma foram, as vivesse em seu dia-a-dia, porém, para isso, essas mesmas mulheres tinam que fazer parte dos Ciclos de Operários, algo até então inexistente. esse Padre sofreu muita pressão para desistir de seus ideais, porém, depois de dirigir-se a Santa Maria e pedir para Nossa Senhora de Medianeira que intercedesse por ele junto ao Pai, teve atendidas as suas preces, por isso o nome dessa Congregação ficou 'Pequenas Operárias de N.S. da Medianeira'. Uma congregação bem diferente das demais, pois suas Freiras são assalariadas, não há nenhuma instituição mantenedora como nas demais. Elas trabalham, estudam, ajudam a comunidade, e como todo contribuinte, se aposentam."" [3]",3,"""Nossa missão: Promover a devoção a NOSSA SENHORA como MEDIANEIRA DE TODAS AS GRAÇAS que do seu Santuário as envia ao mundo do trabalho, inflamadas do amor de Deus e zelo pela promoção dos operários, como mensageiras do seu MATERNAL AMOR e da Esperança de que sua luta não será em vão, mas que chegará para eles a PAZ como fruto da JUSTIÇA SOCIAL."" [2]",2,"CONGREGAÇÃO BRASILEIRA",N/A,"""Deus nos envia a exemplo e sob a proteção da Mãe Medianeira.
+Cuidando do santuário;
+Acolhendo os Romeiros;
+Participando das atividades Pastorais.
+Seguindo os passos de Pe. Leopoldo Brentano - sj.
+Nos Círculos Operários, Na formação lideres (ELO), Na promoção social, Na Orientação e Capacitação Profissional.
+Evangelizando pelo testemunho no mundo do Trabalho, as PONSM se mantém trabalhando como assalariadas."" [2]",2,,"Santa Maria",RS,0,N/E,N/E
+484,"http://missaocristooperario.blogspot.com.br [1]
+
+https://historiasdopari.wordpress.com/2016/04/18/frei-luiz-maria-sartori/ [2]
+
+http://missaocristooperario.blogspot.com.br/2013/08/ir-miriam-fala-sobre-pastoral-do-mundo.html [3]",N/E,"Congregação das Irmãs MISSIONÁRIAS DE CRISTO OPERÁRIO",N/A,[IMCO],N,1,1,F,N/E,N/E,1.00,0.00,0.00,0.00,1.00,0.00,0.00,0.00,"Frei Luiz Maria Sartori",1,N/E,N/E,N/E,N/E,N/E,VA,N/E,N/E,Brasil,SP,"São Paulo",?,BR,N/A,BR,BR,BR,N/E,N/E,N/E,N/E,5,"AC 2015",N/E,N/I,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,6,N/E,N/E,N/E,N/E,AC2015,N/E,N/E,N/E,N/E,N/E,0,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/A,"""Venha participar deste carisma. 
+O trabalho é o eixo da nossa história ! E Cristo foi Operário !
+Porque,  quem tem o trabalho nas mãos dirige a história.
+Você jovem cristão:
+Que se preocupa com os destinos da humanidade;
+Que conhece a predileção de Jesus pelos pobres que sofrem; 
+Que quer se despojar do egoísmo, do comodismo, do temor e ser útil ao próximo, participando dos projetos de Deus!"" [1]",1,N/E,N/E,"""Nossa missão: Levar a boa nova do Evangelho a todos os irmãos e irmãs que estão no mundo do traballho, visitando as empresas e os corações de todas as pessoas envolvidas no processo produtivo. Fomentar a esperança em todos os corações: Empresário e seus colaboradores que unidos devem construir um mundo sempre mais solidario."" [1]",1,"CONGREGAÇÃO BRASILEIRA",N/A,"""A Pastoral do Mundo do Trabalho abraça amplos setores da sociedade e suas relações, motivo primordial para a acolhida à Associação Brasileira do Empresário Cristão, entidade ecumênica composta em sua maioria por católicos, salientando que a Igreja Católica tem também a Pastoral Operária. Para chegar a todos os trabalhadores, são realizadas missas, palestras e visitas da Pastoral às empresas, levando a imagem do Cristo Operário. O principal objetivo dos encontros entre trabalhadores e a Pastoral é estimular o diálogo, seguindo os valores cristãos. "" [3]",3,,"São Paulo",SP,1,N/E,N/E
+472,"https://pt-br.facebook.com/Irm%C3%A3s-Volunt%C3%A1rias-de-Cristo-Rei-1640048422901387/ [1]
+
+http://www.crbnacional.com.br/index.php/instituicao-membros/2423-ccxxxvii-irmas-voluntarias-de-cristo-rei-brasil [2]
+
+http://educandario-cristorei.blogspot.com.br/2012/01/ [3]",N/E,"Congregação das IRMÃS VOLUNTÁRIAS DE CRISTO REI",N/A,[VCR],N,1,1,F,N/E,N/E,1.00,1.00,0.00,0.00,1.00,0.00,0.00,0.00,"Pe. Antônio Maria Polito (SDV), Ir. Walkiria Alves de Amorim",3,N/E,N/E,N/E,N/E,DD,N/E,N/E,N/E,N/E,N/E,N/E,N/E,BR,N/A,BR,BR,BR,N/E,N/E,N/E,N/E,3,"AC 2015",N/E,N/I,N/E,N/E,N/E,3,"AC 2015",Brasil,1,"AC 2015",6,N/E,N/E,N/E,N/E,AC2015,N/E,6,"AC 2015",N/E,N/E,0,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/A,N/E,N/E,N/E,N/E,N/E,N/E,"CONGREGAÇÃO BRASILEIRA",N/A,"A fonte {3} se refere ao Educandário Cristo Rei, escola administrada pela congregação com apoio do governo local. [3]",3,,"Vitória da Conquista",BA,0,N/E,N/E
+537,"https://it.wikipedia.org/wiki/Suore_dei_Sacri_Cuori_e_dell%27adorazione_perpetua_del_Santissimo_Sacramento [1]",N/E,"Congregação dos SAGRADOS COR. DE JESUS E Mª E DA ADORAÇÃO PERP. DO SSMO. SACRAMENTO DO ALTAR","Congregação dos Sagrados Corações de Jesus e Maria da Adoração Perpétua do Santíssimo Sacramento do Altar / Irmãs dos Sagrados Corações (pop.)",[SSCC(1)],N,1,1,F,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,3,"AC 2015",N/E,N/I,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,0,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/A,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,,"Belo Horizonte",MG,1,N/E,N/E
+458,"https://www.arquidiocesejuizdefora.org.br/index.php/2014-08-12-13-34-04/2014-08-12-14-19-27/congregacoes-religiosas-femininas [1]
+
+http://corregofundo.mg.gov.br/servicos/escolas/centro-de-educacao-infantil-sol-nascente [2]
+
+https://www.youtube.com/watch?v=Sy8mBb1f4Fo [3]",N/E,"Congregação das Irmãs FRANCISCANAS MISSIONÁRIAS DE SÃO PASCOAL",N/A,[FMSP],N,1,1,F,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,2,"AC 2015",N/E,N/I,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/e,N/e,N/E,N/E,0,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/A,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,,"Córrego Fundo",MG,0,N/E,N/E
+607,"http://servosdaeucaristiasse.blogspot.com.br/ [1]
+
+http://pastoralvocacional.blogspot.com.br/2014/12/sociedade-dos-servos-da-eucaristia.html [2]
+
+http://servosdaeucaristiasse.blogspot.com.br/p/congregacao.html [3]
+
+https://www.facebook.com/servosdaeucaristia?ref=tn_tnmn [4]
+
+http://servosdaeucaristiasse.blogspot.com.br/2010/04/endereco-vocacional.html [5]",,"Sociedade dos Servos da EUCARISTIA","Servos da Eucaristia",[SSE],N,1,1,M,N/E,N/E,1.00,0.00,0.00,0.00,1.00,0.00,1.00,0.00,"S. Pedro Julião Eymard",3,N/E,N/E,N/E,N/E,N/E,CLE,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,2,"AC 2015",N/E,N/E,PR,1,"AC 2015",2,5,"Brasil, Espanha",2,5,20,5,4,3,8,"AC 2015",N/E,20,"AC 2015",,,,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,"""Servos da Eucaristia é o nome dos Religioso que, eleitos pela Santíssima Trindade, deputados pela Santa Mãe Igreja, professam diante da Humanidade uma vivência especialmente consagrada ao serviço da Divina Majestade da pessoa de Jesus Cristo perenemente presente na Eucaristia. Animados pela espiritualidade carismática de São Pedro Julião Eymard, regem-se pelas constituições que ele elaborou para ""servir nosso Senhor no seu Sacramento de amor, por meio de uma Sociedade de homens que se dedicam especialmente e totalmente a este serviço"". "" [3]",3,N/E,N/E,"A suprema razão deste Instituto consiste em oferecer, sob a guia e proteção de Imaculada Virgem Maria, a Deus e Senhor Nosso Jesus Cristo que, por amor dos homens permanece dia e noite na Eucaristia, verdadeiros e perpétuos adoradores, animosos zeladores e evangelizadores de sua glória e de seu amor; para assim Jesus seja sempre adorado neste Sacramento e seja socialmente glorificado em todo o mundo. [3]",3,N/E,N/E,N/E,N/E,"> Não foi possível determinar várias informações sobre esta congregação: O fundador é listado como o S. Pierre Julien Eymard, mas não foi possível encontrar uma congregação com esse nome listada como fundada por ele nas buscas. Não há qualquer informação mais específica em relação à datas sobre a fundação ou chegada desta congregação no Brasil.","Ponta Grossa",PR,0,122.22%,55.00%
+630,"https://www.donmazza.org.br/quem-somos [1]
+
+http://www.donmazza.org/node/80 [2]
+
+https://www.donmazza.org.br/quem-somos#nossas-casas [3]
+
+https://it.wikipedia.org/wiki/Nicola_Mazza [4]
+
+https://www.donmazza.org.br/quem-somos#comunidade [5]
+
+https://www.donmazza.org.br/quem-somos#fundador [6]
+
+https://www.donmazza.org.br/quem-somos#comunidade [7]
+
+https://www.donmazza.org.br/quem-somos#histórico [8]",,"Pia Sociedade de PADRE MAZZA","Padre Mazza",[PSPM],N,1,1,M,N/E,N/E,1.00,0.00,0.00,0.00,1.00,0.00,0.00,0.00,"Pe. Nicola Mazza",1,N/E,N/E,N/E,N/E,DP,VA,N/E,N/E,Itália,Vêneto,Verona,1,1978,1,PB,"João Pessoa",1,2,0,0,5,2,"AC 2015",N/E,N/E,PE,1,3,N/E,N/E,"Itália, Brasil",2,1,6,6,0,0,0,"AC 2015",N/E,N/E,N/E,,,,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,"""Ele estava convencido de que a sociedade deve proporcionar aos jovens de família pobre ou desajustada as condições necessárias para desenvolver e realizar todas as suas capacidades. Diante do descaso da sociedade, ele mesmo iniciou um instituto feminino para acolher e abrigar meninas que não tinham o necessário apoio da família e leva-las à vida do lar, ao trabalho e à atividade artística. Em seguida, fundou também um instituto masculino para abrir a rapazes pobres o caminho até os graus mais elevados dos estudos, de acordo com suas próprias inclinações.
+
+Além disso, através da generosidade de muitos de seus primeiros alunos, Pe. Mazza começou uma missão na África central. Essa mesma missão foi depois levada à diante por um de seus filhos, o bispo São Daniel Comboni."" [6]",6,N/E,N/E,"""A missão da Pia Sociedade em solo brasileiro teve início em setembro de 1978, quando a comunidade italiana enviou dois de seus irmãos à João Pessoa-PB, com o intuito de retomar a proposta de missão começada pelo fundador na África central."" [7]",7,"""Projeto Beira da Linha
+
+As atividades desenvolvidas no PBL passam por um itinerário educativo embasado em um plano político-pedagógico que compreende três fases, buscando favorecer o acesso da comunidade em vulnerabilidade social a educação pública.
+
+A primeira fase educativa chama-se Abrindo os olhos, que visa contribuir com o processo de apropriação da leitura e escrita para a formação integral da criança. Na segunda fase chamada de Descobrindo caminhos, tem-se o objetivo de desenvolver a descoberta de si e do mundo, orientando para novas experiências e habilidades através da potencialização dos conhecimentos e da organização de ideias. Por último, a fase Construindo Escolhas, que busca desenvolver um processo de formação integral, humana e Profissional, com adolescentes e jovens a fim de fomentar neles um projeto de vida, viabilizando a inserção na universidade e/ ou mundo do trabalho."" [8]
+
+""Em 1981, através do trabalho de um sacerdote da Pia Sociedade, começou a Associação Família aberta que promove a acolhencia no âmbito de famílias de crianças que se encontram em caso de necessidade (adoção ou guarda) ou mesmo adultos que se encontrem com emergências particulares. É convicção (e consequente compromisso) dos mazzianos, que, em todas as partes do mundo, da sociedade e da Igreja podem realizar um completo compromisso com a justiça, será dada a oportunidade também para os pobres e marginalizados de uma preparação adequada para a sua profissão e para assumir responsabilidades sociais, sem discriminação."" [8]",8,,"João Pessoa",PB,1,0.00%,0.00%
+657,"http://www.reginavirginum.org.br/brasil/home.asp [1]","Arautos do Evangelho","Associação Privada Internacional de FIÉIS DE DIREITO PONTIFÍCIO ARAUTOS DO EVANGELHO (Ramo Feminino)
+VER: SOCIEDADE REGINA VIRGINUM","Sociedade Regina Virginum",[EP(f)],N,1,1,F,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,Brasil,N/E,N/E,N/E,BR,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,2,"AC 2015",N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,"A congregação está registrada no AC 2015 como uma entidade diferente da Sociedade REGINA VIRGINUM, parecem ser funcionalmente iguais, apresentando o mesmo endereço  e lacunas na quantidade de membros.",Caieiras,SP,0,N/E,N/E
+399,"http://www.osb.org.br/cimbra/cimbraComunidades.asp?id=89 [1]",N/E,"Congregação das Irmãs BENEDITINAS DA FEDERAÇÃO DE SANTA ESCOLÁSTICA [OSB(1)]",N/A,[OSB(1)],N,1,1,F,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,1,"AC 2015",N/E,N/I,GO,1,"AC 2015",N/E,N/E,N/E,N/E,N/E,1,N/E,N/E,N/E,N/E,AC2015,N/E,N/E,N/E,N/E,N/E,0,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/A,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,,Mineiros,GO,0,N/E,N/E
+413,N/E,N/E,"Instituto das Irmãs CATEQUISTAS DO SAGRADO CORAÇÃO [CSC(1)]",N/A,[CSC(1)],N,1,1,F,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,1,"AC 2015",N/E,N/I,SP,1,"AC 2015",N/E,N/E,N/E,N/E,N/E,2,N/E,N/E,N/E,N/E,AC2015,N/E,N/E,N/E,N/E,N/E,0,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/A,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,,Santos,SP,0,N/E,N/E
+425,N/E,N/E,"Congregação da DIVINA PROVIDÊNCIA",N/A,N/A,N,1,1,F,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,1,"AC 2015",N/E,N/I,BA,1,"AC 2015",N/E,N/E,N/E,N/E,-,1,N/E,N/E,N/E,N/E,AC2015,N/E,N/E,N/E,N/E,N/E,0,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/A,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,,Salvador,BA,1,N/E,N/E
+426,"http://www.gp1.com.br/colunistas/madre-elizabeth-weismantel-89-anos-de-uma-vida-dedicada-a-educacao-205334.html [1]",N/E,"Congregação do DIVINO CORAÇÃO DE JESUS",N/A,[CDC],N,1,1,F,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,1964,1,PI,"Santa Filomena",1,3,0,0,1,1,"AC 2015",N/E,N/I,PI,1,"AC 2015",N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,0,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/A,N/E,N/E,N/E,N/E,N/E,N/E,"Segundo a fonte encontrada {1}, as Irmãs vieram ao Brasil para ajudarem inicialmente em uma escola paroquial, em Santa Filomena/PI, e então fundaram sua própria escola de ensino fundamental, o Educandário São José. [1]",1,"Segundo a fonte {1} administram e lecionam no Educandário São José, em Santa Filomena/PI [1]",1,,"Santa Filomena",PI,0,N/E,N/E
+486,"http://www.casadomenor.org/ [1]",N/E,"Congregação Irmãs MISSIONÁRIAS DE MARIA AUXILIADORA",N/A,[IMMA],N,1,1,F,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,1,"AC 2015",N/E,N/I,RJ,1,"AC 2015",N/E,N/E,N/E,N/E,N/E,3,N/E,N/E,N/E,N/E,AC2015,N/E,N/E,N/E,N/E,N/E,0,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/A,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,"O endereço fornecido pelo AC 2015 é o mesmo da instituição da fonte {1}, a Casa do Menor, que atende crianças e adolescentes de diversas formas: Acolhimento de crianças/jovens em situação de risco, atendimento a crianças/joves dependentes químicas, com creches, atividades socioeducativas e profissionalizantes, e ajuda a crianças e jovens carentes e vivendo na cracolândia do Rio de Janeiro. [1]",1,,"Nova Iguaçu",RJ,0,N/E,N/E
+524,"http://www.crbnacional.com.br/index.php/instituicao-membros/2272-lxxxv-filhas-do-sacratissimo-coracao-de-jesus-fscj [1]
+
+http://www.vicariatusurbis.org/?page_id=188&ID=3795 [2]
+
+http://www.santiebeati.it/dettaglio/75450 [3]",N/E,"Congregação das Filhas do SACRATÍSSIMO CORAÇÃO DE JESUS",N/A,[FSSCJ],N,1,1,F,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,DP,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,1,"AC 2015",N/E,N/I,MG,1,"AC 2015",N/E,N/E,N/E,N/E,N/E,6,N/E,N/E,N/E,N/E,AC2015,N/E,N/E,N/E,N/E,N/E,0,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/A,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,,Contagem,MG,0,N/E,N/E
+538,N/E,N/E,"Congregação dos SAGRADOS COR. DE JESUS E Mª. E DA ADORAÇÃO PERP. DO SSMO. SACRAMENTO DO ALTAR","Congregação dos Sagrados Corações de Jesus e Maria da Adoração Perpétua do Santíssimo Sacramento do Altar",[SSCC(2)],N,1,1,F,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,1,"AC 2015",N/E,N/I,GO,1,"AC 2015",N/E,N/E,N/E,N/E,N/E,1,N/E,N/E,N/E,N/E,AC2015,N/E,N/E,N/E,N/E,N/E,0,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/A,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,,Formosa,GO,0,N/E,N/E
+585,N/E,N/E,"Congregação VIRGENS DE SÃO JOSÉ","Instituto Tavelli (pop.)",[VSJ],N,1,1,F,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,1,"AC 2015",N/E,N/I,MG,1,"AC 2015",N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,0,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/A,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,,Uberaba,MG,0,N/E,N/E
+605,N/E,,"Fraternidade Beneditina da DIVINA PROVIDÊNCIA","Monges Beneditinos da Divina Providência",[BDP],N,1,1,M,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,1,N/E,N/E,N/E,MG,1,"AC 2015",N/E,N/E,N/E,N/E,N/E,11,3,6,2,0,"AC 2015",N/E,N/E,N/E,,,,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,N/E,,"Nova Lima",MG,0,22.22%,18.18%
