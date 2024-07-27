@@ -1,126 +1,86 @@
 <?php
+
 namespace Database\Seeders;
 
-use App\Models\Congregation;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Schema;
+use App\Models\Congregation;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Carbon\Carbon;
 
 class CongregationsTableSeeder extends Seeder
 {
     public function run()
     {
         $file = fopen(database_path('seeders/banco.csv'), 'r');
-        $header = fgetcsv($file); // Read the header row
+        $header = fgetcsv($file, 0, ',');
 
-        while ($row = fgetcsv($file)) {
-            $data = array_combine($header, $row); // Combine header and current row into associative array
+        $rowNumber = 1; // Para rastrear o número da linha
 
-            if (!empty($data['Nome_principal'])) { // Check if 'Nome_principal' is not empty
-                try {
-                    $attributes = $this->mapAttributes($data); // Map CSV data to database attributes
-                    Congregation::create($attributes); // Create Congregation using mapped attributes
-                } catch (\Exception $e) {
-                    Log::error('Erro ao inserir a congregação: ' . $e->getMessage());
+        while (($data = fgetcsv($file, 0, ',')) !== false) {
+            $rowNumber++;
+            $row = array_combine($header, $data);
+
+            // Tratamento de datas para garantir que estejam no formato YYYY-MM-DD
+            if (isset($row['Data de fundação'])) {
+                if (preg_match('/^\d{4}$/', $row['Data de fundação'])) {
+                    // Se o valor for um ano, converte para o formato YYYY-01-01
+                    $row['Data de fundação'] = $row['Data de fundação'] . '-01-01';
+                } elseif (preg_match('/^\d+$/', $row['Data de fundação'])) {
+                    // Se o valor for um número (mas não um ano de 4 dígitos), converte para o formato YYYY-01-01
+                    $row['Data de fundação'] = str_pad($row['Data de fundação'], 4, '0', STR_PAD_LEFT) . '-01-01';
                 }
-            } else {
-                Log::warning('Tentativa de inserir registro com "nome_principal" vazio. Dados recebidos:', $data);
+            }
+
+            // Substituir valores não numéricos por null ou valores padrão
+            $integerFields = [
+                'Membros no Brasil\n (Preferência para informações do AC2015)',
+                'Irmãos/ãs *', 
+                'Postulantes *', 
+                'Noviços *'
+            ];
+
+            foreach ($integerFields as $field) {
+                if (isset($row[$field]) && !is_numeric($row[$field])) {
+                    $row[$field] = null;
+                }
+            }
+
+            // Substituir valores não informados por null
+            foreach ($row as $key => $value) {
+                if ($value === 'N/E' || $value === 'N/I' || trim($value) === '') {
+                    $row[$key] = null;
+                }
+            }
+
+            try {
+                Congregation::create([
+                    'nome_principal' => $row['NOME PRINCIPAL'] ?? null,
+                    'nomes_alternativos' => $row['NOMES ALTERNATIVOS'] ?? null,
+                    'siglas' => $row['SIGLAS'] ?? null,
+                    'familia_final' => $row['Família final'] ?? null,
+                    'genero' => $row['M/F?'] ?? null,
+                    'fontes' => $row['Fontes'] ?? null,
+                    'datas_aprovacao' => $row['Datas de Aprovação'] ?? null,
+                    'anos_reformulacao' => $row['Anos de reformulação'] ?? null,
+                    'situacao_canonica' => $row['Situação canônica'] ?? null,
+                    'data_fundacao' => $row['Data de fundação'] ?? null,
+                    'pais_fundacao' => $row['País de Fundação'] ?? null,
+                    'cidade_fundacao' => $row['Cidade de Fundação'] ?? null,
+                    'chegada_brasil_estado' => $row['Chegada ao Brasil - Estado'] ?? null,
+                    'chegada_brasil_municipio' => $row['Chegada ao Brasil - Município'] ?? null,
+                    'membros_brasil' => $row['Membros no Brasil\n (Preferência para informações do AC2015)'] ?? null,
+                    'irmaos' => $row['Irmãos/ãs *'] ?? null,
+                    'postulantes' => $row['Postulantes *'] ?? null,
+                    'novicos' => $row['Noviços *'] ?? null,
+                    'carisma' => $row['Carisma'] ?? null,
+                    'motivos_vinda' => $row['Motivos da vinda'] ?? null,
+                ]);
+            } catch (\Exception $e) {
+                Log::error("Erro ao inserir linha $rowNumber: " . json_encode($row) . " - Erro: " . $e->getMessage());
             }
         }
 
         fclose($file);
     }
-
-    // Map CSV columns to database attributes
-    private function mapAttributes($data)
-    {
-        $attributes = [];
-        foreach ($data as $csvColumn => $value) {
-            $columnName = $this->getColumnMapping($csvColumn);
-            if ($columnName) {
-                if ($columnName === 'data_fundacao' && !empty($value)) {
-                    $attributes[$columnName] = Carbon::createFromFormat('Y-m-d', $value)->format('Y');
-                } else {
-                    $attributes[$columnName] = $value;
-                }
-            }
-        }
-        return $attributes;
-    }
-
-    // Função para mapear o nome da coluna CSV para o nome da coluna do banco de dados
-    private function getColumnMapping($csvColumn)
-    {
-        $columnMapping = [
-            'Fontes' => 'fontes',
-            'Familia Final' => 'familia_final',
-            'Nome_principal' => 'nome_principal',
-            'Nomes Alternativos' => 'nomes_alternativos',
-            'Siglas' => 'siglas',
-            'Tem Formulário Preenchido?' => 'tem_formulario_preenchido',
-            'Existe?' => 'existe',
-            'Existe no Brasil?' => 'existe_brasil',
-            'Gênero' => 'genero',
-            'Possui Mantenedora?' => 'possui_mantenedora',
-            'Fundadores M' => 'fundadores_m',
-            'Fundadores F' => 'fundadores_f',
-            'Com Hierarquia M' => 'com_hierarquia_m',
-            'Com Hierarquia F' => 'com_hierarquia_f',
-            'Sem Hierarquia M' => 'sem_hierarquia_m',
-            'Sem Hierarquia F' => 'sem_hierarquia_f',
-            'Santo M' => 'santo_m',
-            'Santo F' => 'santo_f',
-            'Nomes Fundadores' => 'nomes_fundadores',
-            'Datas Aprovação' => 'datas_aprovacao',
-            'Anos Reformulação Constituições' => 'anos_reformulacao_constituicoes',
-            'Situação Canônica' => 'situacao_canonica',
-            'Data Fundação' => 'data_fundacao',
-            'País Fundação' => 'pais_fundacao',
-            'Estado Fundação' => 'estado_fundacao',
-            'Cidade Fundação' => 'cidade_fundacao',
-            'Chegada Brasil Ano' => 'chegada_brasil_ano',
-            'Chegada Brasil Estado' => 'chegada_brasil_estado',
-            'Chegada Brasil Município' => 'chegada_brasil_municipio',
-            'Membros Grupo Fundador Religiosos' => 'membros_grupo_fundador_religiosos',
-            'Membros Grupo Fundador Leigos' => 'membros_grupo_fundador_leigos',
-            'Período Funcionamento Casas Brasil' => 'periodo_funcionamento_casas_brasil',
-            'Período Funcionamento Casas Fechadas' => 'periodo_funcionamento_casas_fechadas',
-            'Estados Presente' => 'estados_presente',
-            'Num Estados Presente' => 'num_estados_presente',
-            'Num Casas Mundo' => 'num_casas_mundo',
-            'Países Presente' => 'paises_presente', // Nome correto da coluna
-            'Num Países Presente' => 'num_paises_presente',
-            'Sacerdotes' => 'sacerdotes',
-            'Irmãos/As' => 'irmaos_as',
-            'Postulantes' => 'postulantes',
-            'Noviços' => 'novicos',
-            'Membros Mundo Total' => 'membros_mundo_total',
-            'Organização Hierárquica Nomeação' => 'organizacao_hierarquica_nomeacao',
-            'Organização Hierárquica Eleição' => 'organizacao_hierarquica_eleicao',
-            'Organização Hierárquica Ambos' => 'organizacao_hierarquica_ambos',
-            'Publicações Uso Interno' => 'publicacoes_uso_interno',
-            'Publicações Livres' => 'publicacoes_livres',
-            'Total Publicações' => 'total_publicacoes',
-            'Obras Sobre Congregação' => 'obras_sobre_congregacao',
-            'Total' => 'total',
-            'Num Fontes Manuscritas' => 'num_fontes_manuscritas',
-            'Carisma' => 'carisma',
-            'Missão Fundação' => 'missao_fundacao',
-            'Missão Hoje' => 'missao_hoje',
-            'Motivos Vinda' => 'motivos_vinda',
-            'Trabalhos Assumidos' => 'trabalhos_assumidos',
-            'Notas' => 'notas',
-            'Sede Brasil Cidade' => 'sede_brasil_cidade',
-            'Sede Brasil Estado' => 'sede_brasil_estado',
-            'Sede Brasil Capital' => 'sede_brasil_capital',
-            'Taxa Reprodução' => 'taxa_reproducao',
-            'Proporção de membros em formação em relação ao total de membros' => 'proporcao_membros_formacao',
-            'updated_at' => 'updated_at',
-            'created_at' => 'created_at',
-        ];
-
-        return isset($columnMapping[$csvColumn]) ? $columnMapping[$csvColumn] : null;
-    }
 }
+
