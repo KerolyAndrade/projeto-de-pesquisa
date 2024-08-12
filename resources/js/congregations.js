@@ -17,9 +17,10 @@ $(document).ready(() => {
                     dataType: 'json',
                     data: { query: request.term },
                     success: data => response(data),
+                    error: () => console.error('Erro ao buscar sugestões de autocomplete.') // Adicione tratamento de erro
                 });
             }, 300),
-            minLength: 2,
+            minLength: 2
         });
     };
 
@@ -40,7 +41,8 @@ $(document).ready(() => {
                         const suggestions = data.map(item => `<li>${item}</li>`).join('');
                         $('#suggestions').html(suggestions).show();
                         cache[query] = suggestions;
-                    }
+                    },
+                    error: () => console.error('Erro ao buscar sugestões de pesquisa.') // Adicione tratamento de erro
                 });
             }
         }, 300));
@@ -58,14 +60,14 @@ $(document).ready(() => {
         $('.search-form').validate({
             rules: {
                 nome_congregacao: { minlength: 2 },
-                ano_fundacao: { digits: true, min: 1900, max: new Date().getFullYear() },
+                ano_fundacao: { digits: true, min: 1900, max: new Date().getFullYear() }
             },
             messages: {
                 nome_congregacao: { minlength: "O nome deve ter pelo menos 2 caracteres." },
                 ano_fundacao: { digits: "O ano deve ser um número válido." }
             },
             errorElement: 'div',
-            errorPlacement: (error, element) => error.appendTo(element.closest('.form-group')),
+            errorPlacement: (error, element) => error.appendTo(element.closest('.form-group'))
         });
     };
 

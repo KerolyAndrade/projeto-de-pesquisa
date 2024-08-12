@@ -71,4 +71,20 @@ class CongregationController extends Controller
         // Redireciona para o método index com os parâmetros de pesquisa
         return $this->index($request);
     }
+
+    
+    public function sobre()
+    {
+        return view('congregations.sobre');
+    }
+    
+    public function equipe()
+    {
+        return view('congregations.equipe');
+    }
+   
+    public function mapa()
+    {
+        return view('congregations.mapa');
+    }
 }

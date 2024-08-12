@@ -27,10 +27,9 @@
                     ] as $name => $filter)
                         <div class="form-group mb-3">
                             <label for="{{ $name }}" class="form-label">{{ $filter['label'] }}</label>
-                            <select name="{{ $name }}" class="form-control" id="{{ $name }}" aria-label="{{ $filter['label'] }}">
-                                <option value="">Selecione</option>
+                            <select name="{{ $name }}[]" class="form-control" id="{{ $name }}" aria-label="{{ $filter['label'] }}" multiple>
                                 @foreach($filter['options'] as $option)
-                                    <option value="{{ $option }}" {{ request($name) == $option ? 'selected' : '' }}>
+                                    <option value="{{ $option }}" {{ in_array($option, request($name, [])) ? 'selected' : '' }}>
                                         {{ $option }}
                                     </option>
                                 @endforeach
@@ -46,6 +45,21 @@
                             <option value="f" {{ request('genero') == 'f' ? 'selected' : '' }}>Feminino</option>
                             <option value="m" {{ request('genero') == 'm' ? 'selected' : '' }}>Masculino</option>
                         </select>
+                    </div>
+
+                    <!-- Campo para o período de anos de fundação -->
+                    <div class="form-group mb-3">
+                        <label class="form-label">Ano de Fundação</label>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="ano_fundacao_de" class="form-label">De</label>
+                                <input type="number" name="ano_fundacao_de" class="form-control" id="ano_fundacao_de" placeholder="Ano inicial" value="{{ request('ano_fundacao_de') }}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="ano_fundacao_ate" class="form-label">Até</label>
+                                <input type="number" name="ano_fundacao_ate" class="form-control" id="ano_fundacao_ate" placeholder="Ano final" value="{{ request('ano_fundacao_ate') }}">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="d-flex justify-content-between">
@@ -68,13 +82,17 @@
                             <h2 class="text-primary congregation-name mb-3" data-id="{{ $congregation->id }}">
                                 {{ ($congregations->currentPage() - 1) * $congregations->perPage() + $loop->iteration }}. {{ $congregation->nome_principal }}
                             </h2>
-                            <div class="congregation-info mb-3">
-                                <small>
-                                    <strong>Siglas:</strong> {{ $congregation->siglas ?? 'Não Informado' }}<br>
-                                    <strong>Ano de Fundação:</strong> {{ \Carbon\Carbon::parse($congregation->data_fundacao)->year ?? 'Não Informado' }}<br>
-                                    <strong>País de Fundação:</strong> {{ $congregation->pais_fundacao ?? 'Não Informado' }}<br>
-                                    <strong>Gênero:</strong> {{ $congregation->genero == 'f' ? 'Feminino' : ($congregation->genero == 'm' ? 'Masculino' : 'Não Informado') }}
-                                </small>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <small>
+                                        <strong>Gênero:</strong> {{ $congregation->genero == 'f' ? 'Feminino' : ($congregation->genero == 'm' ? 'Masculino' : 'Não Informado') }}
+                                    </small>
+                                </div>
+                                <div class="col-md-6 text-end">
+                                    <small>
+                                        <strong>País de Fundação:</strong> {{ $congregation->pais_fundacao ?? 'Não Informado' }}
+                                    </small>
+                                </div>
                             </div>
 
                             <!-- Seção de Detalhes (inicialmente oculta) -->
@@ -144,23 +162,23 @@
                 @endif
             </div>
         </div>
-    </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // Função para alternar a exibição dos detalhes da congregação
+                const toggleDetails = (id) => {
+                    const details = document.getElementById(`details-${id}`);
+                    details.style.display = (details.style.display === 'none' || details.style.display === '') ? 'block' : 'none';
+                };
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Função para alternar a exibição dos detalhes da congregação
-            const toggleDetails = (id) => {
-                const details = document.getElementById(`details-${id}`);
-                details.style.display = (details.style.display === 'none' || details.style.display === '') ? 'block' : 'none';
-            };
+                document.querySelectorAll('.congregation-name').forEach(name => {
+                    name.addEventListener('click', () => toggleDetails(name.getAttribute('data-id')));
+                });
 
-            document.querySelectorAll('.congregation-name').forEach(name => {
-                name.addEventListener('click', () => toggleDetails(name.getAttribute('data-id')));
+                // Função para limpar o formulário
+                window.clearForm = () => document.querySelector('form').reset();
             });
-
-            // Função para limpar o formulário
-            window.clearForm = () => document.querySelector('form').reset();
-        });
-        
-    </script>
+        </script>
+         <script src="{{ asset('js/congregations.js') }}" defer></script>
+    </div>
 @endsection
+
