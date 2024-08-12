@@ -1,8 +1,10 @@
 # Use uma imagem oficial do PHP com Apache
-FROM php:8.1-apache
+FROM php:8.2-apache
 
-# Instale extensões PHP necessárias
-RUN docker-php-ext-install pdo pdo_mysql pdo_pgsql
+# Instale pacotes necessários para a extensão do PostgreSQL
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    && docker-php-ext-install pdo pdo_mysql pdo_pgsql
 
 # Instale Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -28,4 +30,3 @@ EXPOSE 80
 
 # Comando para iniciar o Apache
 CMD ["apache2-foreground"]
-
