@@ -19,8 +19,6 @@ WORKDIR /var/www/html
 RUN chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite
 
-# Instale dependências PHP
-RUN composer install --no-dev --optimize-autoloader
 
 # Exponha a porta 80 para o Apache
 EXPOSE 80
