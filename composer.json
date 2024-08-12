@@ -5,11 +5,12 @@
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
+        "php": "^8.0",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "league/csv": "^9.16"
     },
+
     "require-dev": {
         "fakerphp/faker": "^1.23",
         "laravel/pint": "^1.13",
@@ -64,4 +65,5 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true
+    
 }
