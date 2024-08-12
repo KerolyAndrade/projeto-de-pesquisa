@@ -18,7 +18,8 @@ WORKDIR /var/www/html
 # Dê permissões corretas
 RUN chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite
-
+    
+RUN composer install 
 
 # Exponha a porta 80 para o Apache
 EXPOSE 80
