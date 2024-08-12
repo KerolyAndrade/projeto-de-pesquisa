@@ -1,28 +1,24 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class CreateCongregationsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('congregations', function (Blueprint $table) {
             $table->id();
-            $table->string('nome_principal')->nullable();
+            $table->string('nome_principal');
             $table->string('nomes_alternativos')->nullable();
             $table->string('siglas')->nullable();
             $table->string('familia_final')->nullable();
-            $table->string('genero')->nullable();
+            $table->string('genero')->nullable();  // Alterado de char(1) para string
             $table->text('fontes')->nullable();
             $table->text('datas_aprovacao')->nullable();
-            $table->string('anos_reformulacao')->nullable();
-            $table->string('situacao_canonica')->nullable();
+            $table->text('anos_reformulacao')->nullable();
+            $table->text('situacao_canonica')->nullable();
             $table->date('data_fundacao')->nullable();
             $table->string('pais_fundacao')->nullable();
             $table->string('cidade_fundacao')->nullable();
@@ -38,13 +34,10 @@ class CreateCongregationsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('congregations');
     }
 }
+
+

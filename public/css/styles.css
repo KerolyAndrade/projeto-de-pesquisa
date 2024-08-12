@@ -1,3 +1,21 @@
+/* Variáveis para fácil personalização */
+:root {
+    --primary-color: #1e2a38; /* Azul escuro mais moderno */
+    --secondary-color: #ff5722; /* Laranja vibrante para destaque */
+    --background-color: #f4f4f9; /* Fundo claro e suave */
+    --text-color: #333; /* Texto escuro para boa legibilidade */
+    --light-text-color: #666; /* Texto secundário mais suave */
+    --header-footer-background: #1e2a38; /* Fundo escuro para cabeçalho e rodapé */
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para profundidade */
+    --border-radius: 8px; /* Bordas arredondadas para um visual moderno */
+    --transition-speed: 0.3s; /* Transição suave para efeitos */
+    --max-content-width: 1200px; /* Largura máxima do conteúdo */
+    --input-background-color: #fafafa; /* Cor do fundo do input */
+    --input-border-color: #ddd; /* Cor da borda do input */
+    --input-focus-border-color: var(--secondary-color); /* Cor da borda do input no foco */
+    --input-focus-box-shadow: rgba(255, 87, 34, 0.25); /* Sombra do input no foco */
+}
+
 /* Reset básico */
 * {
     margin: 0;
@@ -8,47 +26,53 @@
 /* Fonte padrão */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: var(--background-color);
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    line-height: 1.6;
 }
 
-/* Estilo do cabeçalho */
+/* Cabeçalho */
 header {
-    background-color: #000;
-    padding: 10px 0;
+    background-color: var(--header-footer-background);
+    padding: 15px 0;
+    box-shadow: var(--box-shadow);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
+    height: 60px; /* Ajuste a altura se necessário */
 }
 
+/* Container do cabeçalho */
 .header-container {
     display: flex;
-    justify-content: flex-start; /* Alinha os elementos à esquerda */
+    justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: var(--max-content-width);
     width: 100%;
     padding: 0 20px;
 }
 
-.nav {
-    display: none; /* Inicialmente oculto */
-}
-
-.nav.active {
-    display: block; /* Exibido quando a classe active é aplicada */
-}
-
+/* Logotipo */
 .logo {
     font-size: 24px;
     font-weight: 700;
     color: #fff;
-    margin-left: 20px; /* Adiciona um espaçamento à esquerda */
+    transition: color var(--transition-speed);
 }
 
+.logo:hover {
+    color: var(--secondary-color);
+}
+
+/* Menu Toggle (para dispositivos móveis) */
 .menu-toggle {
     display: none;
     font-size: 24px;
@@ -56,9 +80,9 @@ header {
     cursor: pointer;
 }
 
-nav {
+/* Menu de Navegação */
+.nav {
     display: flex;
-    justify-content: center;
 }
 
 .nav-links {
@@ -67,7 +91,6 @@ nav {
 }
 
 .nav-links li {
-    position: relative;
     margin-left: 20px;
 }
 
@@ -75,211 +98,251 @@ nav {
     color: #fff;
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s;
+    transition: color var(--transition-speed);
 }
 
 .nav-links a:hover {
-    color: #f4f4f4;
+    color: var(--secondary-color);
+}
+
+/* Rodapé */
+footer {
+    background-color: var(--header-footer-background);
+    color: #fff;
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+}
+
+/* Contêiner Principal */
+.container {
+    max-width: var(--max-content-width);
+    margin: auto;
+    padding: 20px;
+    margin-top: 80px; /* Ajuste conforme a altura do cabeçalho */
+}
+
+/* Títulos das Seções */
+.section-title {
+    margin: 20px 0; /* Espaço uniforme acima e abaixo do título */
+    font-size: 1.5rem; /* Ajuste o tamanho da fonte conforme necessário */
+    color: var(--primary-color);
+}
+
+/* Conteúdo das Seções */
+.section-content {
+    margin: 20px 0 60px; /* Espaço uniforme acima e maior espaço abaixo */
+}
+
+/* Títulos */
+h1, h2, h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px; /* Aumenta o espaço abaixo dos títulos */
+}
+
+/* Layout de Pesquisa e Resultados */
+.row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: nowrap; /* Garante que os itens não se movam para baixo */
+    margin-top: 20px; /* Espaço acima da linha */
+}
+
+.col-md-4 {
+    flex: 0 0 30%; /* Define a largura da coluna de pesquisa */
+    max-width: 30%; /* Limita a largura máxima da coluna de pesquisa */
+}
+
+/* Resultados da Pesquisa */
+.col-md-8 {
+    flex: 0 0 70%; /* Define a largura da coluna de resultados */
+    max-width: 70%; /* Limita a largura máxima da coluna de resultados */
+    overflow: hidden; /* Adiciona controle de overflow */
+    margin-top: 40px; /* Espaço acima dos resultados */
+}
+
+/* Formulário de Pesquisa */
+form {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--box-shadow);
+    flex: 1;
+    max-width: 100%;
+    margin-bottom: 30px; /* Aumenta o espaço abaixo do formulário */
+}
+
+.form-group {
+    margin-bottom: 20px; /* Aumenta o espaço abaixo dos grupos de formulário */
+}
+
+.form-group label {
+    font-size: 1rem;
+    color: var(--text-color);
+    display: block;
+    margin-bottom: 8px; /* Aumenta o espaço abaixo do rótulo */
+}
+
+.form-control {
+    border: 1px solid var(--input-border-color);
+    border-radius: var(--border-radius);
+    padding: 12px;
+    font-size: 1rem;
+    color: var(--text-color);
+    background-color: var(--input-background-color);
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.form-control:focus {
+    border-color: var(--input-focus-border-color);
+    box-shadow: 0 0 8px var(--input-focus-box-shadow);
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px; /* Adiciona espaçamento entre os botões */
+    justify-content: space-between;
+}
+
+.btn {
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: var(--border-radius);
+    width: 48%;
+    transition: background-color var(--transition-speed), border-color var(--transition-speed);
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #e64a19;
+    border-color: #e64a19;
+}
+
+.btn-secondary {
+    background-color: var(--background-color);
+    border-color: var(--input-border-color);
+    color: var(--text-color);
+}
+
+.btn-secondary:hover {
+    background-color: #ddd;
+    border-color: #ccc;
+}
+
+/* Cartões */
+.congregation-card {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 30px; /* Aumenta o espaço abaixo dos cartões */
+    padding: 20px;
+}
+
+/* Paginação */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0; /* Aumenta o espaço acima e abaixo da paginação */
+    list-style: none;
+    padding: 0;
+}
+
+.pagination a,
+.pagination span {
+    margin: 0 5px;
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition-speed), color var(--transition-speed), border-color var(--transition-speed);
+}
+
+.pagination a:hover,
+.pagination a:focus {
+    background-color: var(--secondary-color);
+    color: #fff;
+    border-color: var(--secondary-color);
+}
+
+.pagination span.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+/* Paginação com estado desativado */
+.pagination a.disabled {
+    color: var(--light-text-color);
+    border-color: #ddd;
+    cursor: not-allowed;
+    background-color: #f9f9f9;
+}
+
+.pagination a.disabled:hover {
+    background-color: #f9f9f9;
+    color: var(--light-text-color);
 }
 
 /* Responsivo */
 @media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: var(--header-footer-background);
+        text-align: center;
+        z-index: 1000;
+    }
+
+    .nav.active {
+        display: flex;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        padding: 10px 0;
+    }
+
+    .nav-links li {
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
     .menu-toggle {
         display: block;
     }
-    nav {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-    }
-    .nav-links {
-        flex-direction: column;
-        align-items: center;
-    }
-    .nav-links li {
-        margin: 10px 0;
-    }
-    nav.active {
-        display: flex;
-    }
-}
 
-/* Estilo do rodapé */
-footer {
-    background-color: #000;
-    color: #fff;
-    padding: 10px 0;
-    width: 100%;
-    text-align: center;
-}
-
-/* Estilo da seção herói */
-.hero-section {
-    background-color: #f4f4f4;
-    padding: 80px 0;
-    text-align: center;
-}
-
-.hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.presentation-text {
-    font-size: 18px;
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 30px;
-}
-
-.highlight {
-    font-size: 22px;
-    color: #222;
-    font-weight: bold;
-    margin-bottom: 40px;
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-    .hero-content {
-        padding: 0 20px;
+    .container {
+        margin-left: 0;
+        padding: 20px;
+        margin-top: 60px; /* Ajuste a margem superior para telas menores */
     }
 
-    .site-title {
-        font-size: 36px;
-        margin-bottom: 15px;
-    }
-
-    .presentation-text {
-        font-size: 16px;
-    }
-
-    .highlight {
-        font-size: 18px;
-    }
-}
-
-/* Estilo do título */
-.site-title {
-    font-size: 36px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* Estilo do conteúdo do card */
-.card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    margin-bottom: 20px;
-}
-
-/* Ajuste do layout para colocar as respostas ao lado do formulário */
-.card-container {
-    display: flex;
-    gap: 20px;
-}
-
-.search-card {
-    flex: 1;
-}
-
-.response-card {
-    flex: 1;
-}
-
-/* Estilo do formulário */
-.search-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.search-form div {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-}
-
-.search-form label {
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.search-form input,
-.search-form select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.search-form button {
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
-    align-self: flex-start;
-}
-
-.search-form button:hover {
-    background-color: #555;
-}
-
-/* Estilo do texto do card */
-.presentation-text {
-    font-size: 18px;
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-/* Estilo para links */
-.presentation-text a {
-    color: #007bff; /* cor azul do link */
-    text-decoration: underline;
-    transition: color 0.3s;
-}
-
-.presentation-text a:hover {
-    color: #0056b3; /* cor azul do link mais escura quando hover */
-}
-
-/* Estilo para o link da Revista Brasileira de História da Educação */
-.presentation-text a[href^="http://www.rbhe.sbhe.org.br"]::after {
-    content: " (Revista Brasileira de História da Educação)";
-    font-style: italic;
-    color: #777;
-}
-
-/* Estilo da resposta */
-.response-card h2 {
-    margin-bottom: 15px;
-}
-
-.response-content ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.response-content li {
-    margin-bottom: 10px;
-}
-
-.response-content p {
-    font-size: 16px;
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-    .card-container {
-        flex-direction: column;
+    .col-md-4,
+    .col-md-8 {
+        flex: 1 1 100%; /* Faz com que as colunas se empilhem em dispositivos menores */
+        max-width: 100%;
     }
 }

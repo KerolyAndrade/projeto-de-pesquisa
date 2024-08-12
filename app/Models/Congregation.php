@@ -9,18 +9,12 @@ class Congregation extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'nome_principal',
         'nomes_alternativos',
         'siglas',
         'familia_final',
         'genero',
-        'fontes',
         'datas_aprovacao',
         'anos_reformulacao',
         'situacao_canonica',
@@ -35,7 +29,13 @@ class Congregation extends Model
         'novicos',
         'carisma',
         'motivos_vinda',
+        'descricao',
+        'ano_fundacao'
     ];
 
-    // Métodos, relações e outros atributos conforme necessário
+    public function sources()
+    {
+        return $this->belongsToMany(Source::class, 'congregation_source', 'congregation_id', 'source_id');
+    }
+    
 }

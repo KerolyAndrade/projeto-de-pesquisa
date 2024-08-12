@@ -2,159 +2,165 @@
 
 @section('content')
     <div class="container">
-        <h1>Congregações</h1>
+        <div class="row">
+            <!-- Formulário de Pesquisa -->
+            <div class="col-md-4 mb-4">
+                <h1 class="mb-4">Pesquisa de Congregações</h1>
+                <form action="{{ route('congregations.search') }}" method="GET" class="bg-light p-4 border rounded shadow-sm">
+                    @foreach([
+                        'nome_congregacao' => 'Nome da Congregação',
+                        'nomes_alternativos' => 'Nomes Alternativos',
+                        'siglas' => 'Siglas'
+                    ] as $name => $label)
+                        <div class="form-group mb-3">
+                            <label for="{{ $name }}" class="form-label">{{ $label }}</label>
+                            <input type="text" name="{{ $name }}" class="form-control" id="{{ $name }}"
+                                   placeholder="Digite o {{ strtolower($label) }}"
+                                   value="{{ request($name) }}" aria-label="{{ $label }}">
+                        </div>
+                    @endforeach
 
-        <form action="{{ route('congregations.search') }}" method="GET">
-            <div class="row">
-                <!-- Campos de Pesquisa -->
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="nome_congregacao">Nome da Congregação</label>
-                        <input type="text" name="nome_congregacao" class="form-control" id="nome_congregacao" placeholder="Digite o nome da congregação" value="{{ request('nome_congregacao') }}">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="nomes_alternativos">Nomes Alternativos</label>
-                        <input type="text" name="nomes_alternativos" class="form-control" id="nomes_alternativos" placeholder="Digite os nomes alternativos" value="{{ request('nomes_alternativos') }}">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="siglas">Siglas</label>
-                        <input type="text" name="siglas" class="form-control" id="siglas" placeholder="Digite as siglas" value="{{ request('siglas') }}">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <!-- Filtros de Pesquisa Avançada -->
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="familia_final">Família Final</label>
-                        <select name="familia_final" class="form-control" id="familia_final">
-                            <option value="">Selecione</option>
-                            @foreach($filters['familias'] as $familia)
-                                <option value="{{ $familia }}" {{ request('familia_final') == $familia ? 'selected' : '' }}>{{ $familia }}</option>
-                            @endforeach
+                    @foreach([
+                        'familia_final' => ['label' => 'Família Final', 'options' => $filters['familias']],
+                        'pais_fundacao' => ['label' => 'País de Fundação', 'options' => $filters['paises_fundacao']],
+                        'chegada_brasil_estado' => ['label' => 'Estado de Chegada ao Brasil', 'options' => $filters['estados_presente']]
+                    ] as $name => $filter)
+                        <div class="form-group mb-3">
+                            <label for="{{ $name }}" class="form-label">{{ $filter['label'] }}</label>
+                            <select name="{{ $name }}" class="form-control" id="{{ $name }}" aria-label="{{ $filter['label'] }}">
+                                <option value="">Selecione</option>
+                                @foreach($filter['options'] as $option)
+                                    <option value="{{ $option }}" {{ request($name) == $option ? 'selected' : '' }}>
+                                        {{ $option }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    @endforeach
+
+                    <!-- Novo campo para gênero -->
+                    <div class="form-group mb-3">
+                        <label for="genero" class="form-label">Gênero da Congregação</label>
+                        <select name="genero" class="form-control" id="genero" aria-label="Gênero da Congregação">
+                            <option value="">Todos</option>
+                            <option value="f" {{ request('genero') == 'f' ? 'selected' : '' }}>Feminino</option>
+                            <option value="m" {{ request('genero') == 'm' ? 'selected' : '' }}>Masculino</option>
                         </select>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="data_fundacao">Ano de Fundação</label>
-                        <input type="number" name="data_fundacao" class="form-control" id="data_fundacao" placeholder="Digite o ano de fundação" value="{{ request('data_fundacao') }}">
+
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" onclick="clearForm()">Limpar</button>
+                        <button type="submit" class="btn btn-primary">Buscar</button>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="pais_fundacao">País de Fundação</label>
-                        <select name="pais_fundacao" class="form-control" id="pais_fundacao">
-                            <option value="">Selecione</option>
-                            @foreach($filters['paises_fundacao'] as $pais)
-                                <option value="{{ $pais }}" {{ request('pais_fundacao') == $pais ? 'selected' : '' }}>{{ $pais }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
+                </form>
             </div>
-            <div class="row">
-                <!-- Mais Filtros -->
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="chegada_brasil_estado">Estado de Chegada ao Brasil</label>
-                        <select name="chegada_brasil_estado" class="form-control" id="chegada_brasil_estado">
-                            <option value="">Selecione</option>
-                            @foreach($filters['estados_presente'] as $estado)
-                                <option value="{{ $estado }}" {{ request('chegada_brasil_estado') == $estado ? 'selected' : '' }}>{{ $estado }}</option>
-                            @endforeach
-                        </select>
+
+            <!-- Resultados da Pesquisa -->
+            <div class="col-md-8 mb-4">
+                @if($congregations->isEmpty())
+                    <div class="alert alert-info mt-3">
+                        Nenhuma congregação encontrada.
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="ano_fundacao">Ano de Fundação</label>
-                        <input type="number" name="ano_fundacao" class="form-control" id="ano_fundacao" placeholder="Digite o ano de fundação" value="{{ request('ano_fundacao') }}">
+                @else
+                    @foreach($congregations as $index => $congregation)
+                        <div class="congregation-card mb-4 p-4 border rounded shadow-sm">
+                            <!-- Nome da Congregação e Informações Básicas -->
+                            <h2 class="text-primary congregation-name mb-3" data-id="{{ $congregation->id }}">
+                                {{ ($congregations->currentPage() - 1) * $congregations->perPage() + $loop->iteration }}. {{ $congregation->nome_principal }}
+                            </h2>
+                            <div class="congregation-info mb-3">
+                                <small>
+                                    <strong>Siglas:</strong> {{ $congregation->siglas ?? 'Não Informado' }}<br>
+                                    <strong>Ano de Fundação:</strong> {{ \Carbon\Carbon::parse($congregation->data_fundacao)->year ?? 'Não Informado' }}<br>
+                                    <strong>País de Fundação:</strong> {{ $congregation->pais_fundacao ?? 'Não Informado' }}<br>
+                                    <strong>Gênero:</strong> {{ $congregation->genero == 'f' ? 'Feminino' : ($congregation->genero == 'm' ? 'Masculino' : 'Não Informado') }}
+                                </small>
+                            </div>
+
+                            <!-- Seção de Detalhes (inicialmente oculta) -->
+                            <div class="congregation-details" id="details-{{ $congregation->id }}" style="display: none;">
+                                <!-- Seção de Dados Gerais -->
+                                <div class="section mb-3">
+                                    <h3 class="section-title">Dados Gerais</h3>
+                                    <p><strong>Nomes Alternativos:</strong> {{ $congregation->nomes_alternativos ?? 'Não Informado' }}</p>
+                                    <p><strong>Família Final:</strong> {{ $congregation->familia_final ?? 'Não Informado' }}</p>
+                                </div>
+
+                                <!-- Seção de Fundação -->
+                                <div class="section mb-3">
+                                    <h3 class="section-title">Fundação</h3>
+                                    <p><strong>Ano de Fundação:</strong> {{ \Carbon\Carbon::parse($congregation->data_fundacao)->year ?? 'Não Informado' }}</p>
+                                    <p><strong>País de Fundação:</strong> {{ $congregation->pais_fundacao ?? 'Não Informado' }}</p>
+                                    <p><strong>Cidade de Fundação:</strong> {{ $congregation->cidade_fundacao ?? 'Não Informado' }}</p>
+                                </div>
+
+                                <!-- Seção de Chegada ao Brasil -->
+                                <div class="section mb-3">
+                                    <h3 class="section-title">Chegada ao Brasil</h3>
+                                    <p><strong>Estado:</strong> {{ $congregation->chegada_brasil_estado ?? 'Não Informado' }}</p>
+                                    <p><strong>Município:</strong> {{ $congregation->chegada_brasil_municipio ?? 'Não Informado' }}</p>
+                                </div>
+
+                                <!-- Seção de Membros -->
+                                <div class="section mb-3">
+                                    <h3 class="section-title">Membros</h3>
+                                    <p><strong>Membros no Brasil:</strong> {{ $congregation->membros_brasil ?? 'Não Informado' }}</p>
+                                    <p><strong>Irmandade:</strong> {{ $congregation->irmaos ?? 'Não Informado' }}</p>
+                                    <p><strong>Postulantes:</strong> {{ $congregation->postulantes ?? 'Não Informado' }}</p>
+                                    <p><strong>Noviços:</strong> {{ $congregation->novicos ?? 'Não Informado' }}</p>
+                                </div>
+
+                                <!-- Seção de Carisma -->
+                                <div class="section mb-3">
+                                    <h3 class="section-title">Carisma</h3>
+                                    <p>{{ $congregation->carisma ?? 'Não Informado' }}</p>
+                                </div>
+
+                                <!-- Seção de Motivos da Vinda -->
+                                <div class="section mb-3">
+                                    <h3 class="section-title">Motivos da Vinda</h3>
+                                    <p>{{ $congregation->motivos_vinda ?? 'Não Informado' }}</p>
+                                </div>
+
+                                <!-- Seção de Referências -->
+                                <div class="section mb-3">
+                                    <h3 class="section-title">Referências</h3>
+                                    @if($congregation->sources->isNotEmpty())
+                                        @foreach($congregation->sources as $index => $source)
+                                            <p>[{{ $index + 1 }}] <a href="{{ $source->url }}" target="_blank">{{ $source->url }}</a></p>
+                                        @endforeach
+                                    @else
+                                        <p>Não Informado</p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                    <!-- Paginação -->
+                    <div class="mt-4">
+                        {{ $congregations->links('pagination::bootstrap-4') }}
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="ano_chegada">Ano de Chegada</label>
-                        <input type="number" name="ano_chegada" class="form-control" id="ano_chegada" placeholder="Digite o ano de chegada" value="{{ request('ano_chegada') }}">
-                    </div>
-                </div>
+                @endif
             </div>
-            <button type="submit" class="btn btn-primary">Buscar</button>
-        </form>
-
-        @if($congregations->isEmpty())
-            <div class="alert alert-info mt-3">
-                Nenhuma congregação encontrada.
-            </div>
-        @else
-            @foreach($congregations as $congregation)
-                <div class="congregation-card mt-4 p-3 border rounded">
-                    <h2 class="text-primary">{{ $congregation->nome_principal }}</h2>
-                    
-                    <!-- Seção de Dados Gerais -->
-                    <div class="section mb-3">
-                        <h3>Dados Gerais</h3>
-                        <p><strong>Nomes Alternativos:</strong> {{ $congregation->nomes_alternativos }}</p>
-                        <p><strong>Siglas:</strong> {{ $congregation->siglas }}</p>
-                        <p><strong>Família Final:</strong> {{ $congregation->familia_final }}</p>
-                        <p><strong>Gênero da Congregação:</strong> {{ $congregation->genero == 'f' ? 'Feminino' : 'Masculino' }}</p>
-                    </div>
-
-                    <!-- Seção de Fundação -->
-                    <div class="section mb-3">
-                        <h3>Fundação</h3>
-                        <p><strong>Ano de Fundação:</strong> {{ \Carbon\Carbon::parse($congregation->data_fundacao)->format('Y') }}</p>
-                        <p><strong>Local de Fundação:</strong> {{ $congregation->cidade_fundacao }}, {{ $congregation->pais_fundacao }}</p>
-                    </div>
-
-                    <!-- Seção de Congregação no Brasil -->
-                    <div class="section mb-3">
-                        <h3>Congregação no Brasil</h3>
-                        <p><strong>Estado de Chegada ao Brasil:</strong> {{ $congregation->chegada_brasil_estado }}</p>
-                        <p><strong>Município de Chegada ao Brasil:</strong> {{ $congregation->chegada_brasil_municipio }}</p>
-                        <p><strong>Membros no Brasil:</strong> {{ $congregation->membros_brasil }}</p>
-                        <p><strong>Irmãos/ãs:</strong> {{ $congregation->irmãos_as }}</p>
-                        <p><strong>Postulantes:</strong> {{ $congregation->postulantes }}</p>
-                        <p><strong>Noviços:</strong> {{ $congregation->noviços }}</p>
-                    </div>
-
-                    <!-- Seção de Informações Qualitativas -->
-                    <div class="section mb-3">
-                        <h3>Informações Qualitativas</h3>
-                        <p><strong>Carisma:</strong> {{ $congregation->carisma }}</p>
-                        <p><strong>Motivos da Vinda:</strong> {{ $congregation->motivos_vinda }}</p>
-                    </div>
-                </div>
-            @endforeach
-
-            <!-- Paginação -->
-            <div class="mt-4">
-                {{ $congregations->links() }}
-            </div>
-        @endif
+        </div>
     </div>
-@endsection
 
-@section('scripts')
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $('#searchInput').on('input', function() {
-            let query = $(this).val();
-            $.ajax({
-                url: '{{ route('congregations.suggestions') }}',
-                data: { query: query },
-                success: function(data) {
-                    $('#suggestions').empty();
-                    data.forEach(item => {
-                        $('#suggestions').append('<div>' + item + '</div>');
-                    });
-                }
+        document.addEventListener('DOMContentLoaded', () => {
+            // Função para alternar a exibição dos detalhes da congregação
+            const toggleDetails = (id) => {
+                const details = document.getElementById(`details-${id}`);
+                details.style.display = (details.style.display === 'none' || details.style.display === '') ? 'block' : 'none';
+            };
+
+            document.querySelectorAll('.congregation-name').forEach(name => {
+                name.addEventListener('click', () => toggleDetails(name.getAttribute('data-id')));
             });
+
+            // Função para limpar o formulário
+            window.clearForm = () => document.querySelector('form').reset();
         });
+        
     </script>
 @endsection

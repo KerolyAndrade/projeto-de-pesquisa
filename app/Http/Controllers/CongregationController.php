@@ -7,38 +7,30 @@ use App\Models\Congregation;
 
 class CongregationController extends Controller
 {
-    public function index()
+    // Método para exibir a lista de congregações
+    public function index(Request $request)
     {
-        // Fetch all congregations with pagination or other logic
-        $congregations = Congregation::paginate(10);
-        
-        // Fetch filters for the dropdowns
+        // Definindo filtros (podem ser carregados do banco de dados ou definidos estaticamente)
         $filters = [
-            'familias' => Congregation::select('familia_final')->distinct()->pluck('familia_final'),
-            'paises_fundacao' => Congregation::select('pais_fundacao')->distinct()->pluck('pais_fundacao'),
-            'estados_presente' => Congregation::select('chegada_brasil_estado')->distinct()->pluck('chegada_brasil_estado'),
-            'siglas' => Congregation::select('siglas')->distinct()->pluck('siglas'),
-            'nomes_alternativos' => Congregation::select('nomes_alternativos')->distinct()->pluck('nomes_alternativos'),
+            'familias' => Congregation::distinct()->pluck('familia_final')->sort(),
+            'paises_fundacao' => Congregation::distinct()->pluck('pais_fundacao')->sort(),
+            'estados_presente' => Congregation::distinct()->pluck('chegada_brasil_estado')->sort()
         ];
 
-        return view('congregations.index', compact('congregations', 'filters'));
-    }
-
-    public function search(Request $request)
-    {
+        // Obtendo a pesquisa atual
         $query = Congregation::query();
 
-        // Apply filters based on user input
+        // Aplicando filtros conforme a pesquisa
         if ($request->filled('nome_congregacao')) {
             $query->where('nome_principal', 'like', '%' . $request->input('nome_congregacao') . '%');
         }
-        
+
         if ($request->filled('nomes_alternativos')) {
             $query->where('nomes_alternativos', 'like', '%' . $request->input('nomes_alternativos') . '%');
         }
-        
+
         if ($request->filled('siglas')) {
-            $query->where('siglas', $request->input('siglas'));
+            $query->where('siglas', 'like', '%' . $request->input('siglas') . '%');
         }
 
         if ($request->filled('familia_final')) {
@@ -65,18 +57,18 @@ class CongregationController extends Controller
             $query->whereYear('ano_chegada', $request->input('ano_chegada'));
         }
 
-        // Paginate the results
         $congregations = $query->paginate(10);
 
-        // Fetch filters for the dropdowns
-        $filters = [
-            'familias' => Congregation::select('familia_final')->distinct()->pluck('familia_final'),
-            'paises_fundacao' => Congregation::select('pais_fundacao')->distinct()->pluck('pais_fundacao'),
-            'estados_presente' => Congregation::select('chegada_brasil_estado')->distinct()->pluck('chegada_brasil_estado'),
-            'siglas' => Congregation::select('siglas')->distinct()->pluck('siglas'),
-            'nomes_alternativos' => Congregation::select('nomes_alternativos')->distinct()->pluck('nomes_alternativos'),
-        ];
+        return view('congregations.index', [
+            'congregations' => $congregations,
+            'filters' => $filters
+        ]);
+    }
 
-        return view('congregations.index', compact('congregations', 'filters'));
+    // Método para pesquisa
+    public function search(Request $request)
+    {
+        // Redireciona para o método index com os parâmetros de pesquisa
+        return $this->index($request);
     }
 }

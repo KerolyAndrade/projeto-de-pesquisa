@@ -7,9 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/database.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/header.css') }}" rel="stylesheet">
-    <!-- Adicione outros estilos aqui se necessário -->
+    @yield('styles')
 </head>
 <body>
     <header>
@@ -26,35 +24,11 @@
         @include('partials.footer')
     </footer>
 
-    <!-- Adicione scripts JS no final do body para melhor performance -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jquery.vmap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/maps/jquery.vmap.world.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Configuração do mapa usando JQVMap
-            $('#world-map').vectorMap({
-                map: 'world_en',
-                backgroundColor: 'transparent',
-                borderColor: '#000',
-                borderOpacity: 1,
-                borderWidth: 1,
-                color: '#fff',
-                hoverColor: '#000',
-                enableZoom: true,
-                hoverOpacity: 0.7,
-                normalizeFunction: 'linear',
-                scaleColors: ['#000', '#fff'],
-                selectedColor: '#000',
-                selectedRegions: null,
-                showTooltip: true,
-                onRegionClick: function(event, code, region) {
-                    alert('País selecionado: ' + region);
-                }
-            });
-        });
-    </script>
-
-
+   
+    @yield('scripts')
 </body>
 </html>
+
