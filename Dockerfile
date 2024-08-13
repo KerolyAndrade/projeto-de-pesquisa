@@ -6,14 +6,14 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && docker-php-ext-install pdo pdo_pgsql
 
-# Instale Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Copie os arquivos da aplicação
-COPY . /var/www/html
+# Instale o Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
 # Defina o diretório de trabalho
 WORKDIR /var/www/html
+
+# Copie os arquivos da aplicação para o contêiner
+COPY . /var/www/html
 
 # Dê permissões corretas
 RUN chown -R www-data:www-data /var/www/html \
@@ -21,9 +21,6 @@ RUN chown -R www-data:www-data /var/www/html \
 
 # Instale dependências PHP
 RUN composer install --no-dev --optimize-autoloader
-
-# Copie o arquivo de configuração do Apache
-COPY .docker/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
 
 # Exponha a porta 80 para o Apache
 EXPOSE 80
