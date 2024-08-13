@@ -15,9 +15,8 @@ COPY . /var/www/html
 # Defina o diretório de trabalho
 WORKDIR /var/www/html
 
-# Dê permissões corretas
 RUN chown -R www-data:www-data /var/www/html \
-    && a2enmod rewrite
+    && chmod -R 755 /var/www/html
     
 RUN composer install 
 
