@@ -22,9 +22,6 @@ RUN chown -R www-data:www-data /var/www/html \
 # Instale dependências PHP
 RUN composer install --no-dev --optimize-autoloader
 
-# Copie o arquivo de configuração do Apache
-COPY .docker/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
-
 # Exponha a porta 80 para o Apache
 EXPOSE 80
 
