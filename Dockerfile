@@ -19,6 +19,9 @@ WORKDIR /var/www/html
 RUN chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite
 
+# Instale dependências PHP
+RUN composer install --no-dev --optimize-autoloader
+
 # Copie o arquivo de configuração do Apache
 COPY .docker/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
 
