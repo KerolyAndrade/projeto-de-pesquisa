@@ -15,13 +15,16 @@ COPY . /var/www/html
 # Defina o diretório de trabalho
 WORKDIR /var/www/html
 
+# Dê permissões corretas
 RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
-    
-RUN composer install 
+    && a2enmod rewrite
+
+# Instale dependências PHP
+RUN composer install --no-dev --optimize-autoloader
 
 # Exponha a porta 80 para o Apache
 EXPOSE 80
 
 # Comando para iniciar o Apache
 CMD ["apache2-foreground"]
+
