@@ -36,6 +36,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // Registrar a exceção
+        \Log::error('Exception caught: ', [
+            'exception' => $exception,
+            'request' => $request->all()
+        ]);
+
+        // Verificar se o pedido espera JSON
         if ($request->expectsJson()) {
             return response()->json([
                 'message' => 'Ocorreu um erro no servidor.',

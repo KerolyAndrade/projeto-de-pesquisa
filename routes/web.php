@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CongregationController;
+use App\Http\Controllers\SearchController;
 
 // Rota para a página inicial
 Route::get('/', [CongregationController::class, 'index'])->name('congregations.index');
@@ -15,8 +16,6 @@ Route::get('/equipe', [CongregationController::class, 'equipe'])->name('congrega
 // Rota para pagina sobre 
 Route::get('/sobre', [CongregationController::class, 'sobre'])->name('congregations.sobre');
 
-Route::get('/congregations', [CongregationController::class, 'index'])->name('congregations.index');
-    
 Route::prefix('congregations')->group(function() {
     Route::get('/', [CongregationController::class, 'index'])->name('congregations.index');
     Route::get('/search', [CongregationController::class, 'search'])->name('congregations.search');
@@ -26,8 +25,8 @@ Route::prefix('congregations')->group(function() {
     Route::get('/autocomplete/names', [SearchController::class, 'autocompleteNames'])->name('autocomplete.names');
     Route::get('/autocomplete/alternatives', [SearchController::class, 'autocompleteAlternatives'])->name('autocomplete.alternatives');
     Route::get('/autocomplete/acronyms', [SearchController::class, 'autocompleteAcronyms'])->name('autocomplete.acronyms');
-    
 });
+
 
 
 

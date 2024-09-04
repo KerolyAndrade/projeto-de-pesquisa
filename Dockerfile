@@ -6,7 +6,8 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     git \
     unzip \
-    && docker-php-ext-install pdo pdo_pgsql
+    && docker-php-ext-install pdo pdo_pgsql \
+    && rm -rf /var/lib/apt/lists/*
 
 # Instale o Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -37,6 +38,5 @@ EXPOSE 80
 
 # Comando para iniciar o Apache
 CMD ["apache2-foreground"]
-
 
 
