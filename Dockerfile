@@ -25,6 +25,12 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-di
 # Copie os arquivos da aplicação
 COPY . /var/www/html
 
+# Copie a configuração personalizada do Apache
+COPY ./config/000-default.conf /etc/apache2/sites-available/000-default.conf
+
+# Adicione ServerName para suprimir o erro de domínio
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
 # Dê permissões corretas
 RUN chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite \
@@ -38,5 +44,4 @@ EXPOSE 80
 
 # Comando para iniciar o Apache
 CMD ["apache2-foreground"]
-
 
