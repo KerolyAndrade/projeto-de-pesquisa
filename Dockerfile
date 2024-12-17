@@ -1,7 +1,7 @@
 # Use uma imagem oficial do PHP com Apache
 FROM php:8.2-apache
 
-# Atualize e instale dependências necessárias
+# Atualize e instale dependências
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     git \
@@ -17,8 +17,7 @@ WORKDIR /var/www/html
 
 # Copie os arquivos do projeto
 COPY . /var/www/html
-# Copie o arquivo .env
-COPY .env /var/www/html/.env
+COPY .env.example /var/www/html/.env
 
 # Instale dependências do Composer
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-scripts
