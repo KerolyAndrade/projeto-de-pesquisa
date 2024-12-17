@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Variáveis para fácil personalização */
 :root {
     --primary-color: #1e2a38; /* Azul escuro mais moderno */
