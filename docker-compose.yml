@@ -1,3 +1,4 @@
+version: '3.8'
 services:
   app:
     build:
@@ -18,13 +19,16 @@ services:
     depends_on:
       - db
     command: >
-      sh -c "/wait-for-it.sh db:5432 -- php artisan migrate --force &&
-            php artisan db:seed --force &&
-            apache2-foreground"
+      sh -c "/wait-for-it.sh db:5432 --strict --timeout=30 &&
+      php artisan key:generate &&
+      php artisan migrate --force &&
+      php artisan db:seed --force &&
+      apache2-foreground"
     networks:
       - laravel
     extra_hosts:
       - "host.docker.internal:host-gateway"
+      - "localhost:172.18.0.2" 
 
   db:
     image: postgres:13
