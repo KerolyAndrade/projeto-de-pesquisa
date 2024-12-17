@@ -20,6 +20,8 @@ services:
       - db
     command: >
       sh -c "/wait-for-it.sh db:5432 --strict --timeout=60 &&
+      npm install &&
+      npm run production &&
       php artisan config:clear &&
       php artisan key:generate &&
       php artisan migrate --force &&
