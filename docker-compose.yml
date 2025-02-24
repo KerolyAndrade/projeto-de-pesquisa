@@ -20,6 +20,7 @@ services:
       - db
     command: >
       sh -c "/wait-for-it.sh db:5432 --strict --timeout=60 &&
+      composer install &&
       npm install &&
       npm run production &&
       php artisan config:clear &&
@@ -46,4 +47,3 @@ networks:
 
 volumes:
   postgres_data:
-
