@@ -11,7 +11,7 @@ Route::get('/mapa', [CongregationController::class, 'mapa'])->name('congregation
 
 Route::prefix('congregations')->group(function() {
     Route::get('/', [CongregationController::class, 'index'])->name('congregations.index');
-    Route::get('/search', [CongregationController::class, 'search'])->name('congregations.search');
+    Route::post('/search', [CongregationController::class, 'search'])->name('congregations.search');
     Route::get('/suggestions', [CongregationController::class, 'suggestions'])->name('congregations.suggestions');
     Route::get('/autocomplete', [CongregationController::class, 'autocomplete'])->name('congregations.autocomplete');
     Route::post('/api/congregations', [CongregationController::class, 'filterByCountries']);
