@@ -1,23 +1,19 @@
 version: '3.8'
+
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: laravel_app
-    environment:
-      - DB_CONNECTION=pgsql
-      - DB_HOST=db
-      - DB_PORT=5432
-      - DB_DATABASE=pesquisa
-      - DB_USERNAME=postgres
-      - DB_PASSWORD=1234
+    env_file: .env
     volumes:
       - .:/var/www/html:delegated
     ports:
       - "8081:80"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     command: >
       sh -c "/wait-for-it.sh db:5432 --strict --timeout=60 &&
       composer install &&
@@ -30,6 +26,7 @@ services:
       apache2-foreground"
     networks:
       - laravel
+
   db:
     image: postgres:13
     container_name: postgres_db
@@ -39,6 +36,11 @@ services:
       - POSTGRES_PASSWORD=1234
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     networks:
       - laravel
 
