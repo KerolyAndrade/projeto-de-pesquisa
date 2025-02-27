@@ -7,8 +7,11 @@ document.addEventListener('DOMContentLoaded', function () {
         maxZoom: 19
     }).setView([20, 0], 2);  // Centro do mapa em um ponto mais adequado para visualização mundial
 
+    // URL das tiles do OpenStreetMap
+    const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+
     // Adiciona a camada de tiles do OpenStreetMap
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    L.tileLayer(tileUrl, {
         maxZoom: 19,
         attribution: '© OpenStreetMap',
         noWrap: true  // Evita que o mapa se repita horizontalmente
@@ -45,7 +48,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Função para adicionar a seleção de países
     function addCountrySelection() {
-        fetch('/path/to/countries.geojson') // Substitua pelo caminho correto do arquivo GeoJSON
+        const countriesUrl = '/path/to/countries.geojson'; // Substitua pelo caminho correto do arquivo GeoJSON
+        fetch(countriesUrl)
             .then(response => response.json())
             .then(data => {
                 countriesLayer.addData(data);
