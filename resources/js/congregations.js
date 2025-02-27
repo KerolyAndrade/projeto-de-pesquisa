@@ -1,3 +1,9 @@
+import './bootstrap.js';
+import $ from 'jquery';
+import 'jquery-ui/ui/widgets/autocomplete.js';
+
+window.$ = $;
+
 $(document).ready(() => {
     // Função debounce para otimizar as chamadas
     const debounce = (func, delay) => {
@@ -17,7 +23,10 @@ $(document).ready(() => {
                     dataType: 'json',
                     data: { query: request.term },
                     success: data => response(data),
-                    error: () => console.error('Erro ao buscar sugestões de autocomplete.') // Adicione tratamento de erro
+                    error: () => {
+                        console.error('Erro ao buscar sugestões de autocomplete.');
+                        alert('Não foi possível buscar sugestões de autocomplete. Tente novamente mais tarde.');
+                    }
                 });
             }, 300),
             minLength: 2
@@ -42,7 +51,10 @@ $(document).ready(() => {
                         $('#suggestions').html(suggestions).show();
                         cache[query] = suggestions;
                     },
-                    error: () => console.error('Erro ao buscar sugestões de pesquisa.') // Adicione tratamento de erro
+                    error: () => {
+                        console.error('Erro ao buscar sugestões de pesquisa.');
+                        alert('Não foi possível buscar sugestões de pesquisa. Tente novamente mais tarde.');
+                    }
                 });
             }
         }, 300));
