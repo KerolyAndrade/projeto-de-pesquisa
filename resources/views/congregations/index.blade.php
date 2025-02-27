@@ -6,7 +6,8 @@
             <!-- Formulário de Pesquisa -->
             <div class="col-md-4 mb-4">
                 <h1 class="mb-4">Pesquisa de Congregações</h1>
-                <form action="{{ route('congregations.search') }}" method="GET" class="bg-light p-4 border rounded shadow-sm">
+                <form action="{{ route('congregations.search') }}" method="POST" class="bg-light p-4 border rounded shadow-sm">
+                    @csrf
                     @foreach([
                         'nome_congregacao' => 'Nome da Congregação',
                         'nomes_alternativos' => 'Nomes Alternativos',
