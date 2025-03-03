@@ -1,22 +1,24 @@
 # Use uma imagem oficial do PHP com Apache
 FROM php:8.2-apache
 
-# Atualize e instale dependências do sistema
+# Atualize e instale dependências do sistema, incluindo coreutils para chmod
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     git \
     unzip \
     curl \
+    coreutils \
     && docker-php-ext-install pdo pdo_pgsql \
-    && apt-get autoremove -y --purge \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Instale o Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Instale Node.js
-RUN bash -c "curl -fsSL https://deb.nodesource.com/setup_18.x | bash -" && \
-    apt-get install -y nodejs
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
+    rm -rf /var/lib/apt/lists/*
 
 # Habilitar mod_rewrite no Apache
 RUN a2enmod rewrite
@@ -24,25 +26,23 @@ RUN a2enmod rewrite
 # Defina o diretório de trabalho
 WORKDIR /var/www/html
 
-# Copie **TODO O PROJETO** antes de rodar o Composer
+# Copie o projeto para o container
 COPY . .
 
 # Defina permissões corretas para as pastas necessárias
-RUN chown -R www-data:www-data storage bootstrap/cache && \
-    chmod -R 775 storage bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html && \
+    chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Instale dependências do Composer **DEPOIS** que o projeto foi copiado
-RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+# Instale as dependências do Composer e do npm
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist && \
+    npm install && \
+    npm run production
 
 # Copie e configure o ambiente
 COPY .env.example .env
 
 # Copie a configuração do Apache
 COPY ./config/000-default.conf /etc/apache2/sites-available/000-default.conf
-
-# Baixe e configure o script wait-for-it.sh
-COPY wait-for-it.sh /wait-for-it.sh
-RUN chmod +x /wait-for-it.sh
 
 # Exponha a porta 80
 EXPOSE 80
