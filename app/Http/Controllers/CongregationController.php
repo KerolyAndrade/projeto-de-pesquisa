@@ -8,10 +8,8 @@ use Illuminate\Support\Facades\Cache;
 
 class CongregationController extends Controller
 {
-    // Método para exibir a lista de congregações
     public function index(Request $request)
     {
-        // Definindo filtros com cache para melhorar o desempenho
         $filters = Cache::remember('congregation_filters', 60, function () {
             return [
                 'familias' => Congregation::distinct()->pluck('familia_final')->sort(),
@@ -20,10 +18,8 @@ class CongregationController extends Controller
             ];
         });
 
-        // Obtendo a pesquisa atual
         $query = Congregation::query();
 
-        // Sanitizar e aplicar filtros conforme a pesquisa
         $input = $request->only([
             'nome_congregacao', 'nomes_alternativos', 'siglas', 'familia_final',
             'pais_fundacao', 'chegada_brasil_estado', 'ano_fundacao_de', 'ano_fundacao_ate', 'genero'
@@ -36,7 +32,7 @@ class CongregationController extends Controller
                 } elseif ($field == 'ano_fundacao_ate') {
                     $query->whereYear('data_fundacao', '<=', $value);
                 } elseif (in_array($field, ['familia_final', 'pais_fundacao', 'chegada_brasil_estado']) && is_array($value)) {
-                    $query->whereIn($field, $value); // Para selects múltiplos
+                    $query->whereIn($field, $value);
                 } elseif ($field == 'genero') {
                     $query->where('genero', $value);
                 } else {
@@ -53,7 +49,6 @@ class CongregationController extends Controller
         ]);
     }
 
-    // Método para pesquisa via POST
     public function search(Request $request)
     {
         if ($request->isMethod('post')) {
@@ -62,7 +57,6 @@ class CongregationController extends Controller
         return redirect()->route('congregations.index');
     }
 
-    // Páginas adicionais
     public function sobre()
     {
         return view('congregations.sobre');
