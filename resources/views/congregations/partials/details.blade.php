@@ -1,53 +1,55 @@
-<div class="section mb-4">
-    <h3 class="section-title mb-3">Dados Gerais</h3>
-    <p><strong>Nomes Alternativos:</strong> {{ $congregation->nomes_alternativos ?? 'Não Informado' }}</p>
-    <p><strong>Família Final:</strong> {{ $congregation->familia_final ?? 'Não Informado' }}</p>
+<!-- Seção de Dados Gerais -->
+<div class="section mb-5">
+    <h3 class="section-title mb-4">Dados Gerais</h3>
+    <p><strong>Nomes Alternativos:</strong> <span class="text-muted">{{ $congregation->nomes_alternativos ?? 'Não Informado' }}</span></p>
+    <p><strong>Família Final:</strong> <span class="text-muted">{{ $congregation->familia_final ?? 'Não Informado' }}</span></p>
 </div>
 
 <!-- Seção de Fundação -->
-<div class="section mb-4">
-    <h3 class="section-title mb-3">Fundação</h3>
-    <p><strong>Ano de Fundação:</strong> {{ \Carbon\Carbon::parse($congregation->data_fundacao)->year ?? 'Não Informado' }}</p>
-    <p><strong>País de Fundação:</strong> {{ $congregation->pais_fundacao ?? 'Não Informado' }}</p>
-    <p><strong>Cidade de Fundação:</strong> {{ $congregation->cidade_fundacao ?? 'Não Informado' }}</p>
+<div class="section mb-5">
+    <h3 class="section-title mb-4">Fundação</h3>
+    <p><strong>Ano de Fundação:</strong> <span class="text-muted">{{ \Carbon\Carbon::parse($congregation->data_fundacao)->year ?? 'Não Informado' }}</span></p>
+    <p><strong>País de Fundação:</strong> <span class="text-muted">{{ $congregation->pais_fundacao ?? 'Não Informado' }}</span></p>
+    <p><strong>Cidade de Fundação:</strong> <span class="text-muted">{{ $congregation->cidade_fundacao ?? 'Não Informado' }}</span></p>
 </div>
 
 <!-- Seção de Chegada ao Brasil -->
-<div class="section mb-4">
-    <h3 class="section-title mb-3">Chegada ao Brasil</h3>
-    <p><strong>Estado:</strong> {{ $congregation->chegada_brasil_estado ?? 'Não Informado' }}</p>
-    <p><strong>Município:</strong> {{ $congregation->chegada_brasil_municipio ?? 'Não Informado' }}</p>
+<div class="section mb-5">
+    <h3 class="section-title mb-4">Chegada ao Brasil</h3>
+    <p><strong>Estado:</strong> <span class="text-muted">{{ $congregation->chegada_brasil_estado ?? 'Não Informado' }}</span></p>
+    <p><strong>Município:</strong> <span class="text-muted">{{ $congregation->chegada_brasil_municipio ?? 'Não Informado' }}</span></p>
 </div>
 
 <!-- Seção de Membros -->
-<div class="section mb-4">
-    <h3 class="section-title mb-3">Membros</h3>
-    <p><strong>Membros no Brasil:</strong> {{ $congregation->membros_brasil ?? 'Não Informado' }}</p>
-    <p><strong>Irmandade:</strong> {{ $congregation->irmaos ?? 'Não Informado' }}</p>
-    <p><strong>Postulantes:</strong> {{ $congregation->postulantes ?? 'Não Informado' }}</p>
-    <p><strong>Noviços:</strong> {{ $congregation->novicos ?? 'Não Informado' }}</p>
+<div class="section mb-5">
+    <h3 class="section-title mb-4">Membros</h3>
+    <p><strong>Membros no Brasil:</strong> <span class="text-muted">{{ $congregation->membros_brasil ?? 'Não Informado' }}</span></p>
+    <p><strong>Irmandade:</strong> <span class="text-muted">{{ $congregation->irmaos ?? 'Não Informado' }}</span></p>
+    <p><strong>Postulantes:</strong> <span class="text-muted">{{ $congregation->postulantes ?? 'Não Informado' }}</span></p>
+    <p><strong>Noviços:</strong> <span class="text-muted">{{ $congregation->novicos ?? 'Não Informado' }}</span></p>
 </div>
 
 <!-- Seção de Carisma -->
-<div class="section mb-4">
-    <h3 class="section-title mb-3">Carisma</h3>
-    <p>{{ $congregation->carisma ?? 'Não Informado' }}</p>
+<div class="section mb-5">
+    <h3 class="section-title mb-4">Carisma</h3>
+    <p><span class="text-muted">{{ $congregation->carisma ?? 'Não Informado' }}</span></p>
 </div>
 
 <!-- Seção de Motivos da Vinda -->
-<div class="section mb-4">
-    <h3 class="section-title mb-3">Motivos da Vinda</h3>
-    <p>{{ $congregation->motivos_vinda ?? 'Não Informado' }}</p>
+<div class="section mb-5">
+    <h3 class="section-title mb-4">Motivos da Vinda</h3>
+    <p><span class="text-muted">{{ $congregation->motivos_vinda ?? 'Não Informado' }}</span></p>
 </div>
 
 <!-- Seção de Referências -->
-<div class="section mb-4">
-    <h3 class="section-title mb-3">Referências</h3>
+<div class="section mb-5">
+    <h3 class="section-title mb-4">Referências</h3>
     @if($congregation->sources->isNotEmpty())
         @foreach($congregation->sources as $index => $source)
-            <p>[{{ $index + 1 }}] <a href="{{ $source->url }}" target="_blank">{{ $source->url }}</a></p>
+            <p>[{{ $index + 1 }}] <a href="{{ $source->url }}" target="_blank" class="text-primary">{{ $source->url }}</a></p>
         @endforeach
     @else
-        <p>Não Informado</p>
+        <p><span class="text-muted">Não Informado</span></p>
     @endif
 </div>
+

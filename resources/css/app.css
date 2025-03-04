@@ -2,32 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Variáveis para fácil personalização */
 :root {
-    --primary-color: #1e2a38; /* Azul escuro mais moderno */
-    --secondary-color: #ff5722; /* Laranja vibrante para destaque */
-    --background-color: #f4f4f9; /* Fundo claro e suave */
-    --text-color: #333; /* Texto escuro para boa legibilidade */
-    --light-text-color: #666; /* Texto secundário mais suave */
-    --header-footer-background: #1e2a38; /* Fundo escuro para cabeçalho e rodapé */
-    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para profundidade */
-    --border-radius: 8px; /* Bordas arredondadas para um visual moderno */
-    --transition-speed: 0.3s; /* Transição suave para efeitos */
-    --max-content-width: 1200px; /* Largura máxima do conteúdo */
-    --input-background-color: #fafafa; /* Cor do fundo do input */
-    --input-border-color: #ddd; /* Cor da borda do input */
-    --input-focus-border-color: var(--secondary-color); /* Cor da borda do input no foco */
-    --input-focus-box-shadow: rgba(255, 87, 34, 0.25); /* Sombra do input no foco */
+    --primary-color: #1e2a38;
+    --secondary-color: #ff5722;
+    --background-color: #f4f4f9;
+    --text-color: #333;
+    --light-text-color: #666;
+    --header-footer-background: #1e2a38;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+    --max-content-width: 1200px;
+    --input-background-color: #fafafa;
+    --input-border-color: #ddd;
+    --input-focus-border-color: var(--secondary-color);
+    --input-focus-box-shadow: rgba(255, 87, 34, 0.25);
 }
 
-/* Reset básico */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Fonte padrão */
 body {
     font-family: 'Roboto', sans-serif;
     background-color: var(--background-color);
@@ -36,10 +33,9 @@ body {
     flex-direction: column;
     min-height: 100vh;
     line-height: 1.6;
-    font-size: 14px; /* Reduzido de 16px para 14px */
+    font-size: 14px;
 }
 
-/* Cabeçalho */
 header {
     background-color: var(--header-footer-background);
     padding: 10px 0;
@@ -52,22 +48,20 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px; /* Ajuste a altura se necessário */
+    height: 50px;
 }
 
-/* Container do cabeçalho */
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: var(--max-content-width);
     width: 100%;
-    padding: 0 15px; /* Reduzido de 20px para 15px */
+    padding: 0 15px;
 }
 
-/* Logotipo */
 .logo {
-    font-size: 20px; /* Reduzido de 24px para 20px */
+    font-size: 20px;
     font-weight: 700;
     color: #fff;
     transition: color var(--transition-speed);
@@ -77,7 +71,6 @@ header {
     color: var(--secondary-color);
 }
 
-/* Menu Toggle (para dispositivos móveis) */
 .menu-toggle {
     display: none;
     font-size: 24px;
@@ -85,7 +78,6 @@ header {
     cursor: pointer;
 }
 
-/* Menu de Navegação */
 .nav {
     display: flex;
 }
@@ -96,7 +88,7 @@ header {
 }
 
 .nav-links li {
-    margin-left: 15px; /* Reduzido de 20px para 15px */
+    margin-left: 15px;
 }
 
 .nav-links a {
@@ -110,11 +102,10 @@ header {
     color: var(--secondary-color);
 }
 
-
 .pagination {
     display: flex;
     justify-content: center;
-    margin: 30px 0; /* Aumenta o espaço acima e abaixo da paginação */
+    margin: 30px 0;
     list-style: none;
     padding: 0;
 }
@@ -148,7 +139,6 @@ header {
     border-color: var(--primary-color);
 }
 
-/* Paginação com estado desativado */
 .pagination a.disabled {
     color: var(--light-text-color);
     border-color: #ddd;
@@ -160,79 +150,73 @@ header {
     background-color: #f9f9f9;
     color: var(--light-text-color);
 }
-/* Rodapé */
+
 footer {
     background-color: var(--header-footer-background);
     color: #fff;
-    padding: 10px 0; /* Reduzido de 15px para 10px */
+    padding: 10px 0;
     text-align: center;
     box-shadow: var(--box-shadow);
 }
 
-/* Contêiner Principal */
 .container {
     max-width: var(--max-content-width);
     margin: auto;
-    padding: 15px; /* Reduzido de 20px para 15px */
-    margin-top: 70px; /* Ajuste conforme a altura do cabeçalho */
+    padding: 15px;
+    margin-top: 70px;
 }
 
-/* Títulos das Seções */
 .section-title {
-    margin: 15px 0; /* Reduzido de 20px para 15px */
-    font-size: 1.25rem; /* Reduzido de 1.5rem para 1.25rem */
+    margin: 20px 0;
+    font-size: 1.375rem;
     color: var(--primary-color);
+    margin-bottom: 25px;
 }
 
-/* Conteúdo das Seções */
 .section-content {
-    margin: 15px 0 50px; /* Reduzido de 20px 0 60px para 15px 0 50px */
+    margin: 25px 0 60px;
 }
 
-/* Títulos */
 h1, h2, h3 {
     color: var(--primary-color);
-    margin-bottom: 15px; /* Reduzido de 20px para 15px */
+    margin-bottom: 20px;
 }
 
-/* Layout de Pesquisa e Resultados */
 .row {
     display: flex;
-    gap: 15px; /* Reduzido de 20px para 15px */
-    flex-wrap: nowrap; /* Garante que os itens não se movam para baixo */
-    margin-top: 15px; /* Reduzido de 20px para 15px */
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
 }
 
 .col-md-4 {
-    flex: 0 0 30%; /* Define a largura da coluna de pesquisa */
-    max-width: 30%; /* Limita a largura máxima da coluna de pesquisa */
+    flex: 0 0 30%;
+    max-width: 30%;
 }
 
-/* Resultados da Pesquisa */
 .col-md-8 {
-    flex: 0 0 70%; /* Define a largura da coluna de resultados */
-    max-width: 70%; /* Limita a largura máxima da coluna de resultados */
-    overflow: hidden; /* Adiciona controle de overflow */
-    margin-top: 30px; /* Reduzido de 40px para 30px */
+    flex: 0 0 70%;
+    max-width: 70%;
+    overflow: hidden;
+    margin-top: 30px;
 }
 
-/* Formulário de Pesquisa */
 form {
     background-color: #fff;
     border-radius: var(--border-radius);
-    padding: 20px;/* Reduzido de 20px para 15px */
+    padding: 20px;
     box-shadow: var(--box-shadow);
     flex: 1;
     max-width: 100%;
-    margin-bottom: 20px; /* Reduzido de 30px para 20px */
+    margin-bottom: 20px;
 }
 
 .form-group {
-    margin-bottom: 20px; /* Espaçamento consistente entre os campos */
+    margin-bottom: 20px;
 }
 
 .form-group label {
-    font-size: 0.875rem; /* Reduzido de 1rem para 0.875rem */
+    font-size: 0.875rem;
     color: var(--text-color);
     display: block;
     margin-bottom: 8px;
@@ -240,8 +224,8 @@ form {
 }
 
 .form-control {
-    width: 100%; /* Garante que o input ocupe toda a largura disponível */
-    height: 38px; /* Define uma altura padrão */
+    width: 100%;
+    height: 38px;
     border: 1px solid var(--input-border-color);
     border-radius: var(--border-radius);
     padding: 10px;
@@ -256,19 +240,20 @@ form {
     border-color: var(--input-focus-border-color);
     box-shadow: 0 0 6px var(--input-focus-box-shadow);
 }
+
 .form-control[multiple] {
-    height: auto; /* Deixa a altura ajustar-se ao conteúdo */
+    height: auto;
 }
 
 .btn-group {
     display: flex;
-    gap: 8px; /* Reduzido de 10px para 8px */
+    gap: 8px;
     justify-content: space-between;
 }
 
 .btn {
-    padding: 10px 15px; /* Reduzido de 12px 20px para 10px 15px */
-    font-size: 0.875rem; /* Reduzido de 1rem para 0.875rem */
+    padding: 10px 15px;
+    font-size: 0.875rem;
     border-radius: var(--border-radius);
     width: 48%;
     transition: background-color var(--transition-speed), border-color var(--transition-speed);
@@ -299,27 +284,26 @@ form {
     border-color: #ccc;
 }
 
-/* Cartões */
 .congregation-card {
     background-color: #fff;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
-    margin-bottom: 20px; /* Reduzido de 30px para 20px */
-    padding: 15px; /* Reduzido de 20px para 15px */
+    margin-bottom: 20px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
 .congregation-card h2 {
-    font-size: 1.25rem; /* Reduzido de 1.5rem para 1.25rem */
+    font-size: 1.25rem;
     color: var(--primary-color);
 }
 
 .congregation-card p {
-    font-size: 0.875rem; /* Reduzido de 1rem para 0.875rem */
+    font-size: 0.875rem;
     color: var(--light-text-color);
-    margin-bottom: 10px; /* Reduzido de 15px para 10px */
+    margin-bottom: 10px;
 }
 
 .congregation-card a {
@@ -333,33 +317,31 @@ form {
     color: #e64a19;
 }
 
-/* Imagem do Card */
 .congregation-card img {
-    max-width: 100%; /* Garante que a imagem não exceda a largura do contêiner */
-    height: auto; /* Mantém a proporção da imagem */
+    max-width: 100%;
+    height: auto;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
 }
 
-/* Lista e Tabela */
 ul, ol {
     padding-left: 20px;
 }
 
 li {
-    margin-bottom: 10px; /* Reduzido de 15px para 10px */
+    margin-bottom: 10px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px; /* Reduzido de 30px para 20px */
-    font-size: 0.875rem; /* Reduzido de 1rem para 0.875rem */
+    margin-bottom: 20px;
+    font-size: 0.875rem;
 }
 
 th, td {
     border: 1px solid var(--input-border-color);
-    padding: 10px; /* Reduzido de 12px para 10px */
+    padding: 10px;
     text-align: left;
 }
 
@@ -373,7 +355,6 @@ tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-/* Links */
 a {
     color: var(--secondary-color);
     text-decoration: none;
@@ -384,16 +365,14 @@ a:hover {
     color: #e64a19;
 }
 
-/* Estilo dos títulos conforme a imagem fornecida */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     color: var(--primary-color);
-    text-transform: uppercase; /* Texto em maiúsculas */
+    text-transform: uppercase;
     margin-bottom: 10px;
 }
 
-/* Ajuste dos contêineres de resultados */
 .search-results {
     display: flex;
     flex-wrap: wrap;

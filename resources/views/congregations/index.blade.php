@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 mb-4">
-                <h1 class="mb-4">Pesquisa de Congregações</h1>
+                <h1 class="mb-5">Pesquisa de Congregações</h1>
                 <form action="{{ route('congregations.search') }}" method="POST" class="bg-light p-4 border rounded shadow-sm">
                     @csrf
 
@@ -13,7 +13,7 @@
                         'nomes_alternativos' => 'Nomes Alternativos',
                         'siglas' => 'Siglas'
                     ] as $name => $label)
-                        <div class="form-group mb-3">
+                        <div class="form-group mb-4">
                             <label for="{{ $name }}" class="form-label">{{ $label }}</label>
                             <input type="text" name="{{ $name }}" class="form-control" id="{{ $name }}"
                                    placeholder="Digite o {{ strtolower($label) }}"
@@ -26,7 +26,7 @@
                         'pais_fundacao' => ['label' => 'País de Fundação', 'options' => $filters['paises_fundacao']],
                         'chegada_brasil_estado' => ['label' => 'Estado de Chegada ao Brasil', 'options' => $filters['estados_presente']]
                     ] as $name => $filter)
-                        <div class="form-group mb-3">
+                        <div class="form-group mb-4">
                             <label for="{{ $name }}" class="form-label">{{ $filter['label'] }}</label>
                             <select name="{{ $name }}[]" class="form-control" id="{{ $name }}" aria-label="{{ $filter['label'] }}" multiple>
                                 @foreach($filter['options'] as $option)
@@ -38,7 +38,7 @@
                         </div>
                     @endforeach
 
-                    <div class="form-group mb-3">
+                    <div class="form-group mb-4">
                         <label for="genero" class="form-label">Gênero da Congregação</label>
                         <select name="genero" class="form-control" id="genero" aria-label="Gênero da Congregação">
                             <option value="">Todos</option>
@@ -47,14 +47,14 @@
                         </select>
                     </div>
 
-                    <div class="form-group mb-3">
+                    <div class="form-group mb-4">
                         <label class="form-label">Ano de Fundação</label>
                         <div class="row">
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-6 mb-4">
                                 <label for="ano_fundacao_de" class="form-label">De</label>
                                 <input type="number" name="ano_fundacao_de" class="form-control" id="ano_fundacao_de" placeholder="Ano inicial" value="{{ request('ano_fundacao_de') }}">
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-6 mb-4">
                                 <label for="ano_fundacao_ate" class="form-label">Até</label>
                                 <input type="number" name="ano_fundacao_ate" class="form-control" id="ano_fundacao_ate" placeholder="Ano final" value="{{ request('ano_fundacao_ate') }}">
                             </div>
@@ -122,7 +122,7 @@
 
             window.clearForm = () => {
                 document.querySelector('form').reset();
-                location.reload();
+                window.location.href = "{{ route('congregations.index') }}";  
             };
         });
     </script>
