@@ -15,9 +15,9 @@ class CongregationsTableSeeder extends Seeder
         $file = fopen(database_path('seeders/banco.csv'), 'r');
         $header = fgetcsv($file, 0, ',');
 
-        $rowNumber = 1; // Para rastrear o número da linha
+        $rowNumber = 1; 
 
-        DB::beginTransaction(); // Inicia uma transação
+        DB::beginTransaction(); 
 
         Log::info('Seeder started');
 
@@ -33,7 +33,7 @@ class CongregationsTableSeeder extends Seeder
                     if (preg_match('/^\d{4}$/', $row['Data de fundação'])) {
                         $row['Data de fundação'] .= '-01-01';
                     } elseif (preg_match('/^\d{4}-\d{2}-\d{2}$/', $row['Data de fundação']) === 0) {
-                        $row['Data de fundação'] = null; // Corrigir para NULL se não for uma data válida
+                        $row['Data de fundação'] = null; 
                     }
                 }
 
@@ -90,6 +90,12 @@ class CongregationsTableSeeder extends Seeder
                     }
                 }
 
+                // Processar e armazenar os estados
+                if (isset($row['Estados onde está presente'])) {
+                    $states = $this->processStates($row['Estados onde está presente']);
+                    $row['estados'] = implode(', ', $states);
+                }
+
                 // Inserir ou atualizar dados da congregação
                 $congregation = Congregation::updateOrCreate(
                     ['nome_principal' => $row['NOME PRINCIPAL'] ?? null],
@@ -112,14 +118,15 @@ class CongregationsTableSeeder extends Seeder
                         'novicos' => $row['Noviços *'] ?? null,
                         'carisma' => $row['Carisma'] ?? null,
                         'motivos_vinda' => $row['Motivos da vinda'] ?? null,
+                        'estados' => $row['estados'] ?? null, 
                     ]
                 );
 
                 // Processar e associar URLs de fontes
                 if (isset($row['FONTES'])) {
-                    Log::info('Original URLs: ' . $row['FONTES']); // Log original das URLs
+                    Log::info('Original URLs: ' . $row['FONTES']); 
                     $urls = $this->processUrls($row['FONTES']);
-                    Log::info('Processed URLs: ' . json_encode($urls)); // Log das URLs processadas
+                    Log::info('Processed URLs: ' . json_encode($urls)); 
 
                     foreach ($urls as $url) {
                         $source = Source::firstOrCreate(['url' => $url]);
@@ -127,30 +134,26 @@ class CongregationsTableSeeder extends Seeder
                     }
                 }
             }
-            DB::commit(); // Commit da transação
+            DB::commit(); 
             Log::info('Seeder executed successfully');
         } catch (\Exception $e) {
-            DB::rollBack(); // Rollback em caso de erro
+            DB::rollBack();
             Log::error("Error inserting row $rowNumber: " . json_encode($row) . " - Error: " . $e->getMessage());
         }
 
         fclose($file);
     }
 
-    
     private function processUrls($urls)
     {
-        // Usar expressão regular para separar URLs com base em padrões conhecidos
         preg_match_all('/(http[s]?:\/\/[^\[\]]+)/', $urls, $matches);
     
-        // Obter todas as URLs encontradas
         $urlsArray = array_map('trim', $matches[1]);
         $processedUrls = [];
     
         foreach ($urlsArray as $url) {
             $url = trim($url);
     
-            // Adicionar esquema http:// se não estiver presente
             if (!preg_match('/^https?:\/\//', $url)) {
                 $url = 'http://' . $url;
             }
@@ -164,59 +167,53 @@ class CongregationsTableSeeder extends Seeder
             }
         }
     
-        return $processedUrls; // Retornar URLs válidas como um array
+        return $processedUrls;
     }
+
     private function processStates($statesString)
-{
-    // Mapeamento de siglas para nomes completos
-    $stateMap = [
-        'AC' => 'Acre',
-        'AL' => 'Alagoas',
-        'AP' => 'Amapá',
-        'AM' => 'Amazonas',
-        'BA' => 'Bahia',
-        'CE' => 'Ceará',
-        'DF' => 'Distrito Federal',
-        'ES' => 'Espírito Santo',
-        'GO' => 'Goiás',
-        'MA' => 'Maranhão',
-        'MT' => 'Mato Grosso',
-        'MS' => 'Mato Grosso do Sul',
-        'MG' => 'Minas Gerais',
-        'PA' => 'Pará',
-        'PB' => 'Paraíba',
-        'PR' => 'Paraná',
-        'PE' => 'Pernambuco',
-        'PI' => 'Piauí',
-        'RJ' => 'Rio de Janeiro',
-        'RN' => 'Rio Grande do Norte',
-        'RS' => 'Rio Grande do Sul',
-        'RO' => 'Rondônia',
-        'RR' => 'Roraima',
-        'SC' => 'Santa Catarina',
-        'SP' => 'São Paulo',
-        'SE' => 'Sergipe',
-        'TO' => 'Tocantins',
-    ];
+    {
+        $stateMap = [
+            'AC' => 'Acre',
+            'AL' => 'Alagoas',
+            'AP' => 'Amapá',
+            'AM' => 'Amazonas',
+            'BA' => 'Bahia',
+            'CE' => 'Ceará',
+            'DF' => 'Distrito Federal',
+            'ES' => 'Espírito Santo',
+            'GO' => 'Goiás',
+            'MA' => 'Maranhão',
+            'MT' => 'Mato Grosso',
+            'MS' => 'Mato Grosso do Sul',
+            'MG' => 'Minas Gerais',
+            'PA' => 'Pará',
+            'PB' => 'Paraíba',
+            'PR' => 'Paraná',
+            'PE' => 'Pernambuco',
+            'PI' => 'Piauí',
+            'RJ' => 'Rio de Janeiro',
+            'RN' => 'Rio Grande do Norte',
+            'RS' => 'Rio Grande do Sul',
+            'RO' => 'Rondônia',
+            'RR' => 'Roraima',
+            'SC' => 'Santa Catarina',
+            'SP' => 'São Paulo',
+            'SE' => 'Sergipe',
+            'TO' => 'Tocantins',
+        ];
 
-    // Separar os estados da string
-    $statesArray = array_map('trim', explode(',', $statesString));
+        $statesArray = array_map('trim', explode(',', $statesString));
 
-    // Remover duplicatas e mapear para nomes completos
-    $uniqueStates = array_unique($statesArray);
-    $fullStateNames = [];
+        $uniqueStates = array_unique($statesArray);
+        $fullStateNames = [];
 
-    foreach ($uniqueStates as $state) {
-        $state = strtoupper(trim($state)); // Normaliza para maiúsculas
-        if (isset($stateMap[$state])) {
-            $fullStateNames[] = $stateMap[$state]; // Adiciona o nome completo
+        foreach ($uniqueStates as $state) {
+            $state = strtoupper(trim($state));
+            if (isset($stateMap[$state])) {
+                $fullStateNames[] = $stateMap[$state]; 
+            }
         }
+
+        return $fullStateNames;
     }
-
-    return $fullStateNames; // Retorna os nomes completos dos estados
 }
-    
-
-
-}
-
