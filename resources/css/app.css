@@ -9,8 +9,8 @@
     --text-color: #333;
     --light-text-color: #666;
     --header-footer-background: #1e2a38;
-    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    --border-radius: 8px;
+    --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Aumentado para um sombreamento mais sutil */
+    --border-radius: 10px; /* Aumentado para bordas mais suaves */
     --transition-speed: 0.3s;
     --max-content-width: 1200px;
     --input-background-color: #fafafa;
@@ -47,7 +47,7 @@ header {
     left: 0;
     z-index: 1000;
     display: flex;
-    justify-content: center;
+    justify-content: space-between; /* Mudado para otimizar o alinhamento */
     align-items: center;
     height: 60px; /* Ajustado para uma altura mais flexível */
 }
@@ -62,7 +62,7 @@ header {
 }
 
 .logo {
-    font-size: 22px; /* Aumentado para maior visibilidade */
+    font-size: 24px; /* Aumentado para maior visibilidade */
     font-weight: 700;
     color: #fff;
     transition: color var(--transition-speed);
@@ -82,7 +82,7 @@ header {
 }
 
 .nav-links li {
-    margin-left: 15px;
+    margin-left: 20px; /* Margem um pouco maior para uma separação mais espaçada */
 }
 
 .nav-links a {
@@ -106,8 +106,8 @@ header {
 
 .pagination a,
 .pagination span {
-    margin: 0 5px;
-    padding: 10px 15px;
+    margin: 0 8px; /* Maior espaçamento entre os elementos */
+    padding: 12px 18px; /* Aumentado para melhorar a interação */
     border-radius: var(--border-radius);
     background-color: #fff;
     border: 1px solid #ddd;
@@ -143,7 +143,7 @@ header {
 footer {
     background-color: var(--header-footer-background);
     color: #fff;
-    padding: 10px 0;
+    padding: 15px 0; /* Aumentado o padding para maior consistência com o header */
     text-align: center;
     box-shadow: var(--box-shadow);
 }
@@ -168,7 +168,7 @@ footer {
 
 .form-control {
     width: 100%;
-    height: 38px;
+    height: 40px; /* Aumentado para facilitar a interação */
     border: 1px solid var(--input-border-color);
     border-radius: var(--border-radius);
     padding: 10px;
@@ -190,12 +190,12 @@ footer {
 
 .btn-group {
     display: flex;
-    gap: 8px;
+    gap: 12px; /* Aumentado para mais espaçamento entre os botões */
     justify-content: space-between;
 }
 
 .btn {
-    padding: 10px 15px;
+    padding: 12px 18px; /* Aumentado para maior área clicável */
     font-size: 0.875rem;
     border-radius: var(--border-radius);
     width: 48%;
@@ -231,21 +231,21 @@ footer {
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     margin-bottom: 20px;
-    padding: 15px;
+    padding: 20px; /* Aumentado para maior espaço interno */
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px; /* Aumentado para maior espaçamento interno */
 }
 
 .congregation-card h2 {
-    font-size: 1.25rem;
+    font-size: 1.375rem; /* Tamanho maior para maior destaque */
     color: var(--primary-color);
 }
 
 .congregation-card p {
-    font-size: 0.875rem;
+    font-size: 1rem; /* Texto um pouco maior para legibilidade */
     color: var(--light-text-color);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .congregation-card a {
@@ -271,19 +271,19 @@ ul, ol {
 }
 
 li {
-    margin-bottom: 10px;
+    margin-bottom: 12px; /* Aumentado para maior espaçamento entre as listas */
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
-    font-size: 0.875rem;
+    font-size: 1rem; /* Tamanho maior para maior legibilidade */
 }
 
 th, td {
     border: 1px solid var(--input-border-color);
-    padding: 10px;
+    padding: 12px; /* Aumentado o padding para um espaçamento mais confortável */
     text-align: left;
 }
 
@@ -312,13 +312,13 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     color: var(--primary-color);
     text-transform: uppercase;
-    margin-bottom: 10px;
+    margin-bottom: 12px; /* Aumentado para maior espaçamento */
 }
 
 .search-results {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 20px; /* Aumentado o espaçamento entre os resultados */
 }
 
 .search-results .result-item {
@@ -326,22 +326,22 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #fff;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
-    padding: 15px;
+    padding: 20px; /* Aumentado para maior espaçamento interno */
     text-align: center;
 }
 
 .search-results .result-item img {
     max-width: 100%;
     border-radius: var(--border-radius);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .search-results .result-item h2 {
-    font-size: 1.125rem;
-    margin-bottom: 10px;
+    font-size: 1.25rem; /* Aumentado para maior destaque */
+    margin-bottom: 12px;
 }
 
 .search-results .result-item p {
-    font-size: 0.875rem;
+    font-size: 1rem; /* Texto maior para legibilidade */
     color: var(--light-text-color);
 }

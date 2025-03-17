@@ -2,11 +2,12 @@
 
 @section('content')
 <div class="container">
-    <h1>Congregações Católicas, Educação e Estado Nacional</h1>
+    <h1>Estudo: Congregações Católicas, Educação e Estado Nacional</h1>
     
     <section>
         <p>Os dados aqui oferecidos aos pesquisadores e interessados no tema em estudo são produto do Projeto Temático: Congregações Católicas, Educação e Estado Nacional, desenvolvido no período de 2012/2017, coordenado pela professora Agueda Bernardete Bittencourt, apoiado pela Fapesp.</p>
     </section>
+    <br>
 
     <section>
         <h2>Sobre o Projeto</h2>
@@ -14,6 +15,7 @@
         <p>Analisou os efeitos da chegada de congregações religiosas no País, no momento de construção do Sistema Nacional de Educação, de lutas pela laicização do Estado e da sociedade e de configuração das cidades modernas. Tem seu foco central na educação, entendida como processo de socialização de recém-chegados – crianças e estrangeiros. Educação que se estende para além da escolarização, e é marcada pela vida urbana, pela estética da cidade, pelos objetos da cultura – edifícios, livros, estruturas empresariais, artes - e pelas linguagens.</p>
         <p>A Igreja Católica, e as congregações religiosas em particular, estabeleceram marcas profundas no processo de educação, urbanização e modernização brasileira iniciado com a República, anônimos, pela cidade que já incorporou igrejas e colégios à estética urbana.</p>
     </section>
+    <br>
 
     <section>
         <h2>Outros Resultados do Projeto</h2>
@@ -24,6 +26,7 @@
             <li>Dossiê Empreendimentos sociais, elite eclesiástica e congregações religiosas no Brasil República: A arte de “formar bons cidadãos e bons cristãos”. Revista Pro-Posições (UNICAMP. Impresso), 0103-7307, v. 28, n 3, set/dez 2017.</li>
         </ul>
     </section>
+    <br>
 
     <section>
         <h2>Sobre o Banco de Dados</h2>
@@ -33,24 +36,28 @@
         <p>Quanto a sua atuação no Brasil, no campo de informações quantitativas há informações sobre as datas de chegada no país, local inicial de instalação, o número e graduação dos fundadores, o número de casas e membros atualmente presentes no Brasil e em que estados estão. Quando possível, há informações sobre casas do país que foram fechadas.</p>
         <p>Paralelas a estas, há informações sobre o número de casas e membros no mundo, e os países nos quais a congregação atua.</p>
     </section>
+    <br>
 
     <section>
         <h3>Sobre as fontes</h3>
         <p>Inicialmente, o banco de dados foi alimentado com informações obtidas das próprias congregações por meio de formulários que foram enviados a elas. No entanto, em muitos casos, foi decidida a busca de informações via internet, nos sites das próprias congregações ou sobre elas.</p>
         <p>Foi dada precedência às informações de fontes cuja origem são as próprias congregações, ou relacionadas à Santa Sé e seu aparato administrativo (dioceses, arquidioceses), mas em muitos casos, as informações desejadas foram encontradas somente em sites de autoria de terceiros.</p>
     </section>
+    <br>
 
     <section>
         <h3>Sobre a listagem de congregações</h3>
         <p>A listagem básica de congregações que foi consultada para a realização do banco foi o Anuário Católico 2015, apesar de haver algumas congregações que constam no banco que estão no banco de dados.</p>
         <p>O AC2015 foi utilizado também como fonte de padronização dos nomes das congregações, para facilitar a verificação dos dados na fonte, caso seja necessário.</p>
     </section>
+    <br>
 
     <section>
         <h3>Sobre as informações</h3>
         <p>Como notado no tópico sobre as fontes, nem sempre foi possível encontrar fontes das próprias congregações para o preenchimento, portanto, sempre que possível nos campos quantitativos (datas, dados numéricos em geral) foi dada a preferência para uma ou outra fonte, em geral o AC 2015.</p>
         <p>Nos casos de conflito de dados, tentou-se adicionar notas explicativas que esclareçam os problemas.</p>
     </section>
+    <br>
 
     <section>
         <h3>Abreviações, siglas, notações</h3>
@@ -118,13 +125,9 @@
 
     <section>
         <h3>Sobre a tradução de informações</h3>
-        <p>Para a maioria das línguas das quais informações foram traduzidas, não foi necessária a utilização de meios de tradução mecânica (Google Translate). Estas línguas incluem o inglês, francês, alemão, e espanhol.</p>
-        <p>Para algumas, foi necessária alguma utilização de tradução mecânica - italiano e holandês/flamengo. Para um último grupo, não foi possível obter informações senão por meio da tradução por meios mecânicos: ucraniano, polonês, húngaro, árabe, japonês.</p>
+        <p>Para a maioria das línguas das quais informações foram traduzidas, não foi necessária a utilização de meios de tradução mecânica (Google Translate). Estas línguas incluem o inglês, francês, alemão, e espanhol. Para algumas, foi necessária alguma utilização de tradução mecânica - italiano e holandês/flamengo. Para um último grupo, não foi possível obter informações senão por meio da tradução por meios mecânicos: ucraniano, polonês, húngaro, árabe, japonês.</p>
         <p>Em todos os casos onde a tradução mecânica foi utilizada, o resultado foi revisado, e preferiu-se traduzir primeiro para o inglês, e então para o português.</p>
     </section>
-
-    <section>
-        <h3><a href="URL_DO_BANCO_DE_DADOS">Clique aqui para acessar o banco de dados das congregações religiosas.</a></h3>
-    </section>
+    <br>
 </div>
 @endsection

@@ -2,6 +2,7 @@
 @section('content')
     <div class="container">
         <h2>Equipe responsável</h2>
+        <br>
         <p>Agueda Bernardete Bittencourt (coord.), <a href="mailto:agueda.bittencourt@gmail.com">agueda.bittencourt@gmail.com</a></p>
         <p>Paula Leonardi, <a href="mailto:leonardi.paula@gmail.com">leonardi.paula@gmail.com</a></p>
         <p>Guilherme Ramalho Arduini, <a href="mailto:guilherme.arduini@gmail.com">guilherme.arduini@gmail.com</a></p>
