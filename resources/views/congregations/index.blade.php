@@ -9,7 +9,7 @@
                 <form action="{{ route('congregations.search') }}" method="POST" class="bg-light p-4 border rounded shadow-sm">
                     @csrf
                     @foreach([
-                        'nome_congregacao' => 'Nome da Congregação',
+                        'nome_principal' => 'Nome da Congregação',
                         'nomes_alternativos' => 'Nomes Alternativos',
                         'siglas' => 'Siglas'
                     ] as $name => $label)
@@ -64,7 +64,7 @@
                     </div>
 
                     <div class="d-flex justify-content-between">
-                        <button type="button" class="btn btn-secondary" onclick="clearForm()">Limpar</button>
+                        <a href="{{ route('congregations.index') }}" class="btn btn-secondary">Limpar</a>
                         <button type="submit" class="btn btn-primary">Buscar</button>
                     </div>
                 </form>

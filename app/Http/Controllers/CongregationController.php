@@ -10,6 +10,7 @@ class CongregationController extends Controller
 {
     public function index(Request $request)
     {
+        // Cache para os filtros
         $filters = Cache::remember('congregation_filters', 60, function () {
             return [
                 'familias' => Congregation::distinct()->pluck('familia_final')->sort(),
@@ -18,45 +19,61 @@ class CongregationController extends Controller
             ];
         });
 
+        // Iniciar a query
         $query = Congregation::query();
 
+        // Obter os dados do formulário
         $input = $request->only([
-            'nome_congregacao', 'nomes_alternativos', 'siglas', 'familia_final',
+            'nome_principal', 'nomes_alternativos', 'siglas', 'familia_final',
             'pais_fundacao', 'chegada_brasil_estado', 'ano_fundacao_de', 'ano_fundacao_ate', 'genero'
         ]);
 
+        // Aplicar filtros dinâmicos
         foreach ($input as $field => $value) {
             if ($request->filled($field)) {
+                // Filtro para o ano de fundação
                 if ($field == 'ano_fundacao_de') {
                     $query->whereYear('data_fundacao', '>=', $value);
                 } elseif ($field == 'ano_fundacao_ate') {
                     $query->whereYear('data_fundacao', '<=', $value);
-                } elseif (in_array($field, ['familia_final', 'pais_fundacao', 'chegada_brasil_estado']) && is_array($value)) {
+                }
+                // Filtro para valores múltiplos (arrays)
+                elseif (in_array($field, ['familia_final', 'pais_fundacao', 'chegada_brasil_estado']) && is_array($value)) {
                     $query->whereIn($field, $value);
-                } elseif ($field == 'genero') {
+                }
+                // Filtro para gênero
+                elseif ($field == 'genero') {
                     $query->where('genero', $value);
-                } else {
+                }
+                // Filtro para o nome da congregação e outros campos de texto
+                else {
                     $query->where($field, 'like', '%' . $value . '%');
                 }
             }
         }
 
+        // Paginar os resultados
         $congregations = $query->paginate(10);
 
+        // Retornar a view com os resultados e filtros
         return view('congregations.index', [
             'congregations' => $congregations,
             'filters' => $filters
         ]);
     }
 
+    // Método para a busca específica
     public function search(Request $request)
     {
+        // Verificar se a requisição é do tipo POST para aplicar a pesquisa
         if ($request->isMethod('post')) {
-            return $this->index($request);
+            return $this->index($request); // Chama o método index para aplicar a pesquisa
         }
-        return redirect()->route('congregations.index');
+        
+        return redirect()->route('congregations.index'); // Caso contrário, redireciona para a página principal
     }
 
+    // Outras páginas de informações
     public function sobre()
     {
         return view('congregations.sobre');
