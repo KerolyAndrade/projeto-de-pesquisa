@@ -34,11 +34,12 @@ body {
     min-height: 100vh;
     line-height: 1.6;
     font-size: 14px;
+    -webkit-font-smoothing: antialiased; /* Melhora a renderização da fonte */
 }
 
 header {
     background-color: var(--header-footer-background);
-    padding: 10px 0;
+    padding: 15px 0;
     box-shadow: var(--box-shadow);
     position: fixed;
     width: 100%;
@@ -48,7 +49,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px;
+    height: 60px; /* Ajustado para uma altura mais flexível */
 }
 
 .header-container {
@@ -61,7 +62,7 @@ header {
 }
 
 .logo {
-    font-size: 20px;
+    font-size: 22px; /* Aumentado para maior visibilidade */
     font-weight: 700;
     color: #fff;
     transition: color var(--transition-speed);
@@ -69,13 +70,6 @@ header {
 
 .logo:hover {
     color: var(--secondary-color);
-}
-
-.menu-toggle {
-    display: none;
-    font-size: 24px;
-    color: #fff;
-    cursor: pointer;
 }
 
 .nav {
@@ -146,11 +140,6 @@ header {
     background-color: #f9f9f9;
 }
 
-.pagination a.disabled:hover {
-    background-color: #f9f9f9;
-    color: var(--light-text-color);
-}
-
 footer {
     background-color: var(--header-footer-background);
     color: #fff;
@@ -163,52 +152,7 @@ footer {
     max-width: var(--max-content-width);
     margin: auto;
     padding: 15px;
-    margin-top: 70px;
-}
-
-.section-title {
-    margin: 20px 0;
-    font-size: 1.375rem;
-    color: var(--primary-color);
-    margin-bottom: 25px;
-}
-
-.section-content {
-    margin: 25px 0 60px;
-}
-
-h1, h2, h3 {
-    color: var(--primary-color);
-    margin-bottom: 20px;
-}
-
-.row {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 30px;
-}
-
-.col-md-4 {
-    flex: 0 0 30%;
-    max-width: 30%;
-}
-
-.col-md-8 {
-    flex: 0 0 70%;
-    max-width: 70%;
-    overflow: hidden;
-    margin-top: 30px;
-}
-
-form {
-    background-color: #fff;
-    border-radius: var(--border-radius);
-    padding: 20px;
-    box-shadow: var(--box-shadow);
-    flex: 1;
-    max-width: 100%;
-    margin-bottom: 20px;
+    margin-top: 80px; /* Ajustado para compensar a altura do header fixo */
 }
 
 .form-group {
@@ -220,7 +164,6 @@ form {
     color: var(--text-color);
     display: block;
     margin-bottom: 8px;
-    margin-top: 0;
 }
 
 .form-control {
@@ -259,7 +202,6 @@ form {
     transition: background-color var(--transition-speed), border-color var(--transition-speed);
     cursor: pointer;
     text-align: center;
-    display: inline-block;
 }
 
 .btn-primary {
