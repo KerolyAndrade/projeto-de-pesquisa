@@ -6,6 +6,8 @@ Para rodar o projeto no seu ambiente:
 
     cp .env.example .env
 
+    php artisan key:generate
+
     docker build -t [NOME_DO_CONTAINER] .
     
     docker-compose up --build
