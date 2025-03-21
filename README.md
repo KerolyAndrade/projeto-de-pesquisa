@@ -4,6 +4,7 @@ Para rodar o projeto no seu ambiente:
 
 2-Execute os seguintes comandos no terminal:
     docker build -t [NOME_DO_CONTAINER] .
+    
     docker-compose up --build
     
 Após isso, o projeto deverá estar acessível normalmente em seu navegador na porta 8081.
