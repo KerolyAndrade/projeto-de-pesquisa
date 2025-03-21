@@ -3,6 +3,7 @@ Para rodar o projeto no seu ambiente:
 1-Faça o download do projeto em sua máquina.
 
 2-Execute os seguintes comandos no terminal:
+
     docker build -t [NOME_DO_CONTAINER] .
     
     docker-compose up --build
