@@ -10,7 +10,7 @@ $(document).ready(() => {
         let timeout;
         return (...args) => {
             clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(this, args), delay);
+            timeout = setTimeout(() => func(...args), delay);
         };
     };
 
@@ -41,8 +41,14 @@ $(document).ready(() => {
 
         $('#nome_congregacao').on('input', debounce(function() {
             const query = $(this).val();
+            if (query.length < 2) {
+                $('#suggestions').hide().empty();
+                return;
+            }
+
+            // Verifica se a sugestão está no cache e se não expirou
             if (cache[query] && (Date.now() - cache[query].timestamp < cacheExpirationTime)) {
-                updateSuggestions(cache[query].data);  // Exibir sugestões cacheadas
+                updateSuggestions(cache[query].data);  // Exibe sugestões cacheadas
             } else {
                 $.ajax({
                     url: '/congregations/search-suggestions',
@@ -56,7 +62,7 @@ $(document).ready(() => {
                     error: () => {
                         console.error('Erro ao buscar sugestões de pesquisa.');
                         alert('Não foi possível buscar sugestões de pesquisa. Tente novamente mais tarde.');
-                        $('#suggestions').empty().hide();  // Limpar sugestões antigas
+                        $('#suggestions').empty().hide();  // Limpa sugestões em caso de erro
                     }
                 });
             }
@@ -72,13 +78,12 @@ $(document).ready(() => {
     const initializeDetailsToggle = () => {
         $('.congregation-card').on('click', '.details-toggle', function() {
             const details = $(this).closest('.congregation-card').find('.details');
-            details.toggleClass('show');
-            const isExpanded = details.hasClass('show');
+            const isExpanded = details.toggleClass('show').hasClass('show');
             $(this).attr('aria-expanded', isExpanded);
             details.attr('aria-hidden', !isExpanded); // Melhorando acessibilidade
 
             // Usar transição suave
-            details.stop(true, true).slideToggle();
+            details.stop(true, true).slideToggle(300); // Desacelera o slideToggle para 300ms
         });
     };
 
@@ -94,13 +99,13 @@ $(document).ready(() => {
                 ano_fundacao: {
                     digits: "O ano deve ser um número válido.",
                     min: "O ano de fundação não pode ser anterior a 1000.",
-                    max: "O ano de fundação não pode ser posterior ao ano atual."
+                    max: `O ano de fundação não pode ser posterior ao ano atual (${new Date().getFullYear()}).`
                 }
             },
             errorElement: 'div',
             errorPlacement: (error, element) => {
                 error.addClass('invalid-feedback');
-                error.appendTo(element.closest('.form-group'));
+                error.insertAfter(element);  // Coloca o erro diretamente após o campo
             },
             highlight: (element) => {
                 $(element).closest('.form-group').addClass('has-error');
@@ -115,12 +120,12 @@ $(document).ready(() => {
     window.clearForm = () => {
         // Limpar todos os campos do formulário
         $('form')[0].reset();
-        
-        // Remover qualquer sugestão de autocomplete
+
+        // Limpar sugestões de autocomplete
         $('#suggestions').empty().hide();
-        
+
         // Recarregar a página sem adicionar nova entrada no histórico
-        window.location.replace(window.location.pathname);
+        window.history.replaceState(null, '', window.location.pathname);
     };
 
     // Inicialização de todos os componentes
@@ -133,4 +138,3 @@ $(document).ready(() => {
 
     initializeComponents();
 });
-
