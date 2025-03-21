@@ -4,35 +4,25 @@
     <div class="container">
         <div class="row" style="display: flex; align-items: stretch;">
             <!-- Formulário de Pesquisa à esquerda -->
-            <div class="col-md-4 mb-4" style="flex: 0 0 30%; padding-right: 30px; display: flex; flex-direction: column;">
+            <div class="col-md-4 mb-4" style="flex: 0 0 30%; padding-right: 30px; display: flex; flex-direction: column; position: relative;">
+                <!-- Card atrás do formulário -->
+                <div class="congregation-card fixed-card"></div>
                 <h1 class="mb-4">Pesquisa de Congregações</h1>
-                <form action="{{ route('congregations.search') }}" method="POST" class="bg-light p-4 border rounded shadow-sm">
+                <form action="{{ route('congregations.search') }}" method="POST" class="bg-light p-4 border rounded shadow-sm z-index-1">
                     @csrf
-                    @foreach([
-                        'nome_principal' => 'Nome da Congregação',
-                        'nomes_alternativos' => 'Nomes Alternativos',
-                        'siglas' => 'Siglas'
-                    ] as $name => $label)
+                    @foreach([ 'nome_principal' => 'Nome da Congregação', 'nomes_alternativos' => 'Nomes Alternativos', 'siglas' => 'Siglas' ] as $name => $label)
                         <div class="form-group mb-3">
                             <label for="{{ $name }}" class="form-label">{{ $label }}</label>
-                            <input type="text" name="{{ $name }}" class="form-control" id="{{ $name }}"
-                                   placeholder="Digite o {{ strtolower($label) }}"
-                                   value="{{ request($name) }}" aria-label="{{ $label }}">
+                            <input type="text" name="{{ $name }}" class="form-control" id="{{ $name }}" placeholder="Digite o {{ strtolower($label) }}" value="{{ request($name) }}" aria-label="{{ $label }}">
                         </div>
                     @endforeach
 
-                    @foreach([
-                        'familia_final' => ['label' => 'Família Final', 'options' => $filters['familias']],
-                        'pais_fundacao' => ['label' => 'País de Fundação', 'options' => $filters['paises_fundacao']],
-                        'chegada_brasil_estado' => ['label' => 'Estado de Chegada ao Brasil', 'options' => $filters['estados_presente']]
-                    ] as $name => $filter)
+                    @foreach([ 'familia_final' => ['label' => 'Família Final', 'options' => $filters['familias']], 'pais_fundacao' => ['label' => 'País de Fundação', 'options' => $filters['paises_fundacao']], 'chegada_brasil_estado' => ['label' => 'Estado de Chegada ao Brasil', 'options' => $filters['estados_presente']] ] as $name => $filter)
                         <div class="form-group mb-3">
                             <label for="{{ $name }}" class="form-label">{{ $filter['label'] }}</label>
                             <select name="{{ $name }}[]" class="form-control" id="{{ $name }}" aria-label="{{ $filter['label'] }}" multiple>
                                 @foreach($filter['options'] as $option)
-                                    <option value="{{ $option }}" {{ in_array($option, request($name, [])) ? 'selected' : '' }}>
-                                        {{ $option }}
-                                    </option>
+                                    <option value="{{ $option }}" {{ in_array($option, request($name, [])) ? 'selected' : '' }}>{{ $option }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -71,7 +61,10 @@
             </div>
 
             <!-- Resultados da Pesquisa à direita -->
-            <div class="col-md-8 mb-4" style="flex: 1; display: flex; flex-direction: column;">
+            <div class="col-md-8 mb-4" style="flex: 1; display: flex; flex-direction: column; position: relative;">
+                <!-- Título de Resultados -->
+                <h2 class="mb-4">Resultados</h2>
+                
                 @if($congregations->isEmpty())
                     <div class="alert alert-info mt-3">
                         Nenhuma congregação encontrada.
