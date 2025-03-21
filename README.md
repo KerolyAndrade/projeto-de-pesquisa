@@ -4,6 +4,8 @@ Para rodar o projeto no seu ambiente:
 
 2-Execute os seguintes comandos no terminal:
 
+    cp .env.example .env
+
     docker build -t [NOME_DO_CONTAINER] .
     
     docker-compose up --build
