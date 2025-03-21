@@ -94,7 +94,7 @@ class CongregationsTableSeeder extends Seeder
                         'nomes_alternativos' => $row['NOMES ALTERNATIVOS'] ?? null,
                         'siglas' => $row['SIGLAS'] ?? null,
                         'familia_final' => $row['Família final'] ?? null,
-                        'genero' => $row['M/F?'] ?? null,
+                        'genero' => $this->normalizeGenero($row['M/F?'] ?? null),
                         'datas_aprovacao' => $row['Datas de Aprovação'] ?? null,
                         'anos_reformulacao' => $row['Anos de reformulação'] ?? null,
                         'situacao_canonica' => $row['Situação canônica'] ?? null,
@@ -162,6 +162,21 @@ class CongregationsTableSeeder extends Seeder
     
         return $processedUrls; 
     }
+    private function normalizeGenero($genero)
+{
+    if (empty($genero)) {
+        return null;
+    }
+
+    $genero = strtoupper(trim($genero));
+
+    if ($genero === 'M' || $genero === 'F') {
+        return $genero;
+    }
+
+    return null;
+}
+
     
 
 
