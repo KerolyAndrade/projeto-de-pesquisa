@@ -52,7 +52,7 @@ class CongregationController extends Controller
         ]);
     }
 
-    // Método para aplicar os filtros na query
+    // Método de aplicação de filtros
     protected function applyFilter($query, $field, $value)
     {
         // Para ano de fundação
@@ -93,7 +93,46 @@ class CongregationController extends Controller
         return redirect()->route('congregations.index');
     }
 
-    // Métodos adicionais
+    // Método de processamento do formulário (incluindo anexos)
+    public function submitFormulario(Request $request)
+    {
+        // Validação dos dados do formulário
+        $request->validate([
+            'instituicao' => 'required|string|max:255',
+            'finalidade' => 'required|string|max:255',
+            'experiencia' => 'required|string|max:500',
+            'sugestoes' => 'nullable|string|max:500',
+            'anexos.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:10240', // Validação para múltiplos arquivos
+        ]);
+
+        // Lidar com os anexos
+        $anexosPaths = [];
+        if ($request->hasFile('anexos')) {
+            foreach ($request->file('anexos') as $anexo) {
+                if ($anexo->isValid()) {
+                    $anexosPaths[] = $anexo->store('uploads', 'public'); // Armazenar cada arquivo
+                }
+            }
+        }
+
+        // Aqui você pode processar os dados do formulário, salvar no banco, etc.
+
+        // Retornar com sucesso
+        return redirect()->route('congregations.sobre')->with('success', 'Formulário enviado com sucesso!');
+    }
+    public function showMap()
+{
+    // Definir os filtros que serão usados no formulário
+    $filters = [
+        'paises_fundacao' => Congregation::distinct()->pluck('pais_fundacao')->sort(),
+        // Outros filtros podem ser adicionados aqui, conforme necessário
+    ];
+
+    // Retornar a view e passar os filtros para ela
+    return view('congregations.mapa', compact('filters'));
+}
+
+    // Métodos adicionais para outras páginas
     public function sobre()
     {
         return view('congregations.sobre');
@@ -107,5 +146,10 @@ class CongregationController extends Controller
     public function mapa()
     {
         return view('congregations.mapa');
+    }
+    
+    public function apresentacao()
+    {
+        return view('congregations.apresentacao');
     }
 }

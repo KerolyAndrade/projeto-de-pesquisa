@@ -14,7 +14,6 @@
         #world-map {
             width: 100%;
             height: 500px; /* Ajuste esta altura conforme necessário */
-            /* height: 100vh; - Caso queira ocupar toda a altura da viewport */
         }
 
         /* Adiciona margem inferior para evitar sobreposição com o footer */
@@ -90,4 +89,69 @@
     <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js" defer></script>
     <!-- JS personalizado para o mapa -->
     <script src="{{ asset('js/map.js') }}" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Inicializar o mapa
+            const map = L.map('world-map').setView([20, 0], 2); // Posição central inicial e zoom
+
+            // Adicionar camada de tile do OpenStreetMap
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Função para atualizar o mapa com base nos filtros
+            const updateMap = (filters) => {
+                // Limpar marcadores anteriores
+                map.eachLayer(function(layer) {
+                    if (layer instanceof L.Marker) {
+                        map.removeLayer(layer);
+                    }
+                });
+
+                // Aqui você usaria um endpoint para buscar as congregações filtradas ou os dados já disponíveis
+                fetch(`{{ route('congregations.index') }}?pais_fundacao[]=${filters.pais_fundacao.join('&pais_fundacao[]=')}&ano_fundacao_inicio=${filters.ano_fundacao_inicio}&ano_fundacao_fim=${filters.ano_fundacao_fim}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Adicionar os marcadores para as congregações no mapa
+                        data.forEach(congregation => {
+                            L.marker([congregation.latitude, congregation.longitude]).addTo(map)
+                                .bindPopup(`<strong>${congregation.nome_principal}</strong><br>País: ${congregation.pais_fundacao}<br>Ano de Fundação: ${congregation.ano_fundacao}`);
+                        });
+                    });
+            };
+
+            // Formulário de filtro
+            const filterForm = document.getElementById('filter-form');
+            filterForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const pais_fundacao = Array.from(document.getElementById('pais_fundacao').selectedOptions).map(option => option.value);
+                const ano_fundacao_inicio = document.getElementById('ano_fundacao_inicio').value;
+                const ano_fundacao_fim = document.getElementById('ano_fundacao_fim').value;
+
+                // Atualizar o mapa com base nos filtros
+                updateMap({
+                    pais_fundacao: pais_fundacao,
+                    ano_fundacao_inicio: ano_fundacao_inicio,
+                    ano_fundacao_fim: ano_fundacao_fim
+                });
+            });
+
+            // Função para limpar os filtros
+            document.getElementById('reset-filters').addEventListener('click', function() {
+                filterForm.reset();
+                updateMap({
+                    pais_fundacao: [],
+                    ano_fundacao_inicio: '',
+                    ano_fundacao_fim: ''
+                });
+            });
+
+            // Inicializar o mapa com todos os resultados (sem filtros)
+            updateMap({
+                pais_fundacao: [],
+                ano_fundacao_inicio: '',
+                ano_fundacao_fim: ''
+            });
+        });
+    </script>
 @endsection

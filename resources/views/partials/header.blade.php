@@ -9,6 +9,7 @@
                 <li><a href="{{ route('congregations.index') }}">Banco</a></li>
                 <li><a href="{{ route('congregations.sobre') }}">Sobre</a></li>
                 <li><a href="{{ route('congregations.equipe') }}">Equipe</a></li>
+                <li><a href="{{ route('congregations.apresentacao') }}">Pesquisa</a></li>
             </ul>
         </nav>
     </div>

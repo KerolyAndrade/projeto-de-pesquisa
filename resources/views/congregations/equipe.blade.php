@@ -1,13 +1,58 @@
+@extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h2>Equipe responsável</h2>
-        <br>
-        <p>Agueda Bernardete Bittencourt (coord.), <a href="mailto:agueda.bittencourt@gmail.com">agueda.bittencourt@gmail.com</a></p>
-        <p>Paula Leonardi, <a href="mailto:leonardi.paula@gmail.com">leonardi.paula@gmail.com</a></p>
-        <p>Guilherme Ramalho Arduini, <a href="mailto:guilherme.arduini@gmail.com">guilherme.arduini@gmail.com</a></p>
-        <p>Vinicius Parolin Wohnrath, <a href="mailto:vinicius.wohnrath@gmail.com">vinicius.wohnrath@gmail.com</a></p>
-        <p>Marcos Yakuwa Mekaru, <a href="mailto:marcosmekaru@gmail.com">marcosmekaru@gmail.com</a></p>
-        <p><strong>Bolsistas:</strong> Bruno Alves Pereira, Marcos dos Santos, Daniel Fernandes, Victor Silva</p>
+    <div class="container-fluid p-0">
+        <div class="row justify-content-center m-0">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header text-center">
+                        <h2 class="mb-0">Equipe responsável</h2>
+                    </div>
+                    <div class="card-body">
+                        <!-- Tabela com informações da equipe -->
+                        <table class="table table-bordered mt-2">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Lattes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Agueda Bernardete Bittencourt (coord.)</td>
+                                    <td><a href="mailto:agueda.bittencourt@gmail.com">agueda.bittencourt@gmail.com</a></td>
+                                    <td><a href="link_para_apresentacao_agueda" target="_blank">Apresentação</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Paula Leonardi</td>
+                                    <td><a href="mailto:leonardi.paula@gmail.com">leonardi.paula@gmail.com</a></td>
+                                    <td><a href="link_para_apresentacao_paula" target="_blank">Apresentação</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Guilherme Ramalho Arduini</td>
+                                    <td><a href="mailto:guilherme.arduini@gmail.com">guilherme.arduini@gmail.com</a></td>
+                                    <td><a href="link_para_apresentacao_guilherme" target="_blank">Apresentação</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Vinicius Parolin Wohnrath</td>
+                                    <td><a href="mailto:vinicius.wohnrath@gmail.com">vinicius.wohnrath@gmail.com</a></td>
+                                    <td><a href="link_para_apresentacao_vinicius" target="_blank">Apresentação</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Marcos Yakuwa Mekaru</td>
+                                    <td><a href="mailto:marcosmekaru@gmail.com">marcosmekaru@gmail.com</a></td>
+                                    <td><a href="link_para_apresentacao_marcos" target="_blank">Apresentação</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <br>
+
+                        <p><strong>Bolsistas:</strong> Bruno Alves Pereira, Marcos dos Santos, Daniel Catarino Biscalchin, Keroly Andrade</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

@@ -417,3 +417,10 @@ h1, h2, h3, h4, h5, h6 {
         padding: 10px 15px;
     }
 }
+.form-check {
+    display: flex;
+    align-items: center;
+}
+.form-check-input {
+    margin-right: 10px; /* Adiciona um espaço entre o checkbox e o texto */
+}
