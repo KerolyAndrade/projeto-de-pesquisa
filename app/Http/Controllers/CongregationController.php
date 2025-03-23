@@ -121,16 +121,25 @@ class CongregationController extends Controller
         return redirect()->route('congregations.sobre')->with('success', 'Formulário enviado com sucesso!');
     }
     public function showMap()
+    {
+        // Obter os filtros utilizando o método que utiliza cache
+        $filters = $this->getFilters();
+    
+        // Retornar a view e passar os filtros para ela
+        return view('congregations.mapa', compact('filters'));
+    }
+    public function getCongregacoesPorPais($pais)
 {
-    // Definir os filtros que serão usados no formulário
-    $filters = [
-        'paises_fundacao' => Congregation::distinct()->pluck('pais_fundacao')->sort(),
-        // Outros filtros podem ser adicionados aqui, conforme necessário
-    ];
+    // Contar o número de congregações no país fornecido
+    $congregacoesCount = Congregation::where('pais_fundacao', $pais)->count();
 
-    // Retornar a view e passar os filtros para ela
-    return view('congregations.mapa', compact('filters'));
+    // Retornar os dados em formato JSON
+    return response()->json([
+        'pais' => $pais,
+        'congregacoes' => $congregacoesCount,
+    ]);
 }
+
 
     // Métodos adicionais para outras páginas
     public function sobre()
