@@ -9,8 +9,8 @@
     --text-color: #333;
     --light-text-color: #666;
     --header-footer-background: #1e2a38;
-    --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Aumentado para um sombreamento mais sutil */
-    --border-radius: 10px; /* Aumentado para bordas mais suaves */
+    --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    --border-radius: 10px;
     --transition-speed: 0.3s;
     --max-content-width: 1200px;
     --input-background-color: #fafafa;
@@ -26,16 +26,16 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif; /* Mantido o Roboto como padrão */
+    font-family: 'Roboto', sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     line-height: 1.6;
-    font-size: 16px; /* Aumentado para melhorar a legibilidade */
-    -webkit-font-smoothing: antialiased; /* Melhora a renderização da fonte */
-    text-rendering: optimizeLegibility; /* Melhora a legibilidade em fontes serifadas */
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
 header {
@@ -48,9 +48,9 @@ header {
     left: 0;
     z-index: 1000;
     display: flex;
-    justify-content: space-between; /* Mudado para otimizar o alinhamento */
+    justify-content: space-between;
     align-items: center;
-    height: 70px; /* Ajustado para altura mais apropriada */
+    height: 70px;
 }
 
 .header-container {
@@ -63,7 +63,7 @@ header {
 }
 
 .logo {
-    font-size: 28px; /* Aumentado para maior visibilidade */
+    font-size: 28px;
     font-weight: 700;
     color: #fff;
     transition: color var(--transition-speed);
@@ -83,7 +83,7 @@ header {
 }
 
 .nav-links li {
-    margin-left: 30px; /* Aumentada a margem para maior espaçamento */
+    margin-left: 30px;
 }
 
 .nav-links a {
@@ -107,14 +107,14 @@ header {
 
 .pagination a,
 .pagination span {
-    margin: 0 12px; /* Maior espaçamento entre os elementos */
-    padding: 14px 20px; /* Aumentado para melhorar a interação */
+    margin: 0 12px;
+    padding: 14px 20px;
     border-radius: var(--border-radius);
     background-color: #fff;
     border: 1px solid #ddd;
     color: var(--primary-color);
     text-decoration: none;
-    font-size: 1.125rem; /* Tamanho aumentado para maior clareza */
+    font-size: 1.125rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -144,7 +144,7 @@ header {
 footer {
     background-color: var(--header-footer-background);
     color: #fff;
-    padding: 20px 0; /* Aumentado o padding para maior consistência com o header */
+    padding: 20px 0;
     text-align: center;
     box-shadow: var(--box-shadow);
 }
@@ -153,15 +153,15 @@ footer {
     max-width: var(--max-content-width);
     margin: auto;
     padding: 20px;
-    margin-top: 90px; /* Ajustado para compensar a altura do header fixo */
+    margin-top: 90px;
 }
 
 .form-group {
-    margin-bottom: 25px; /* Aumentado o espaçamento entre os campos */
+    margin-bottom: 25px;
 }
 
 .form-group label {
-    font-size: 1rem; /* Aumentado para melhorar a legibilidade */
+    font-size: 1rem;
     color: var(--text-color);
     display: block;
     margin-bottom: 10px;
@@ -169,11 +169,11 @@ footer {
 
 .form-control {
     width: 100%;
-    height: 45px; /* Aumentado para facilitar a interação */
+    height: 45px;
     border: 1px solid var(--input-border-color);
     border-radius: var(--border-radius);
     padding: 12px;
-    font-size: 1rem; /* Aumentado para melhorar a legibilidade */
+    font-size: 1rem;
     color: var(--text-color);
     margin-top: 0;
     background-color: var(--input-background-color);
@@ -191,13 +191,13 @@ footer {
 
 .btn-group {
     display: flex;
-    gap: 20px; /* Aumentado para maior espaçamento entre os botões */
+    gap: 20px;
     justify-content: space-between;
 }
 
 .btn {
-    padding: 14px 22px; /* Aumentado para maior área clicável */
-    font-size: 1rem; /* Aumentado para clareza */
+    padding: 14px 22px;
+    font-size: 1rem;
     border-radius: var(--border-radius);
     width: 48%;
     transition: background-color var(--transition-speed), border-color var(--transition-speed);
@@ -231,22 +231,38 @@ footer {
     background-color: #fff;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
-    margin-bottom: 30px; /* Aumentado para melhorar o espaçamento entre as cards */
-    padding: 25px; /* Aumentado para maior conforto visual */
+    margin-bottom: 30px;
+    padding: 25px;
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Aumentado para maior espaçamento interno */
+    gap: 15px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.congregation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 .congregation-card h2 {
-    font-size: 1.5rem; /* Tamanho maior para maior destaque */
+    font-size: 1.5rem;
     color: var(--primary-color);
+    white-space: normal;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-
-.congregation-card p {
-    font-size: 1.125rem; /* Texto um pouco maior para legibilidade */
+.search-results .result-item p {
+    font-size: 1.125rem;
     color: var(--light-text-color);
-    margin-bottom: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;         /* Para compatibilidade com WebKit (Chrome/Safari) */
+    -webkit-line-clamp: 3;        /* Para limitar o texto a 3 linhas no WebKit */
+    line-clamp: 3;                /* Propriedade padrão para outros navegadores */
+    -webkit-box-orient: vertical; /* Necessário para o funcionamento correto do WebKit */
 }
 
 .congregation-card a {
@@ -272,19 +288,19 @@ ul, ol {
 }
 
 li {
-    margin-bottom: 15px; /* Aumentado para maior espaçamento entre as listas */
+    margin-bottom: 15px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 25px;
-    font-size: 1.125rem; /* Tamanho maior para legibilidade */
+    font-size: 1.125rem;
 }
 
 th, td {
     border: 1px solid var(--input-border-color);
-    padding: 14px; /* Aumentado o padding para maior conforto visual */
+    padding: 14px;
     text-align: left;
 }
 
@@ -313,13 +329,13 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     color: var(--primary-color);
     text-transform: uppercase;
-    margin-bottom: 18px; /* Aumentado para maior espaçamento */
+    margin-bottom: 18px;
 }
 
 .search-results {
     display: flex;
     flex-wrap: wrap;
-    gap: 25px; /* Aumentado o espaçamento entre os resultados */
+    gap: 25px;
 }
 
 .search-results .result-item {
@@ -327,8 +343,16 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #fff;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
-    padding: 25px; /* Aumentado para maior espaçamento interno */
+    padding: 25px;
     text-align: center;
+    max-height: 400px; /* Limita a altura do item */
+    overflow: hidden;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.search-results .result-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 .search-results .result-item img {
@@ -338,11 +362,50 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .search-results .result-item h2 {
-    font-size: 1.375rem; /* Aumentado para maior destaque */
+    font-size: 1.375rem;
     margin-bottom: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Impede que o texto quebre */
 }
 
 .search-results .result-item p {
-    font-size: 1.125rem; /* Texto maior para legibilidade */
+    font-size: 1.125rem;
     color: var(--light-text-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;         /* Para compatibilidade com WebKit (Chrome/Safari) */
+    -webkit-line-clamp: 3;        /* Para limitar o texto a 3 linhas no WebKit */
+    line-clamp: 3;                /* Propriedade padrão para outros navegadores */
+    -webkit-box-orient: vertical; /* Necessário para o funcionamento correto do WebKit */
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.col-md-4 {
+    flex: 1 0 30%;
+}
+
+.col-md-8 {
+    flex: 1 0 65%;
+    min-width: 300px;
+}
+
+@media (max-width: 768px) {
+    .col-md-4 {
+        flex: 1 0 100%;
+    }
+
+    .col-md-8 {
+        flex: 1 0 100%;
+    }
+
+    .pagination a {
+        font-size: 1rem;
+        padding: 10px 15px;
+    }
 }

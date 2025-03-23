@@ -115,18 +115,17 @@ $(document).ready(() => {
             }
         });
     };
-
-    // Função para limpar o formulário e recarregar a página
     window.clearForm = () => {
         // Limpar todos os campos do formulário
         $('form')[0].reset();
-
+    
         // Limpar sugestões de autocomplete
         $('#suggestions').empty().hide();
-
-        // Recarregar a página sem adicionar nova entrada no histórico
-        window.history.replaceState(null, '', window.location.pathname);
+    
+        // Recarregar a página
+        window.location.href = window.routeIndex;
     };
+    
 
     // Inicialização de todos os componentes
     const initializeComponents = () => {

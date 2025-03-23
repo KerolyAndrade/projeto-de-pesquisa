@@ -2,23 +2,21 @@
 
 @section('content')
     <div class="container">
-        <div class="row" style="display: flex; align-items: stretch;">
+        <div class="row" style="display: flex; align-items: flex-start; gap: 15px;">
             <!-- Formulário de Pesquisa à esquerda -->
-            <div class="col-md-4 mb-4" style="flex: 0 0 30%; padding-right: 30px; display: flex; flex-direction: column; position: relative;">
-                <!-- Card atrás do formulário -->
-                <div class="congregation-card fixed-card"></div>
+            <div class="col-md-3 mb-4" style="flex: 0 0 20%; padding-right: 20px; margin-left: 15px;">
                 <h1 class="mb-4">Pesquisa de Congregações</h1>
-                <form action="{{ route('congregations.search') }}" method="POST" class="bg-light p-4 border rounded shadow-sm z-index-1">
+                <form action="{{ route('congregations.search') }}" method="POST" class="bg-light p-4 border rounded shadow-sm">
                     @csrf
                     @foreach([ 'nome_principal' => 'Nome da Congregação', 'nomes_alternativos' => 'Nomes Alternativos', 'siglas' => 'Siglas' ] as $name => $label)
-                        <div class="form-group mb-3">
+                        <div class="form-group mb-4">
                             <label for="{{ $name }}" class="form-label">{{ $label }}</label>
                             <input type="text" name="{{ $name }}" class="form-control" id="{{ $name }}" placeholder="Digite o {{ strtolower($label) }}" value="{{ request($name) }}" aria-label="{{ $label }}">
                         </div>
                     @endforeach
 
                     @foreach([ 'familia_final' => ['label' => 'Família Final', 'options' => $filters['familias']], 'pais_fundacao' => ['label' => 'País de Fundação', 'options' => $filters['paises_fundacao']], 'chegada_brasil_estado' => ['label' => 'Estado de Chegada ao Brasil', 'options' => $filters['estados_presente']] ] as $name => $filter)
-                        <div class="form-group mb-3">
+                        <div class="form-group mb-4">
                             <label for="{{ $name }}" class="form-label">{{ $filter['label'] }}</label>
                             <select name="{{ $name }}[]" class="form-control" id="{{ $name }}" aria-label="{{ $filter['label'] }}" multiple>
                                 @foreach($filter['options'] as $option)
@@ -28,8 +26,7 @@
                         </div>
                     @endforeach
 
-                    <!-- Novo campo para gênero -->
-                    <div class="form-group mb-3">
+                    <div class="form-group mb-4">
                         <label for="genero" class="form-label">Gênero da Congregação</label>
                         <select name="genero" class="form-control" id="genero" aria-label="Gênero da Congregação">
                             <option value="">Todos</option>
@@ -38,8 +35,7 @@
                         </select>
                     </div>
 
-                    <!-- Campo para o período de anos de fundação -->
-                    <div class="form-group mb-3">
+                    <div class="form-group mb-4">
                         <label class="form-label">Ano de Fundação</label>
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -54,49 +50,41 @@
                     </div>
 
                     <div class="d-flex justify-content-between">
-                        <a href="{{ route('congregations.index') }}" class="btn btn-secondary">Limpar</a>
+                        <button type="button" class="btn btn-secondary" onclick="clearForm()">Limpar</button>
                         <button type="submit" class="btn btn-primary">Buscar</button>
                     </div>
                 </form>
             </div>
 
             <!-- Resultados da Pesquisa à direita -->
-            <div class="col-md-8 mb-4" style="flex: 1; display: flex; flex-direction: column; position: relative;">
-                <!-- Título de Resultados -->
+            <div class="col-md-8 mb-4" style="flex: 0 0 70%; padding-left: 10px; overflow-x: auto;">
                 <h2 class="mb-4">Resultados</h2>
-                
+
                 @if($congregations->isEmpty())
                     <div class="alert alert-info mt-3">
                         Nenhuma congregação encontrada.
                     </div>
                 @else
                     @foreach($congregations as $index => $congregation)
-                        <div class="congregation-card mb-4 p-4 border rounded shadow-sm">
-                            <!-- Nome da Congregação e Informações Básicas -->
+                        <div class="congregation-card mb-3 p-3 border rounded shadow-sm" style="max-width: 100%; padding: 1.5rem;">
                             <h2 class="text-primary congregation-name mb-3" data-id="{{ $congregation->id }}">
                                 {{ ($congregations->currentPage() - 1) * $congregations->perPage() + $loop->iteration }}. {{ $congregation->nome_principal }}
                             </h2>
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <small>
-                                        <strong>Gênero:</strong> {{ $congregation->genero == 'f' ? 'Feminino' : ($congregation->genero == 'm' ? 'Masculino' : 'Não Informado') }}
-                                    </small>
+                                    <small><strong>Gênero:</strong> {{ $congregation->genero == 'f' ? 'Feminino' : ($congregation->genero == 'm' ? 'Masculino' : 'Não Informado') }}</small>
                                 </div>
                                 <div class="col-md-6 text-end">
-                                    <small>
-                                        <strong>País de Fundação:</strong> {{ $congregation->pais_fundacao ?? 'Não Informado' }}
-                                    </small>
+                                    <small><strong>País de Fundação:</strong> {{ $congregation->pais_fundacao ?? 'Não Informado' }}</small>
                                 </div>
                             </div>
 
-                            <!-- Seção de Detalhes (inicialmente oculta) -->
                             <div class="congregation-details" id="details-{{ $congregation->id }}" style="display: none;">
                                 @include('congregations.partials.details', ['congregation' => $congregation])
                             </div>
                         </div>
                     @endforeach
 
-                    <!-- Paginação -->
                     <div class="mt-4">
                         {{ $congregations->links('pagination::bootstrap-4') }}
                     </div>
@@ -118,7 +106,16 @@
             });
 
             // Função para limpar o formulário
-            window.clearForm = () => document.querySelector('form').reset();
+            window.clearForm = () => {
+                document.querySelector('form').reset();
+                // Limpa os campos de seleção
+                document.querySelectorAll('select').forEach(select => {
+                    select.selectedIndex = -1; // Nenhuma opção selecionada
+                });
+
+                // Recarrega a página para resetar todos os filtros
+                window.location.href = '{{ route('congregations.index') }}';  // Redireciona para o índice
+            };
         });
     </script>
 

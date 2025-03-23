@@ -8,72 +8,79 @@ use Illuminate\Support\Facades\Cache;
 
 class CongregationController extends Controller
 {
-    public function index(Request $request)
+    // Método para obter os filtros de pesquisa e cacheá-los
+    protected function getFilters()
     {
-        // Cache para os filtros
-        $filters = Cache::remember('congregation_filters', 60, function () {
+        return Cache::remember('congregation_filters', 60, function () {
             return [
                 'familias' => Congregation::distinct()->pluck('familia_final')->sort(),
                 'paises_fundacao' => Congregation::distinct()->pluck('pais_fundacao')->sort(),
                 'estados_presente' => Congregation::distinct()->pluck('chegada_brasil_estado')->sort()
             ];
         });
+    }
 
-        // Iniciar a query
+    // Método de exibição das congregações com filtros aplicados
+    public function index(Request $request)
+    {
+        $filters = $this->getFilters();
         $query = Congregation::query();
 
-        // Obter os dados do formulário
+        // Obtém todos os parâmetros de pesquisa da requisição
         $input = $request->only([
             'nome_principal', 'nomes_alternativos', 'siglas', 'familia_final',
             'pais_fundacao', 'chegada_brasil_estado', 'ano_fundacao_de', 'ano_fundacao_ate', 'genero'
         ]);
 
-        // Aplicar filtros dinâmicos
+        // Aplica cada filtro de acordo com os valores da requisição
         foreach ($input as $field => $value) {
             if ($request->filled($field)) {
-                // Filtro para o ano de fundação
-                if ($field == 'ano_fundacao_de') {
-                    $query->whereYear('data_fundacao', '>=', $value);
-                } elseif ($field == 'ano_fundacao_ate') {
-                    $query->whereYear('data_fundacao', '<=', $value);
-                }
-                // Filtro para valores múltiplos (arrays)
-                elseif (in_array($field, ['familia_final', 'pais_fundacao', 'chegada_brasil_estado']) && is_array($value)) {
-                    $query->whereIn($field, $value);
-                }
-                // Filtro para gênero
-                elseif ($field == 'genero') {
-                    $query->where('genero', $value);
-                }
-                // Filtro para o nome da congregação e outros campos de texto
-                else {
-                    $query->where($field, 'like', '%' . $value . '%');
-                }
+                $this->applyFilter($query, $field, $value);
             }
         }
 
-        // Paginar os resultados
+        // Paginação de resultados
         $congregations = $query->paginate(10);
 
-        // Retornar a view com os resultados e filtros
         return view('congregations.index', [
             'congregations' => $congregations,
             'filters' => $filters
         ]);
     }
 
-    // Método para a busca específica
-    public function search(Request $request)
+    // Método para aplicar filtros de pesquisa no query
+    protected function applyFilter($query, $field, $value)
     {
-        // Verificar se a requisição é do tipo POST para aplicar a pesquisa
-        if ($request->isMethod('post')) {
-            return $this->index($request); // Chama o método index para aplicar a pesquisa
+        if ($field == 'ano_fundacao_de') {
+            $query->whereYear('data_fundacao', '>=', $value);
+        } elseif ($field == 'ano_fundacao_ate') {
+            $query->whereYear('data_fundacao', '<=', $value);
+        } elseif (in_array($field, ['familia_final', 'pais_fundacao', 'chegada_brasil_estado']) && is_array($value)) {
+            $query->whereIn($field, $value);
+        } elseif ($field == 'genero') {
+            // Verifica se o gênero é válido, ignorando maiúsculas/minúsculas
+            $validGeneros = ['f', 'm']; // 'f' para feminino, 'm' para masculino
+            if (in_array(strtolower($value), $validGeneros)) {
+                $query->whereRaw('LOWER(genero) = ?', [strtolower($value)]);
+            }
+        } else {
+            // Aplica filtro para qualquer outro campo utilizando LIKE insensível a maiúsculas/minúsculas
+            $query->whereRaw('LOWER(' . $field . ') LIKE ?', [strtolower('%' . trim($value) . '%')]);
         }
-        
-        return redirect()->route('congregations.index'); // Caso contrário, redireciona para a página principal
     }
 
-    // Outras páginas de informações
+    public function search(Request $request)
+    {
+        // Se for uma requisição POST, chama o método 'index' para pesquisar
+        if ($request->isMethod('post')) {
+            return $this->index($request);
+        }
+    
+        // Se for uma requisição GET, apenas retorna a view inicial (sem resultados)
+        return redirect()->route('congregations.index');
+    }    
+
+    // Métodos adicionais para outras páginas (sobre, equipe, mapa)
     public function sobre()
     {
         return view('congregations.sobre');
