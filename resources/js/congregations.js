@@ -1,11 +1,40 @@
-import './bootstrap.js';
-import $ from 'jquery';
-import 'jquery-ui/ui/widgets/autocomplete.js';
-
-window.$ = $;
-
 $(document).ready(() => {
-    // Função debounce para otimizar as chamadas
+    // Função para alterar a URL com os parâmetros de filtro quando a paginação é clicada
+    const handlePaginationClick = (event) => {
+        event.preventDefault(); // Impede o comportamento padrão do clique
+
+        const link = $(this); // O link clicado
+        const url = link.attr('href'); // A URL do link
+        const page = new URL(url).searchParams.get('page'); // Obtém o número da página
+
+        // Atualizar a URL com os filtros atuais e o número da página
+        const filters = window.location.search; // Captura os filtros da URL atual
+        const newUrl = `${window.location.pathname}${filters}&page=${page}`;
+
+        // Carregar a nova URL via AJAX ou recarregar a página com os filtros e página
+        window.history.pushState({}, '', newUrl); // Atualiza a URL sem recarregar a página
+        loadPage(newUrl); // Carrega os dados da nova página com filtros
+    };
+
+    // Função para carregar a nova página
+    const loadPage = (url) => {
+        $.ajax({
+            url: url,
+            success: (data) => {
+                // Substituir o conteúdo da página com os novos resultados
+                $('#congregations-list').html($(data).find('#congregations-list').html());
+                $('#pagination-links').html($(data).find('#pagination-links').html());
+            },
+            error: () => {
+                alert('Erro ao carregar os dados. Tente novamente.');
+            }
+        });
+    };
+
+    // Adiciona o ouvinte de evento para os links de paginação
+    $(document).on('click', '.pagination a', handlePaginationClick);
+
+    // Função de debounce para otimizar chamadas de pesquisa
     const debounce = (func, delay) => {
         let timeout;
         return (...args) => {
@@ -115,6 +144,7 @@ $(document).ready(() => {
             }
         });
     };
+
     window.clearForm = () => {
         // Limpar todos os campos do formulário
         $('form')[0].reset();
@@ -125,7 +155,6 @@ $(document).ready(() => {
         // Recarregar a página
         window.location.href = window.routeIndex;
     };
-    
 
     // Inicialização de todos os componentes
     const initializeComponents = () => {

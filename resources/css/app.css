@@ -100,25 +100,25 @@ header {
 .pagination {
     display: flex;
     justify-content: center;
-    margin: 40px 0;
+    margin: 20px 0;
     list-style: none;
     padding: 0;
 }
 
 .pagination a,
 .pagination span {
-    margin: 0 12px;
-    padding: 14px 20px;
-    border-radius: var(--border-radius);
+    margin: 0 4px; /* Menor espaçamento entre os botões */
+    padding: 3px 6px; /* Botões menores */
+    font-size: 0.75rem; /* Tamanho da fonte menor */
+    border-radius: 5px;
     background-color: #fff;
     border: 1px solid #ddd;
     color: var(--primary-color);
     text-decoration: none;
-    font-size: 1.125rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color var(--transition-speed), color var(--transition-speed), border-color var(--transition-speed);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .pagination a:hover,
@@ -139,6 +139,14 @@ header {
     border-color: #ddd;
     cursor: not-allowed;
     background-color: #f9f9f9;
+}
+
+@media (max-width: 768px) {
+    .pagination a,
+    .pagination span {
+        padding: 3px 6px; /* Ajuste de padding para telas menores */
+        font-size: 0.75rem; /* Reduzir o tamanho da fonte em telas pequenas */
+    }
 }
 
 footer {

@@ -6,7 +6,7 @@
             <!-- Formulário de Pesquisa à esquerda -->
             <div class="col-md-3 mb-4" style="flex: 0 0 20%; padding-right: 20px; margin-left: 15px;">
                 <h1 class="mb-4">Pesquisa de Congregações</h1>
-                <form action="{{ route('congregations.search') }}" method="POST" class="bg-light p-4 border rounded shadow-sm">
+                <form action="{{ route('congregations.index') }}" method="GET" class="bg-light p-4 border rounded shadow-sm">
                     @csrf
                     @foreach([ 'nome_principal' => 'Nome da Congregação', 'nomes_alternativos' => 'Nomes Alternativos', 'siglas' => 'Siglas' ] as $name => $label)
                         <div class="form-group mb-4">
@@ -15,7 +15,11 @@
                         </div>
                     @endforeach
 
-                    @foreach([ 'familia_final' => ['label' => 'Família Final', 'options' => $filters['familias']], 'pais_fundacao' => ['label' => 'País de Fundação', 'options' => $filters['paises_fundacao']], 'chegada_brasil_estado' => ['label' => 'Estado de Chegada ao Brasil', 'options' => $filters['estados_presente']] ] as $name => $filter)
+                    @foreach([ 
+                        'familia_final' => ['label' => 'Família Final', 'options' => $filters['familias']], 
+                        'pais_fundacao' => ['label' => 'País de Fundação', 'options' => $filters['paises_fundacao']], 
+                        'chegada_brasil_estado' => ['label' => 'Estado de Chegada ao Brasil', 'options' => $filters['estados_presente']] 
+                    ] as $name => $filter)
                         <div class="form-group mb-4">
                             <label for="{{ $name }}" class="form-label">{{ $filter['label'] }}</label>
                             <select name="{{ $name }}[]" class="form-control" id="{{ $name }}" aria-label="{{ $filter['label'] }}" multiple>
@@ -72,9 +76,21 @@
                             </h2>
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <small><strong>Gênero:</strong> {{ $congregation->genero == 'f' ? 'Feminino' : ($congregation->genero == 'm' ? 'Masculino' : 'Não Informado') }}</small>
+                                    <small><strong>Gênero:</strong> 
+                                        @php
+                                            $genero = strtolower($congregation->genero); // Normaliza o valor para minúsculas
+                                        @endphp
+
+                                        @if($genero == 'f')
+                                            Feminino
+                                        @elseif($genero == 'm')
+                                            Masculino
+                                        @else
+                                            Não Informado
+                                        @endif
+                                    </small>
                                 </div>
-                                <div class="col-md-6 text-end">
+                                <div class=" col-md-6 text-end">
                                     <small><strong>País de Fundação:</strong> {{ $congregation->pais_fundacao ?? 'Não Informado' }}</small>
                                 </div>
                             </div>
@@ -86,7 +102,7 @@
                     @endforeach
 
                     <div class="mt-4">
-                        {{ $congregations->links('pagination::bootstrap-4') }}
+                        {{ $congregations->appends(request()->except('page'))->links('pagination::bootstrap-4') }}
                     </div>
                 @endif
             </div>
