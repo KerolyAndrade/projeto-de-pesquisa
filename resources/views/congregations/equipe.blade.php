@@ -22,7 +22,7 @@
                                 <tr>
                                     <td>Agueda Bernardete Bittencourt (coord.)</td>
                                     <td><a href="mailto:agueda.bittencourt@gmail.com">agueda.bittencourt@gmail.com</a></td>
-                                    <td><a href="link_para_apresentacao_agueda" target="_blank">Apresentação</a></td>
+                                    <td><a href="http://lattes.cnpq.br/0060199832265588" target="_blank">Apresentação</a></td>
                                 </tr>
                                 <tr>
                                     <td>Paula Leonardi</td>
@@ -31,8 +31,8 @@
                                 </tr>
                                 <tr>
                                     <td>Guilherme Ramalho Arduini</td>
-                                    <td><a href="mailto:guilherme.arduini@gmail.com">guilherme.arduini@gmail.com</a></td>
-                                    <td><a href="link_para_apresentacao_guilherme" target="_blank">Apresentação</a></td>
+                                    <td><a href="guilherme.arduini@ifsp.edu.br">guilherme.arduini@ifsp.edu.br</a></td>
+                                    <td><a href="http://lattes.cnpq.br/4213387772904874" target="_blank">Apresentação</a></td>
                                 </tr>
                                 <tr>
                                     <td>Vinicius Parolin Wohnrath</td>
