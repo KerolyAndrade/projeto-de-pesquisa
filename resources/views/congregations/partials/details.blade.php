@@ -25,7 +25,7 @@
 
 <!-- Seção de Membros -->
 <div class="section mb-5">
-    <h3class="section-title" style="margin-bottom: 4px;">Membros</h3>
+    <h3 class="section-title" style="margin-bottom: 4px;">Membros</h3>
     <p><strong>Membros no Brasil:</strong> <span class="text-muted">{{ $congregation->membros_brasil ?? 'Não Informado' }}</span></p>
     <p><strong>Irmandade:</strong> <span class="text-muted">{{ $congregation->irmaos ?? 'Não Informado' }}</span></p>
     <p><strong>Postulantes:</strong> <span class="text-muted">{{ $congregation->postulantes ?? 'Não Informado' }}</span></p>

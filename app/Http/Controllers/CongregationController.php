@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -11,10 +12,50 @@ class CongregationController extends Controller
     protected function getFilters()
     {
         return Cache::remember('congregation_filters', 60, function () {
+            // Recupera todas as famílias finais, excluindo valores vazios
+            $familias = Congregation::distinct()
+                ->pluck('familia_final')
+                ->filter(function ($familia) {
+                    return !empty($familia); // Exclui valores vazios
+                })
+                ->sort();
+
+            // Normaliza as famílias finais, removendo duplicações e variações
+            $familias = $familias->map(function($familia) {
+                // Se a família for "N/E", mantém em caixa alta
+                if (strtoupper($familia) === 'N/E') {
+                    return strtoupper($familia); // Garante que "N/E" seja sempre em caixa alta
+                }
+
+                // Normaliza "s." para "são" e substitui acentos
+                $familia = preg_replace('/\b(s\.)\b/i', 'são', $familia); // Substitui "s." por "são"
+                $familia = strtr($familia, ['á' => 'a', 'é' => 'e', 'í' => 'i', 'ó' => 'o', 'ú' => 'u', 'ã' => 'a', 'õ' => 'o']); // Normaliza acentos
+                return ucwords(strtolower($familia)); // Primeira letra maiúscula e o restante minúscula
+            });
+
+            // Recupera os países e estados com a formatação desejada
+            $paises = Congregation::distinct()->pluck('pais_fundacao')->sort();
+            $estados = Congregation::distinct()->pluck('chegada_brasil_estado')->sort();
+
+            // Normaliza os países
+            $paises = $paises->map(function($pais) {
+                // Se o país for "N/E", coloca em caixa alta
+                if (strtoupper($pais) === 'N/E') {
+                    return strtoupper($pais); // Garante que "N/E" seja sempre em caixa alta
+                }
+                return ucwords(strtolower($pais)); // Primeira letra maiúscula e o restante minúscula
+            });
+
+            // Normaliza os estados (em caixa alta)
+            $estados = $estados->map(function($estado) {
+                return strtoupper($estado); // Coloca os estados em caixa alta
+            });
+
+            // Remove duplicados após a normalização
             return [
-                'familias' => Congregation::distinct()->pluck('familia_final')->sort(),
-                'paises_fundacao' => Congregation::distinct()->pluck('pais_fundacao')->sort(),
-                'estados_presente' => Congregation::distinct()->pluck('chegada_brasil_estado')->sort()
+                'familias' => $familias->unique(),
+                'paises_fundacao' => $paises->unique(),
+                'estados_presente' => $estados->unique()
             ];
         });
     }
@@ -53,6 +94,15 @@ class CongregationController extends Controller
         } elseif ($field == 'ano_fundacao_ate') {
             $query->whereYear('data_fundacao', '<=', $value);
         } elseif (in_array($field, ['familia_final', 'pais_fundacao', 'chegada_brasil_estado']) && is_array($value)) {
+            // Normaliza as famílias finais, substituindo "s." por "são"
+            $value = array_map(function($v) {
+                // Se for "N/E", mantém em caixa alta
+                if (strtoupper($v) == 'N/E') {
+                    return strtoupper($v); // N/E ficará sempre em caixa alta
+                }
+                return preg_replace('/\b(s\.)\b/i', 'são', $v); // Normaliza "s." para "são"
+            }, $value);
+
             $query->whereIn($field, $value);
         } elseif ($field == 'genero') {
             $validGeneros = ['f', 'm'];
@@ -139,10 +189,9 @@ class CongregationController extends Controller
     {
         return view('congregations.mapa');
     }
-    
+
     public function apresentacao()
     {
         return view('congregations.apresentacao');
     }
 }
-
