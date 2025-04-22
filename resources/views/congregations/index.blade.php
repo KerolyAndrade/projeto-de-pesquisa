@@ -28,7 +28,13 @@
                                             <label for="{{ $name }}" class="form-label">{{ $filter['label'] }}</label>
                                             <select name="{{ $name }}[]" class="form-control" id="{{ $name }}" aria-label="{{ $filter['label'] }}" multiple>
                                                 @foreach($filter['options'] as $option)
-                                                    <option value="{{ $option }}" {{ in_array($option, request($name, [])) ? 'selected' : '' }}>{{ $option }}</option>
+                                                    <option value="{{ $option }}" {{ in_array($option, request($name, [])) ? 'selected' : '' }}>
+                                                        @if($name == 'chegada_brasil_estado')
+                                                            {{ strtoupper($option) }} <!-- Apenas para o campo "Estado de Chegada ao Brasil", transformamos em maiúsculas -->
+                                                        @else
+                                                            {{ \App\Http\Controllers\CongregationController::formatFamiliaFinal($option) }}
+                                                        @endif
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -134,7 +140,9 @@
                 document.querySelector('form').reset();
                 // Limpa os campos de seleção
                 document.querySelectorAll('select').forEach(select => {
-                    select.selectedIndex = -1; // Nenhuma opção selecionada
+                    for (let option of select.options) {
+                        option.selected = false; // Desmarca todas as opções
+                    }
                 });
 
                 // Recarrega a página para resetar todos os filtros

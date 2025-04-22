@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
@@ -48,7 +49,8 @@ class CongregationsTableSeeder extends Seeder
                     'Nº de membros do grupo fundador - Não Especificado', 'Período de funcionamento - Casas no Brasil [fontes]',
                     'Período de funcionamento - Casas Fechadas', 'Estados onde está presente', 'Nº de estados onde está presente',
                     'Nº de casas no mundo', 'Países onde está presente', 'Nº de países onde está presente',
-                    'Membros no Brasil\n (Preferência para informações do AC2015)', 'Sacerdotes *', 'Irmãos/ãs *',
+                    'Membros no Brasil\n (Preferência para informações do AC2015)', // Campo Membros no Brasil
+                    'Sacerdotes *', 'Irmãos/ãs *',
                     'Postulantes *', 'Noviços *', 'Dados Alternativos\n(com fontes) *', 'Membros no mundo (total)',
                     'Organização Hierárquica/ Administrativa - Nomeação?', 'Organização Hierárquica/ Administrativa - Eleição?',
                     'Organização Hierárquica/ Administrativa - Ambos?', 'Publicações de uso Interno', 'Publicações livres',
@@ -56,10 +58,11 @@ class CongregationsTableSeeder extends Seeder
                 ];
 
                 foreach ($numericFields as $field) {
-                    if (isset($row[$field]) && !is_numeric($row[$field])) {
-                        $row[$field] = null;
-                    } else {
-                        $row[$field] = $row[$field] ?? 0;
+                    if (isset($row[$field])) {
+                        // Verifica se o campo é numérico, se não, substitui por 0
+                        if (!is_numeric($row[$field]) || trim($row[$field]) === '') {
+                            $row[$field] = 0;
+                        }
                     }
                 }
 
@@ -84,10 +87,14 @@ class CongregationsTableSeeder extends Seeder
                         'cidade_fundacao' => $row['Cidade de Fundação'] ?? null,
                         'chegada_brasil_estado' => $this->normalizeEstado($row['Chegada ao Brasil - Estado'] ?? null),
                         'chegada_brasil_municipio' => $row['Chegada ao Brasil - Município'] ?? null,
-                        'membros_brasil' => $row['Membros no Brasil\n (Preferência para informações do AC2015)'] ?? null,
-                        'irmaos' => $row['Irmãos/ãs *'] ?? null,
-                        'postulantes' => $row['Postulantes *'] ?? null,
-                        'novicos' => $row['Noviços *'] ?? null,
+                        'membros_brasil' => isset($row['Membros no Brasil\n (Preferência para informações do AC2015)']) 
+                            ? (is_numeric($row['Membros no Brasil\n (Preferência para informações do AC2015)']) 
+                                ? $row['Membros no Brasil\n (Preferência para informações do AC2015)'] 
+                                : 0) 
+                            : 0, // Tratamento do campo Membros no Brasil
+                        'irmaos' => $row['Irmãos/ãs *'] ?? 0,
+                        'postulantes' => $row['Postulantes *'] ?? 0,
+                        'novicos' => $row['Noviços *'] ?? 0,
                         'carisma' => $row['Carisma'] ?? null,
                         'motivos_vinda' => $row['Motivos da vinda'] ?? null,
                     ]

@@ -27,7 +27,7 @@
                                 <tr>
                                     <td>Paula Leonardi</td>
                                     <td><a href="mailto:leonardi.paula@gmail.com">leonardi.paula@gmail.com</a></td>
-                                    <td><a href="link_para_apresentacao_paula" target="_blank">Apresentação</a></td>
+                                    <td><a href="http://lattes.cnpq.br/6930629041565848" target="_blank">Apresentação</a></td>
                                 </tr>
                                 <tr>
                                     <td>Guilherme Ramalho Arduini</td>
@@ -37,12 +37,12 @@
                                 <tr>
                                     <td>Vinicius Parolin Wohnrath</td>
                                     <td><a href="mailto:vinicius.wohnrath@gmail.com">vinicius.wohnrath@gmail.com</a></td>
-                                    <td><a href="link_para_apresentacao_vinicius" target="_blank">Apresentação</a></td>
+                                    <td><a href="http://lattes.cnpq.br/1701305518221688" target="_blank">Apresentação</a></td>
                                 </tr>
                                 <tr>
                                     <td>Marcos Yakuwa Mekaru</td>
                                     <td><a href="mailto:marcosmekaru@gmail.com">marcosmekaru@gmail.com</a></td>
-                                    <td><a href="link_para_apresentacao_marcos" target="_blank">Apresentação</a></td>
+                                    <td><a href="http://lattes.cnpq.br/8097381387820446" target="_blank">Apresentação</a></td>
                                 </tr>
                             </tbody>
                         </table>
