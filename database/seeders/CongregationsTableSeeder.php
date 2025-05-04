@@ -41,7 +41,10 @@ class CongregationsTableSeeder extends Seeder
                     }
                 }
 
-                // Normalizar campos numéricos
+                // NÃO NORMALIZAR O CAMPO 'Membros no Brasil' - Não tratar como numérico
+                $row['Membros no Brasil\n (Preferência para informações do AC2015)'] = $row['Membros no Brasil\n (Preferência para informações do AC2015)'] ?? null;
+
+                // Normalizar campos numéricos (exceto Membros no Brasil)
                 $numericFields = [
                     'Fundadores M', 'Fundadores F', 'COM Hierarquia M', 'COM hierarquia F',
                     'SEM Hierarquia M', 'SEM Hierarquia F', 'Santo/M', 'Santo/F',
@@ -49,7 +52,6 @@ class CongregationsTableSeeder extends Seeder
                     'Nº de membros do grupo fundador - Não Especificado', 'Período de funcionamento - Casas no Brasil [fontes]',
                     'Período de funcionamento - Casas Fechadas', 'Estados onde está presente', 'Nº de estados onde está presente',
                     'Nº de casas no mundo', 'Países onde está presente', 'Nº de países onde está presente',
-                    'Membros no Brasil\n (Preferência para informações do AC2015)', // Campo Membros no Brasil
                     'Sacerdotes *', 'Irmãos/ãs *',
                     'Postulantes *', 'Noviços *', 'Dados Alternativos\n(com fontes) *', 'Membros no mundo (total)',
                     'Organização Hierárquica/ Administrativa - Nomeação?', 'Organização Hierárquica/ Administrativa - Eleição?',
@@ -87,11 +89,7 @@ class CongregationsTableSeeder extends Seeder
                         'cidade_fundacao' => $row['Cidade de Fundação'] ?? null,
                         'chegada_brasil_estado' => $this->normalizeEstado($row['Chegada ao Brasil - Estado'] ?? null),
                         'chegada_brasil_municipio' => $row['Chegada ao Brasil - Município'] ?? null,
-                        'membros_brasil' => isset($row['Membros no Brasil\n (Preferência para informações do AC2015)']) 
-                            ? (is_numeric($row['Membros no Brasil\n (Preferência para informações do AC2015)']) 
-                                ? $row['Membros no Brasil\n (Preferência para informações do AC2015)'] 
-                                : 0) 
-                            : 0, // Tratamento do campo Membros no Brasil
+                        'membros_brasil' => $row['Membros no Brasil\n (Preferência para informações do AC2015)'], // Não tratar como numérico
                         'irmaos' => $row['Irmãos/ãs *'] ?? 0,
                         'postulantes' => $row['Postulantes *'] ?? 0,
                         'novicos' => $row['Noviços *'] ?? 0,

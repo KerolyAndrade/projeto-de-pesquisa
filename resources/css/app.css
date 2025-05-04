@@ -55,7 +55,7 @@ header {
 
 .header-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Garante que a logo e o menu fiquem nas extremidades */
     align-items: center;
     max-width: var(--max-content-width);
     width: 100%;
@@ -73,8 +73,10 @@ header {
     color: var(--secondary-color);
 }
 
+/* Alinhamento do menu à esquerda */
 .nav {
     display: flex;
+    justify-content: flex-start; /* Alinha o menu à esquerda */
 }
 
 .nav-links {
@@ -107,9 +109,9 @@ header {
 
 .pagination a,
 .pagination span {
-    margin: 0 4px; /* Menor espaçamento entre os botões */
-    padding: 3px 6px; /* Botões menores */
-    font-size: 0.75rem; /* Tamanho da fonte menor */
+    margin: 0 4px;
+    padding: 3px 6px;
+    font-size: 0.75rem;
     border-radius: 5px;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -144,8 +146,8 @@ header {
 @media (max-width: 768px) {
     .pagination a,
     .pagination span {
-        padding: 3px 6px; /* Ajuste de padding para telas menores */
-        font-size: 0.75rem; /* Reduzir o tamanho da fonte em telas pequenas */
+        padding: 3px 6px;
+        font-size: 0.75rem;
     }
 }
 
@@ -262,15 +264,16 @@ footer {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .search-results .result-item p {
     font-size: 1.125rem;
     color: var(--light-text-color);
     overflow: hidden;
     text-overflow: ellipsis;
-    display: -webkit-box;         /* Para compatibilidade com WebKit (Chrome/Safari) */
-    -webkit-line-clamp: 3;        /* Para limitar o texto a 3 linhas no WebKit */
-    line-clamp: 3;                /* Propriedade padrão para outros navegadores */
-    -webkit-box-orient: vertical; /* Necessário para o funcionamento correto do WebKit */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .congregation-card a {
@@ -353,7 +356,7 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: var(--box-shadow);
     padding: 25px;
     text-align: center;
-    max-height: 400px; /* Limita a altura do item */
+    max-height: 400px;
     overflow: hidden;
     transition: transform var(--transition-speed), box-shadow var(--transition-speed);
 }
@@ -374,7 +377,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 15px;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap; /* Impede que o texto quebre */
+    white-space: nowrap;
 }
 
 .search-results .result-item p {
@@ -382,10 +385,10 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--light-text-color);
     overflow: hidden;
     text-overflow: ellipsis;
-    display: -webkit-box;         /* Para compatibilidade com WebKit (Chrome/Safari) */
-    -webkit-line-clamp: 3;        /* Para limitar o texto a 3 linhas no WebKit */
-    line-clamp: 3;                /* Propriedade padrão para outros navegadores */
-    -webkit-box-orient: vertical; /* Necessário para o funcionamento correto do WebKit */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .container {
@@ -407,20 +410,7 @@ h1, h2, h3, h4, h5, h6 {
     .col-md-4 {
         flex: 1 0 100%;
     }
-
     .col-md-8 {
         flex: 1 0 100%;
     }
-
-    .pagination a {
-        font-size: 1rem;
-        padding: 10px 15px;
-    }
-}
-.form-check {
-    display: flex;
-    align-items: center;
-}
-.form-check-input {
-    margin-right: 10px; /* Adiciona um espaço entre o checkbox e o texto */
 }

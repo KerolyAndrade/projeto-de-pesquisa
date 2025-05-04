@@ -17,7 +17,7 @@ Route::get('/apresentacao', [CongregationController::class, 'apresentacao'])->na
 
 // Rota para Política de Privacidade (LGPD)
 Route::get('/termos', function () {
-    return view('termos'); // Supondo que você tenha uma view chamada 'termos.blade.php'
+    return view('termos'); 
 })->name('termos');
 
 // Rotas com prefixo 'congregations'
@@ -35,7 +35,7 @@ Route::prefix('congregations')->group(function() {
 
     // Rota para enviar o formulário de pesquisa de satisfação
     Route::post('/enviar-formulario', [SatisfactionSurveyController::class, 'store'])->name('formulario.submit');
-    
+
     // Rota para exportar os dados das pesquisas de satisfação
     Route::get('/exportar-pesquisas', [SatisfactionSurveyController::class, 'export'])->name('survey.export');
 });

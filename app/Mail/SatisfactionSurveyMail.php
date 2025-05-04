@@ -2,7 +2,6 @@
 
 namespace App\Mail;
 
-use App\Models\SatisfactionSurvey;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -11,17 +10,22 @@ class SatisfactionSurveyMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $survey;
+    public $surveyData;
 
-    public function __construct(SatisfactionSurvey $survey)
+    // Recebe os dados da pesquisa
+    public function __construct($surveyData)
     {
-        $this->survey = $survey;
+        $this->surveyData = $surveyData;
     }
 
+    // Define o conteúdo do e-mail
     public function build()
     {
-        return $this->subject('Nova Pesquisa de Satisfação')
-                    ->view('emails.satisfaction_survey') // Criar a view do e-mail
-                    ->with(['survey' => $this->survey]);
+        return $this->subject('Nova Pesquisa de Satisfação Enviada')
+                    ->view('emails.satisfaction_survey')
+                    ->with([
+                        'surveyData' => $this->surveyData,
+                    ]);
     }
 }
+

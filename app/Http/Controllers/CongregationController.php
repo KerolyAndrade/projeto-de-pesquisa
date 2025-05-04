@@ -1,10 +1,10 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Congregation;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Str;
 
 class CongregationController extends Controller
 {
@@ -21,7 +21,7 @@ class CongregationController extends Controller
                     ->pluck('pais_fundacao')
                     ->filter()
                     ->map(function ($item) {
-                        return trim($item) === 'italia' ? 'Itália' : $item;
+                        return trim($item) === 'Italia' ? 'Itália' : $item;
                     })
                     ->unique()
                     ->sort(),
@@ -48,7 +48,8 @@ class CongregationController extends Controller
 
         $input = $request->only([
             'nome_principal', 'nomes_alternativos', 'siglas', 'familia_final',
-            'pais_fundacao', 'chegada_brasil_estado', 'ano_fundacao_de', 'ano_fundacao_ate', 'genero'
+            'pais_fundacao', 'chegada_brasil_estado', 'ano_fundacao_de',
+            'ano_fundacao_ate', 'genero'
         ]);
 
         $input = array_filter($input, function ($value) {
@@ -86,7 +87,7 @@ class CongregationController extends Controller
             $estados = is_array($value) ? $value : explode(',', $value);
             $query->where(function ($q) use ($estados) {
                 foreach ($estados as $estado) {
-                    $q->orWhere('chegada_brasil_estado', 'like', "%$estado%");
+                    $q->orWhereRaw('unaccent(chegada_brasil_estado) ILIKE unaccent(?)', ['%' . $estado . '%']);
                 }
             });
         } elseif ($field == 'pais_fundacao') {
@@ -98,10 +99,33 @@ class CongregationController extends Controller
             if (in_array(strtolower($value), $validGeneros)) {
                 $query->whereRaw('LOWER(genero) = ?', [strtolower($value)]);
             }
+        } elseif (in_array($field, ['nome_principal', 'nomes_alternativos', 'siglas'])) {
+            // Verifica se o valor da pesquisa está entre aspas
+            if (preg_match('/^"(.*)"$/', $value, $matches)) {
+                // Tratar o termo Sion como isolado, com um espaço antes (não é necessário depois)
+                $searchTerm = ' ' . trim($matches[1]);
+
+                // Busca exata (case-insensitive) quando há aspas
+                $query->where(function ($q) use ($searchTerm) {
+                    $q->orWhereRaw("unaccent(nome_principal) ILIKE unaccent(?)", ["%{$searchTerm}%"])
+                      ->orWhereRaw("unaccent(nomes_alternativos) ILIKE unaccent(?)", ["%{$searchTerm}%"])
+                      ->orWhereRaw("unaccent(siglas) ILIKE unaccent(?)", ["%{$searchTerm}%"]);
+                });
+            } else {
+                // Pesquisa parcial (case-insensitive) quando não há aspas
+                $termos = preg_split('/\s+/', $value);
+                $query->where(function ($q) use ($termos) {
+                    foreach ($termos as $termo) {
+                        $q->orWhereRaw("unaccent(nome_principal) ILIKE unaccent(?)", ["%{$termo}%"])
+                          ->orWhereRaw("unaccent(nomes_alternativos) ILIKE unaccent(?)", ["%{$termo}%"])
+                          ->orWhereRaw("unaccent(siglas) ILIKE unaccent(?)", ["%{$termo}%"]);
+                    }
+                });
+            }
         } else {
-            $query->where(function ($q) use ($field, $value) {
-                $q->whereRaw('LOWER(' . $field . ') LIKE ?', ['%' . strtolower($value) . '%']);
-            });
+            // Outros campos com unaccent
+            $searchTerm = preg_replace('/^(["\'])(.*)\1$/', '$2', $value);
+            $query->whereRaw("unaccent($field) ILIKE unaccent(?)", ["%$searchTerm%"]);
         }
     }
 

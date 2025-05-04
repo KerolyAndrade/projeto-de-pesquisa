@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SatisfactionSurvey;
+use App\Mail\SatisfactionSurveyMail;
+use Illuminate\Support\Facades\Mail;
 
 class SatisfactionSurveyController extends Controller
 {
@@ -29,7 +31,10 @@ class SatisfactionSurveyController extends Controller
 
         try {
             // Salvar os dados no banco
-            SatisfactionSurvey::create($surveyData);
+            $survey = SatisfactionSurvey::create($surveyData);
+
+            // Enviar o e-mail com os dados
+            Mail::to('guilherme.arduini@ifsp.edu.br')->send(new SatisfactionSurveyMail($surveyData));
 
             // Retornar resposta com sucesso
             return back()->with('success', 'Sua resposta foi enviada com sucesso!');

@@ -63,7 +63,7 @@
 
                         <br>
                         <h3>9. Como Entrar em Contato</h3>
-                        <p>Se você tiver dúvidas sobre esta Política de Privacidade ou quiser exercer seus direitos relacionados aos seus dados pessoais, entre em contato conosco através do e-mail: <strong>contato@dominio.com</strong>.</p>
+                        <p>Se você tiver dúvidas sobre esta Política de Privacidade ou quiser exercer seus direitos relacionados aos seus dados pessoais, entre em contato conosco através do e-mail: <strong>guilherme.arduini@ifsp.edu.br</strong>.</p>
 
                         <br>
                         <h3>10. Definições Importantes</h3>
